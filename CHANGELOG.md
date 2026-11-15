@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add a reproducible, read-only review of official HTTPX documentation using fresh four-role provider responses.
+- Record optional bounded provider response IDs, actual model snapshots, timestamps and per-role token totals.
+- Distinguish incompatible operator criteria from vendor contradictions; require behavioral verification before recommending changes to documented facts.
 - Ground every model role in the product scope, selected source values, and recorded task evidence.
 - Support modern completion-token limits, retain usage for rejected responses, and display model recommendations in reports.
 - Keep fictional source labels accurate when live model proposals are enabled.

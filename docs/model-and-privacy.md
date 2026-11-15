@@ -24,6 +24,8 @@ Every model review role receives the product identity, case scope, captured sour
 
 The adapter proposes a summary, existing evidence IDs, and recommendations. Those remain human-review proposals. It cannot add tools, expand allowed hosts, execute arbitrary code, or convert page text into permissions.
 
+Successful responses may also record a provider response identifier, actual model snapshot, creation timestamp and per-role reported token total. These optional, bounded metadata fields are distinct from the configured model alias. They support run auditing; they do not authenticate a third-party bundle or prove that generated claims are correct. Missing metadata is omitted, not invented. No raw provider headers or response body are copied into these fields.
+
 ## Usage and limits
 
 Configured model-call, token-reservation, action, response-size, and time limits constrain the run. Limits apply to the work actually performed; an exhausted or invalid proposal becomes visible partial work. Usage received from a provider is recorded separately from reservations. The application does not claim a measured dollar cost when current prices or provider usage are unavailable.

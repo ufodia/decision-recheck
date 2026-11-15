@@ -78,3 +78,16 @@ Check each model summary and recommendation against those observations. Evidence
 The model receives selected source values, scope, task specifications/events and citation metadata. It does not receive screenshot pixels or full raw files. All model output remains a proposal for human review. Keep raw run artifacts private until reviewed: browsers or local security software can inject machine-specific URLs into otherwise public HTML. Do not publish raw traces, environment files, or provider exception text.
 
 See [model access and privacy](model-and-privacy.md) and the dated [validation record](validation.md) for what was actually exercised and its limits.
+
+## Review a different real website
+
+`examples/httpx-docs-live.json` reviews the official HTTPX Introduction and QuickStart pages with the same four-role flow. Its scope is documentation: it reads interface, optional HTTP/2 installation and timeout statements, then runs three text assertions. It does not execute HTTPX code or measure its actual timeout behavior. The supplied criteria include an incompatible timeout-free requirement and an unknown support SLA to keep failures and evidence gaps observable.
+
+```sh
+uv run --no-env-file python scripts/run_live_review.py --env-file .env.live --brief examples/httpx-docs-live.json --output runs/httpx-live-A
+uv run decision-recheck validate --bundle runs/httpx-live-A
+uv run --no-env-file python scripts/run_live_review.py --env-file .env.live --brief examples/httpx-docs-live.json --baseline runs/httpx-live-A --output runs/httpx-live-B
+uv run decision-recheck validate --bundle runs/httpx-live-B
+```
+
+These commands make fresh provider requests when configured with a live endpoint. A baseline and recheck use up to eight requests. Check the selected fields and selectors against the current official pages before expecting the recorded outcomes. See the [HTTPX live review](httpx-live-validation-2026-11-15.md) for the actual source checks, new provider responses, recommendation issue and final verification.

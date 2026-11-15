@@ -168,6 +168,8 @@ The static demo displays fictional local results. It has no server-side model ke
 
 To check an actual deployed website with optional model proposals, follow the [bounded live-site walkthrough](docs/live-site-review.md). It includes a read-only brief, explicit provider configuration, known positive/negative/unknown requirements, and a baseline/recheck review checklist.
 
+The [HTTPX validation record](docs/httpx-live-validation-2026-11-15.md) documents the four-role runner against a different real website using fresh OpenAI responses, including a reproduced recommendation problem, its prompt correction and remaining prose limitations.
+
 The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [deployment and recovery](docs/deployment.md) for the static hosting configuration and verification steps.
 
 ## Verify and restore

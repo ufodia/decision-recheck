@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "case_id": "httpx-official-documentation",
+  "title": "Does the HTTPX documentation meet the stated adoption-review criteria?",
+  "product": "HTTPX official public documentation",
+  "scope": {
+    "surface": "Public documentation only; package code and runtime behavior are not tested",
+    "locale": "en",
+    "review_goal": "Check documented interfaces, optional HTTP/2 setup, network-inactivity default and selected support evidence"
+  },
+  "permissions": {
+    "allowed_hosts": [
+      "www.python-httpx.org"
+    ],
+    "allow_private_network": false,
+    "allow_test_writes": false,
+    "allowed_actions": [
+      "read",
+      "assert_text"
+    ]
+  },
+  "limits": {
+    "max_browser_actions": 36,
+    "max_model_calls": 4,
+    "max_tokens": 80000,
+    "timeout_seconds": 240,
+    "max_response_bytes": 1000000
+  },
+  "sources": [
+    {
+      "id": "introduction",
+      "kind": "documentation",
+      "url": "https://www.python-httpx.org/",
+      "format": "html",
+      "fields": {
+        "interfaces": ".md-content__inner > p:nth-of-type(2)",
+        "http2_optional_install": "#dependencies + p + ul + p + ul > li:first-child"
+      }
+    },
+    {
+      "id": "quickstart",
+      "kind": "documentation",
+      "url": "https://www.python-httpx.org/quickstart/",
+      "format": "html",
+      "fields": {
+        "network_inactivity_timeout": "#timeouts + p + p"
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "sync-async-docs",
+      "label": "The introduction documents sync and async APIs",
+      "source_id": "introduction",
+      "field": "interfaces",
+      "operator": "contains",
+      "expected": "sync and async APIs",
+      "hard": true
+    },
+    {
+      "id": "http2-install-docs",
+      "label": "The introduction identifies the optional HTTP/2 installation extra",
+      "source_id": "introduction",
+      "field": "http2_optional_install",
+      "operator": "contains",
+      "expected": "httpx[http2]",
+      "hard": true
+    },
+    {
+      "id": "five-second-timeout-docs",
+      "label": "QuickStart documents a five-second default for network inactivity",
+      "source_id": "quickstart",
+      "field": "network_inactivity_timeout",
+      "operator": "contains",
+      "expected": "default timeout for network inactivity is five seconds",
+      "hard": true,
+      "task_id": "read-timeout-documentation"
+    },
+    {
+      "id": "timeout-free-default",
+      "label": "QuickStart states that network inactivity has no default timeout",
+      "source_id": "quickstart",
+      "field": "network_inactivity_timeout",
+      "operator": "contains",
+      "expected": "There is no default timeout for network inactivity",
+      "hard": true
+    },
+    {
+      "id": "support-sla",
+      "label": "The selected documentation establishes a two-hour support response SLA",
+      "source_id": "introduction",
+      "field": "support_response_sla",
+      "operator": "eq",
+      "expected": "2 hours",
+      "hard": false
+    }
+  ],
+  "claims": [],
+  "tasks": [
+    {
+      "id": "read-timeout-documentation",
+      "title": "Read the QuickStart timeout section without executing its code examples",
+      "method": "browser",
+      "url": "https://www.python-httpx.org/quickstart/",
+      "depends_on": [
+        "quickstart"
+      ],
+      "dependencies_complete": false,
+      "steps": [
+        {
+          "action": "assert_text",
+          "selector": "#quickstart",
+          "value": "QuickStart"
+        },
+        {
+          "action": "assert_text",
+          "selector": "#timeouts + p",
+          "value": "rather than hanging indefinitely"
+        },
+        {
+          "action": "assert_text",
+          "selector": "#timeouts + p + p",
+          "value": "The default timeout for network inactivity is five seconds."
+        }
+      ]
+    }
+  ]
+}

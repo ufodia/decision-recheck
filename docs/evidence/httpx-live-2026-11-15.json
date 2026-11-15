@@ -1,0 +1,303 @@
+{
+  "project": "Decision Recheck",
+  "review_date": "2026-11-15",
+  "case_id": "httpx-official-documentation",
+  "source_urls": [
+    "https://www.python-httpx.org/",
+    "https://www.python-httpx.org/quickstart/"
+  ],
+  "scope": "Public documentation and text assertions; HTTPX runtime and support services were not executed",
+  "provider_endpoint": "api.openai.com",
+  "configured_model": "gpt-4.1-mini",
+  "live_execution": "Normal HTTPX network transport through scripts/run_live_review.py; no response replay/substitution in A, B or C",
+  "fresh_model_requests": 12,
+  "distinct_provider_response_ids": 12,
+  "reported_tokens_total": 23603,
+  "monetary_cost": null,
+  "monetary_status": "unmeasured",
+  "baseline_trees_preserved": {
+    "A": true,
+    "B": true
+  },
+  "raw_credentials_and_html_published": false,
+  "records": [
+    {
+      "run": "A",
+      "run_id": "05cb639d-9a3d-4e02-83b8-e85006ddd2e2",
+      "created_at": "2026-11-15T17:58:36Z",
+      "status": "complete",
+      "freshness": "CURRENT",
+      "bundle_sha256": "9b204a236741e04a4713a52b878962593d74452fc56199b90a9bf75fc796fc25",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 14,
+        "reserved_tokens": 30967,
+        "actual_tokens": 7795,
+        "elapsed_seconds": 24.0,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "marketing_fit": "inconclusive",
+      "executed_browser_tasks": 1,
+      "passed_text_assertions": 3,
+      "roles": [
+        {
+          "role": "requirements_researcher",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765521,
+          "provider_total_tokens": 1260,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "a61f986891871f2e32cd101fd2cac1881495e90a81830eb0336bfa3af74665ce"
+        },
+        {
+          "role": "offer_support_analyst",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765527,
+          "provider_total_tokens": 2161,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "b46f78186c97386fe4497bd3e4b3c34fde22f673b40d56d5876af300b5c6320c"
+        },
+        {
+          "role": "evidence_reviewer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765531,
+          "provider_total_tokens": 2139,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "05110d803e88b488a811246d1a9cb768ca1e4e18670ffddec72389073f006d6e"
+        },
+        {
+          "role": "report_writer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765534,
+          "provider_total_tokens": 2235,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "92a5e6d04363c99dd10491c74df0343c2f65cbe4453aa5cb47c0d2c95f5372e6"
+        }
+      ]
+    },
+    {
+      "run": "B",
+      "run_id": "7cae6bd0-af7b-4e8f-9ab3-7f9d93249acb",
+      "created_at": "2026-11-15T17:59:39Z",
+      "status": "complete",
+      "freshness": "CURRENT",
+      "bundle_sha256": "13be5e1d1e62e76b86c19803fc541af53b4921c96712fd2627a4eccf7c344ac3",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 24,
+        "reserved_tokens": 30967,
+        "actual_tokens": 7731,
+        "elapsed_seconds": 24.859,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "marketing_fit": "inconclusive",
+      "executed_browser_tasks": 1,
+      "passed_text_assertions": 3,
+      "roles": [
+        {
+          "role": "requirements_researcher",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765587,
+          "provider_total_tokens": 1261,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "f7d23b94d05096e12b2ab8404b3ca73a083bb7f50bfe081e9c38ede1f33cbd53"
+        },
+        {
+          "role": "offer_support_analyst",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765591,
+          "provider_total_tokens": 2149,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "e4a3a6b7c36f69983fed6c63d7acce1ed4c2e6d8578602343fecdaf09df45d15"
+        },
+        {
+          "role": "evidence_reviewer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765593,
+          "provider_total_tokens": 2142,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "be41e3361eca1525e119b389851cf3d72c52bacfc6a2a23ad886e2802af44225"
+        },
+        {
+          "role": "report_writer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765596,
+          "provider_total_tokens": 2179,
+          "prompt_version": "scoped-evidence-v3",
+          "provider_response_id_sha256": "720d6fe362da6476eb11fae8571531515d88dd76a9e46e1fe12675278b32ff97"
+        }
+      ]
+    },
+    {
+      "run": "C",
+      "run_id": "b79a8ae3-1808-4394-ba5f-efa923f94d87",
+      "created_at": "2026-11-15T18:02:41Z",
+      "status": "complete",
+      "freshness": "CURRENT",
+      "bundle_sha256": "02ff6afff10df39fc7e71144788d64814556763ce9b8987bffe423af93241c81",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 24,
+        "reserved_tokens": 32859,
+        "actual_tokens": 8077,
+        "elapsed_seconds": 29.547,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "marketing_fit": "inconclusive",
+      "executed_browser_tasks": 1,
+      "passed_text_assertions": 3,
+      "roles": [
+        {
+          "role": "requirements_researcher",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765768,
+          "provider_total_tokens": 1336,
+          "prompt_version": "scoped-evidence-v4",
+          "provider_response_id_sha256": "572226d785be729f3754dffcd5f8548e20102219f57341794ed802099300e12d"
+        },
+        {
+          "role": "offer_support_analyst",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765773,
+          "provider_total_tokens": 2237,
+          "prompt_version": "scoped-evidence-v4",
+          "provider_response_id_sha256": "99c2aaaa7c2f33cf742293f5a674a18a4f69b18127a66add634b79f1bd764ded"
+        },
+        {
+          "role": "evidence_reviewer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765777,
+          "provider_total_tokens": 2220,
+          "prompt_version": "scoped-evidence-v4",
+          "provider_response_id_sha256": "3fd807b1e1adc0673055fc1cd809982d522ee72178ba98776d7b0ce1fdb80683"
+        },
+        {
+          "role": "report_writer",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794765780,
+          "provider_total_tokens": 2284,
+          "prompt_version": "scoped-evidence-v4",
+          "provider_response_id_sha256": "16d24237156001ee1ef8a7c999eca4af02e21e4361efab8958c3984628a3d42e"
+        }
+      ]
+    }
+  ],
+  "semantic_review": {
+    "A": "Formal outcomes correct; redundant documentation advice and inaccurate task-purpose wording",
+    "B": "Formal outcomes correct; unsupported suggestion to change docs merely to fit desired timeout behavior",
+    "C": "v4 formal outcomes and main documentary facts match independent evidence; remaining ambiguous advice/readiness wording is unverified commentary",
+    "remaining_limits": [
+      "Do not interpret align documentation or verify behavior as permission to rewrite facts before verification",
+      "Formal owner fit is fails; the writer phrase ready with exceptions does not override it",
+      "SLA unknown is limited to selected evidence"
+    ]
+  },
+  "provenance_limit": "Provider ID hashes and metadata aid auditability; they are not cryptographic proof or a factual-accuracy certificate.",
+  "final_suite": {
+    "passed": 301,
+    "skipped": 0,
+    "seconds": 126.55
+  },
+  "report_layout_checks": {
+    "source_bundle_sha256": "02ff6afff10df39fc7e71144788d64814556763ce9b8987bffe423af93241c81",
+    "immutable_bundle_preserved": true,
+    "provider_mode": "fresh real OpenAI responses, no replay",
+    "formal_fits": {
+      "sync-async-docs": "meets",
+      "http2-install-docs": "meets",
+      "five-second-timeout-docs": "meets",
+      "timeout-free-default": "fails",
+      "support-sla": "inconclusive"
+    },
+    "layouts": [
+      {
+        "role": "owner",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      },
+      {
+        "role": "owner",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      },
+      {
+        "role": "buyer",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      },
+      {
+        "role": "buyer",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      },
+      {
+        "role": "marketing",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      },
+      {
+        "role": "marketing",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "commentary_cards": 4,
+        "recorded_steps": 3,
+        "citations_and_local_links": "valid"
+      }
+    ],
+    "validation_errors": [],
+    "browser_for_this_review": "local files only; all network requests blocked; no provider requests"
+  }
+}

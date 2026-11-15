@@ -200,3 +200,41 @@ def test_multiple_tasks_do_not_add_model_narration_calls(tmp_path, monkeypatch):
     assert len(actors) == len(brief["tasks"]) == 3
     assert all(stage["model_used"] is False and stage["status"] == "fixture_assertion" for stage in actors)
     assert all("You are the task_actor" not in call for call in calls)
+
+
+def test_documentary_criteria_conflict_does_not_rewrite_source_or_task_purpose(tmp_path, monkeypatch):
+    observed = []
+    original = model.ModelClient
+    def handler(request):
+        body = json.loads(request.content)
+        observed.append((body["messages"][0]["content"], json.loads(body["messages"][1]["content"])))
+        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps({"summary": "Review the documentary criteria separately.", "evidence_ids": ["source-docs"], "recommendations": []})}}]})
+    monkeypatch.setattr(model, "ModelClient", lambda budget: original(budget, base_url="https://models.example.test/v1", model="test", api_key="synthetic", transport=httpx.MockTransport(handler)))
+    brief = {
+        "case_id": "documentary-criteria-conflict", "title": "Documented timeout review",
+        "product": "Synthetic documentation", "scope": {"surface": "Documentation; runtime not tested"},
+        "sources": [{"id": "docs", "format": "json", "inline": {"text": "The default inactivity timeout is five seconds."}, "fields": {"text": "text"}}],
+        "requirements": [
+            {"id": "five-seconds", "label": "Documented five-second default", "source_id": "docs", "field": "text", "operator": "contains", "expected": "five seconds"},
+            {"id": "no-default", "label": "Documented absence of a default", "source_id": "docs", "field": "text", "operator": "contains", "expected": "no default timeout"},
+        ],
+        "tasks": [{"id": "read-explanation", "title": "Read the provided timeout explanation", "method": "fixture", "check": "help", "source_id": "docs"}],
+        "claims": [], "limits": {"max_model_calls": 4, "max_tokens": 50000},
+    }
+    bundle = run_case(brief, tmp_path / "review", live_model=True)
+    assert bundle["status"] == "complete"
+    assert len(observed) == bundle["usage"]["model_calls"] == 4
+    for system, context in observed:
+        assert "Incompatible operator criteria are requirement conflicts" in system
+        assert "Never recommend changing documented facts merely to satisfy an unmet criterion" in system
+        assert "independently verified behavior" in system
+        assert "purpose comes only from its declared title and steps" in system
+        assert context["case"]["scope"] == brief["scope"]
+        assert context["sources"][0]["values"]["text"] == "The default inactivity timeout is five seconds."
+    for _, context in observed[1:]:
+        assert len(context["tasks"]) == 1
+        assert context["tasks"][0]["title"] == "Read the provided timeout explanation"
+        assert context["tasks"][0]["method"] == "fixture_assertion", "No runtime test may be invented"
+        fits = {d.get("requirement_id"): d["fit"] for d in context["decisions"] if d.get("requirement_id")}
+        assert fits == {"five-seconds": "meets", "no-default": "fails"}
+    # This checks the input contract and guardrails, not generated prose accuracy.

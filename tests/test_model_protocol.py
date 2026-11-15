@@ -103,7 +103,7 @@ def test_output_token_parameter_is_explicit_and_bounded(token_parameter):
     assert other not in requests[0]
     assert result["token_parameter"] == token_parameter
     assert result["max_output_tokens"] == 600
-    assert result["prompt_version"] == "scoped-evidence-v3"
+    assert result["prompt_version"] == "scoped-evidence-v4"
 
 
 def test_modern_output_parameter_is_default_and_legacy_requires_configuration(monkeypatch):
@@ -151,6 +151,50 @@ def test_missing_credentials_never_dispatch_or_consume_a_model_call(monkeypatch)
         ModelClient(budget, transport=httpx.MockTransport(lambda request: requests.append(request)))
     assert not requests
     assert budget.model_calls == 0
+
+
+def test_successful_response_provenance_preserves_configured_alias_separately():
+    requests = []
+    def handler(request):
+        requests.append(request)
+        return httpx.Response(200, headers={"unrelated": "private-header-not-copied"}, json={
+            "id": "chatcmpl-synthetic-123", "model": "provider-snapshot-2026-11-15", "created": 1794762000,
+            "private_detail": "private-body-not-copied",
+            "choices": [{"finish_reason": "stop", "message": {"content": json.dumps({"summary": "Scoped review", "evidence_ids": [], "recommendations": []})}}],
+            "usage": {"total_tokens": 321},
+        })
+    result = client_for(handler).propose("report_writer", {}, set())
+    assert len(requests) == 1
+    assert result["model"] == "protocol-test-model"
+    assert result["provider_response_id"] == "chatcmpl-synthetic-123"
+    assert result["provider_model"] == "provider-snapshot-2026-11-15"
+    assert result["provider_created"] == 1794762000
+    assert result["provider_total_tokens"] == 321
+    assert "private-" not in json.dumps(result)
+
+
+@pytest.mark.parametrize("value", [None, True, 123, "", "with spaces", "unicode-İ", "x" * 201, "value\nwith-newline", {"id": "nested"}])
+def test_invalid_response_identifiers_are_omitted_without_invalidating_proposal(value):
+    def handler(request):
+        return httpx.Response(200, json={
+            "id": value, "model": value,
+            "choices": [{"message": {"content": json.dumps({"summary": "Scoped review", "evidence_ids": [], "recommendations": []})}}],
+        })
+    result = client_for(handler).propose("report_writer", {}, set())
+    assert result["summary"] == "Scoped review"
+    assert not any(name in result for name in ("provider_response_id", "provider_model", "provider_created", "provider_total_tokens"))
+
+
+@pytest.mark.parametrize("value", [None, True, -1, 1.5, "123", {}])
+def test_invalid_created_and_usage_metadata_are_omitted(value):
+    def handler(request):
+        return httpx.Response(200, json={
+            "created": value, "usage": {"total_tokens": value},
+            "choices": [{"message": {"content": json.dumps({"summary": "Scoped review", "evidence_ids": [], "recommendations": []})}}],
+        })
+    result = client_for(handler).propose("report_writer", {}, set())
+    assert "provider_created" not in result
+    assert "provider_total_tokens" not in result
 
 
 @pytest.mark.parametrize("code,expected", [
