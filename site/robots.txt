@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+Allow: /data/demo.json
+
+Sitemap: https://decision-recheck.vercel.app/sitemap.xml

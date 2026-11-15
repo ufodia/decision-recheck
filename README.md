@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="https://decision-recheck.vercel.app/">Live demo</a> ·
   <a href="https://github.com/ufodia/decision-recheck/actions">Checks</a> ·
   <a href="#run-the-demo">Quick start</a> ·
   <a href="docs/architecture.md">Architecture</a> ·
@@ -124,6 +125,8 @@ This is an early, bounded audit pack. An initial case targets one application, 3
 Source freshness does not establish factual truth. A successful task does not establish human usability or future availability. Several agents repeating one page are not independent confirmations. This software does not infer real purchase probability, conversion uplift, ROI, or demand from fictional users.
 
 The static demo displays fictional local results. It has no server-side model key or remote audit service. Live model access is opt-in and may incur the operator's provider charges. See [model access and privacy](docs/model-and-privacy.md) for the tested contract and verification limits.
+
+The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [deployment and recovery](docs/deployment.md) for the static hosting configuration and verification steps.
 
 ## Verify and restore
 

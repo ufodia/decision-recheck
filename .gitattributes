@@ -2,3 +2,4 @@
 *.png binary
 *.zip binary
 site/data/**/artifacts/** -text
+site/google*.html -text
