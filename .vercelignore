@@ -13,3 +13,8 @@ examples
 docs
 uv.lock
 pyproject.toml
+dist
+.tmp
+scripts
+skills
+assets

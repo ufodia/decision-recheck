@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
-      DRC_BROWSER_CHANNEL: ${{ runner.os == 'Windows' && 'chrome' || 'chromium' }}
+      DRC_BROWSER_CHANNEL: ${{ matrix.os == 'windows-latest' && 'chrome' || 'chromium' }}
     strategy:
       fail-fast: false
       matrix:
