@@ -21,8 +21,11 @@
     "queue_position_at_verification": 1,
     "queue_count_at_verification": 15,
     "verified_on": "2026-11-15",
+    "caption_updated_on": "2026-11-15",
+    "update_status": "saved_and_read_back",
+    "updated_feature": "Four optional local model roles select canonical review items; exact fits and behavior-verification preconditions cannot be rewritten.",
     "audience": "Anyone",
-    "scheduled_post_id": null,
+    "scheduled_post_id": "urn:li:ugcPost:7527781599841673216",
     "publication_url": null,
     "timezone": "Europe/Istanbul",
     "image_order": [

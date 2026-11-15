@@ -1,37 +1,37 @@
-Your product changed. Your buying advice, campaign copy, and support answers may still describe yesterday.
+Your product changed. Your buying advice, campaign copy and support answers may still describe yesterday.
 
-I built Decision Recheck to make that gap inspectable.
+I built Decision Recheck to make those mismatches inspectable.
 
-It is an open-source SaaS audit pack that connects three things: what someone needs, what a product promises, and what scoped checks actually show.
+The fictional example starts with a $9/month Starter plan that includes CSV export. Starter rises to $29; export moves to the $49 Pro plan. The buyer's budget stays at $20.
 
-The included fictional case makes the problem concrete:
+Fixing the ad does not fix that buyer's budget.
 
-• Starter begins at $9/month with CSV export.
-• Starter rises to $29. Export moves to the $49 Pro plan.
-• The ad and help answer still describe the old offer.
-• The buyer's budget is still $20/month.
+The tool keeps three views of the same scoped evidence: product owner, buyer/user, and marketing/support. It produces local HTML/JSON bundles with linked artifacts and an explicit recheck against a saved baseline.
 
-One change now matters to three people.
+The latest update tightens how AI can contribute to the report.
 
-The product owner needs a reproducible mismatch.
-The buyer needs a clear fit decision.
-Marketing and support need to know which statements to revisit.
+Four optional LLM roles in the local runner select and prioritize allowed review items. The application supplies the exact recorded decisions and required follow-ups.
 
-Here is the useful part: correcting the copy does not make the new plan fit that buyer's budget. Those conclusions should stay separate.
+• A recorded "fails" cannot be softened into "ready."
+• Behavior verification stays a required precondition for changing documented facts.
+• Missing or untested work remains visible.
+• Unknown, incomplete or stale selections are rejected.
 
-Decision Recheck produces local HTML/JSON evidence bundles with linked artifacts, scoped findings, and three audience views. An explicit recheck compares the new evidence with a saved baseline. Blocked or untested work stays visible.
+I tested this four-role flow against HTTPX's actual public documentation with fresh OpenAI responses: a baseline and recheck, four new responses each. The checks covered documentation and browser text observations; they did not execute HTTPX's runtime behavior. The full project suite passed 335 tests.
 
-The demo runs without an API key. Optional model roles propose interpretations for human review; they do not predict real purchase behavior. FreshCtx supplies the dependency and freshness layer, and Playwright powers scoped browser checks.
+FreshCtx supplies the dependency and freshness layer. Playwright powers scoped browser checks. These checks support reviewable decisions; they do not predict customer demand or purchase behavior.
 
-Try the fictional case, inspect a finding, then change the snapshot:
+The hosted demo is a fictional, key-free walkthrough. Live model review runs locally with your own provider configuration.
+
+Try the demo:
 https://decision-recheck.vercel.app/
 
-Code, setup, and contribution guide:
+Inspect the code, setup and live-test record:
 https://github.com/ufodia/decision-recheck
 
-If it saves you review work, a GitHub star helps others find it. You can also support maintenance here:
+If it saves you review work, a GitHub star helps others find it. Optional support helps maintain the project:
 https://buymeacoffee.com/ufodia
 
-Which product change causes the most stale advice in your workflow: pricing, permissions, feature access, or something else?
+Where does advice go stale fastest in your product: pricing, permissions, or feature access?
 
 #OpenSource #AIEngineering #DeveloperTools #SaaS
