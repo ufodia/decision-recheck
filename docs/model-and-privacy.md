@@ -8,17 +8,33 @@ The adapter uses an OpenAI-compatible HTTP `POST /chat/completions` contract wit
 
 Set variables in your shell. `.env.example` documents the names; the application does not automatically load `.env` files. Do not place a key in a brief, bundle, repository, or public website.
 
+For an explicit local file, use `uv run --no-env-file python scripts/run_live_review.py --env-file .env.live --check-config`. This validates the file without a provider request and reports syntax errors without echoing input lines. Use `NAME=value` on each line; do not paste a bare API key. The file and all `.env.*` files other than `.env.example` are ignored by Git. See the [public-site walkthrough](live-site-review.md) for the complete run and recheck commands.
+
+Requests use `max_completion_tokens` by default and cap each response at 600 output tokens. A compatible provider that requires the legacy field can explicitly set `DRC_MODEL_TOKEN_PARAMETER=max_tokens`. There is no automatic parameter retry, model substitution, or provider fallback. Reasoning models can consume this output allowance on non-visible reasoning; a truncated response is rejected rather than treated as a complete proposal. Choose a model whose request and response behavior fits this bounded adapter.
+
 The response contract, role sequence, budgets, malformed JSON, and unsupported evidence references are tested using mock transport. Paid production inference is not part of the included fixture validation. Compatibility with every service describing itself as OpenAI-compatible is not claimed.
+
+Live model testing is recorded separately from the fixture suite in the dated [validation record](validation.md). A proposal passing JSON and citation validation is not evidence that every sentence is factually correct. Check narrative claims against the scoped source and task observations.
 
 ## What gets sent
 
 Live proposals receive the structured case/evidence content supplied by the coordinator. This can include product claims, selected page content, requirement values, and artifact identifiers. Review your inputs and provider's data-handling terms before using private data. The local runner does not make a cloud provider local.
+
+Every model review role receives the product identity, case scope, captured source values and an artifact citation index. The browser task actor executes its declared recipe and records observations deterministically; the default coordinator does not request a model retelling of that execution. Full raw files and screenshot pixels are not sent to the text model; a citation to a screenshot does not mean the model visually inspected it. Model recommendations remain visible as unverified proposed next steps in each exported HTML report.
 
 The adapter proposes a summary, existing evidence IDs, and recommendations. Those remain human-review proposals. It cannot add tools, expand allowed hosts, execute arbitrary code, or convert page text into permissions.
 
 ## Usage and limits
 
 Configured model-call, token-reservation, action, response-size, and time limits constrain the run. Limits apply to the work actually performed; an exhausted or invalid proposal becomes visible partial work. Usage received from a provider is recorded separately from reservations. The application does not claim a measured dollar cost when current prices or provider usage are unavailable.
+
+A live run requests one requirements proposal and three final review proposals: four calls if the budget permits, independently of the number of deterministic browser tasks. The public-site example has one task and a four-call cap. A baseline plus one recheck is at most eight calls, without hidden retries. Its explicit 80,000-token reservation budget is a conservative UTF-8-based upper allowance, not a measured usage or charge. The smaller default budget can intentionally leave larger cases partial. Provider-reported usage is retained even when a response has invalid JSON, unsupported evidence IDs, or a truncation/refusal result.
+
+Earlier versions also requested `task_actor` narration. A real-provider review found that this narration could invent privacy/runtime conclusions from text assertions, so the default pipeline now reports the recorded task events directly. The low-level adapter retains compatibility with that role name; this does not enable it in the coordinator. Newly rendered reports omit legacy task narration with a visible explanation and retain the raw proposal unchanged in JSON. The other model roles remain fallible commentary, clearly separate from measured task outcomes and deterministic requirement comparisons.
+
+Source mode and model mode are independent. Calling a model on fictional fixtures does not turn the fixtures into real customer or vendor evidence.
+
+Blocked model stages include safe diagnostic categories, numeric HTTP/transport status and known provider error codes where available. Raw provider messages, headers and response bodies are deliberately omitted because they may contain credentials or private input. A connection failure and an account quota rejection require different remedies; neither becomes a fabricated model result.
 
 No provider key is present in the static Vercel demo. It displays fictional evidence generated by the local CLI. Downloaded JSON and locally imported data remain in the visitor's browser; the website does not run a remote audit.
 

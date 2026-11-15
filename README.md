@@ -166,6 +166,8 @@ Source freshness does not establish factual truth. A successful task does not es
 
 The static demo displays fictional local results. It has no server-side model key or remote audit service. Live model access is opt-in and may incur the operator's provider charges. See [model access and privacy](docs/model-and-privacy.md) for the tested contract and verification limits.
 
+To check an actual deployed website with optional model proposals, follow the [bounded live-site walkthrough](docs/live-site-review.md). It includes a read-only brief, explicit provider configuration, known positive/negative/unknown requirements, and a baseline/recheck review checklist.
+
 The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [deployment and recovery](docs/deployment.md) for the static hosting configuration and verification steps.
 
 ## Verify and restore

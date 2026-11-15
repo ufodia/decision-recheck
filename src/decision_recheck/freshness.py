@@ -13,6 +13,7 @@ class FreshnessSession:
         self.tokens={}
         self.nodes={}
         self.readers={}
+        self._validation_reads=None
         self.receipts=[]
         self.incomplete_nodes=[]
     def __enter__(self):
@@ -21,7 +22,23 @@ class FreshnessSession:
     def __exit__(self,*args):
         return self.guard.__exit__(*args)
     def observe(self,source,brief,budget,holder):
-        reader=source_reader(source,brief,budget,holder)
+        live_reader=source_reader(source,brief,budget,holder)
+        def reader():
+            budget.check_time()
+            cache=self._validation_reads
+            if cache is None:
+                return live_reader()
+            # A baseline batch compares several old nodes with the same newly
+            # fetched observation. Never reuse this snapshot at another phase.
+            if source["id"] not in cache:
+                try:
+                    cache[source["id"]]=(True,live_reader())
+                except Exception as error:
+                    cache[source["id"]]=(False,error)
+            available,value=cache[source["id"]]
+            if not available:
+                raise value
+            return value
         self.readers[source["id"]]=reader
         token=freshctx.observe("decision-recheck://source/"+source["id"],adapter="mcp",name="read_scoped_source",arguments={"fields":source.get("fields",{}),"scope":brief["scope"],"url":source.get("url","inline:"+source["id"])},reader=reader,safe=True)
         self.tokens[source["id"]]=token
@@ -55,6 +72,15 @@ class FreshnessSession:
             self.receipts.append({"source_id":domain_id,"purpose":"fixture_task_selection",**receipt})
         return changes
     def check_baseline(self,baseline):
+        if self._validation_reads is not None:
+            raise RuntimeError("Baseline validation batches cannot overlap.")
+        self._validation_reads={}
+        try:
+            return self._check_baseline(baseline)
+        finally:
+            # Final guarded export must independently read current sources.
+            self._validation_reads=None
+    def _check_baseline(self,baseline):
         prior=baseline.get("freshness",{}).get("objects",{})
         tokens={}
         for domain_id,raw in prior.get("observations",{}).items():

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "case_id": "decision-recheck-public-site",
+  "title": "Does the public Decision Recheck demo meet the stated evaluation needs?",
+  "product": "Decision Recheck public website (actual product, not its fictional SaaS example)",
+  "scope": {
+    "product": "Decision Recheck",
+    "surface": "Public landing page and static demo",
+    "locale": "en",
+    "currency": "USD",
+    "billing_period": "month"
+  },
+  "permissions": {
+    "allowed_hosts": [
+      "decision-recheck.vercel.app"
+    ],
+    "allow_private_network": false,
+    "allow_test_writes": false,
+    "allowed_actions": [
+      "read",
+      "assert_text"
+    ]
+  },
+  "limits": {
+    "max_browser_actions": 36,
+    "max_model_calls": 4,
+    "max_tokens": 80000,
+    "timeout_seconds": 240,
+    "max_response_bytes": 1000000
+  },
+  "sources": [
+    {
+      "id": "landing",
+      "kind": "product",
+      "url": "https://decision-recheck.vercel.app/",
+      "format": "html",
+      "fields": {
+        "demo_claim": ".hero-note",
+        "demo_limit": ".demo-notice",
+        "setup": ".terminal-card p",
+        "privacy": ".import-note"
+      }
+    },
+    {
+      "id": "robots",
+      "kind": "public_configuration",
+      "url": "https://decision-recheck.vercel.app/robots.txt",
+      "format": "text",
+      "fields": {
+        "text": "$"
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "demo-no-key",
+      "label": "A visitor can inspect the demo without an API key",
+      "source_id": "landing",
+      "field": "demo_claim",
+      "operator": "contains",
+      "expected": "No API key for the demo",
+      "hard": true,
+      "task_id": "read-demo-boundary"
+    },
+    {
+      "id": "browser-model",
+      "label": "The hosted demo runs an AI model",
+      "source_id": "landing",
+      "field": "demo_limit",
+      "operator": "contains",
+      "expected": "This page runs an AI model",
+      "hard": true
+    },
+    {
+      "id": "sla",
+      "label": "A two-hour support response SLA is established",
+      "source_id": "landing",
+      "field": "support_response_sla",
+      "operator": "eq",
+      "expected": "2 hours",
+      "hard": false
+    },
+    {
+      "id": "python-setup",
+      "label": "The local setup documents Python 3.12",
+      "source_id": "landing",
+      "field": "setup",
+      "operator": "contains",
+      "expected": "Python 3.12",
+      "hard": true
+    },
+    {
+      "id": "sitemap-discovery",
+      "label": "Public robots points to the canonical sitemap",
+      "source_id": "robots",
+      "field": "text",
+      "operator": "contains",
+      "expected": "Sitemap: https://decision-recheck.vercel.app/sitemap.xml",
+      "hard": false
+    }
+  ],
+  "claims": [],
+  "tasks": [
+    {
+      "id": "read-demo-boundary",
+      "title": "Verify the public demo scope and key-free claim",
+      "method": "browser",
+      "url": "https://decision-recheck.vercel.app/",
+      "depends_on": [
+        "landing"
+      ],
+      "dependencies_complete": false,
+      "steps": [
+        {
+          "action": "assert_text",
+          "selector": ".hero-note",
+          "value": "No API key for the demo"
+        },
+        {
+          "action": "assert_text",
+          "selector": ".demo-notice",
+          "value": "It does not browse a live product, run an AI model or predict conversions."
+        },
+        {
+          "action": "assert_text",
+          "selector": "#report-content",
+          "value": "Readiness for the supplied user requirements"
+        }
+      ]
+    }
+  ]
+}

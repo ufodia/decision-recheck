@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Ground every model role in the product scope, selected source values, and recorded task evidence.
+- Support modern completion-token limits, retain usage for rejected responses, and display model recommendations in reports.
+- Keep fictional source labels accurate when live model proposals are enabled.
+- Add a local live-review configuration loader that never echoes invalid input values or provider error messages.
+- Wait for delayed browser assertion text within the action deadline instead of failing on a loading placeholder.
+- Share fresh source reads within one baseline-comparison batch while retaining an independent final freshness check.
+- Include final source validation in resource usage and distinguish preliminary model planning from observed task results.
+- Keep browser-task reporting deterministic after a real-provider audit exposed unsupported model retellings; retain four explicitly unverified model review roles.
 - Preserve unknown and conditional requirements in owner decisions; include positive requirement evidence.
 - Reject empty assertions and malformed input cleanly; support UTF-8 BOM JSON from Windows editors.
 - Keep invalid fixture values unknown and correctly label real browser attempts.

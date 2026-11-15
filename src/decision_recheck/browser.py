@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import math
 import os
+import re
+import time
 from pathlib import Path
 from .policy import Budget,PolicyError,check_action,check_url,browser_resolver_rules
 from .storage import artifact,now
@@ -64,7 +66,7 @@ def run_task(task:dict,brief:dict,budget:Budget,output:Path)->tuple[dict,list[di
     if task.get("method")=="fixture":
         return fixture_task(task,brief,output)
     try:
-        from playwright.sync_api import sync_playwright,TimeoutError as PlaywrightTimeout
+        from playwright.sync_api import sync_playwright,expect
         check_url(task["url"],brief["permissions"],resolve=False)
         with sync_playwright() as p:
             browser=_launch(p,timeout_ms=max(1,int(budget.remaining_seconds(30)*1000)),permissions=brief["permissions"])
@@ -98,12 +100,23 @@ def run_task(task:dict,brief:dict,budget:Budget,output:Path)->tuple[dict,list[di
                         if not isinstance(expected,str) or not expected.strip():
                             raise PolicyError("assert_text needs a non-empty expected text value.")
                         assertions+=1
-                        value=locator.inner_text()
+                        deadline=time.monotonic()+budget.remaining_seconds(5)
+                        value=locator.inner_text(timeout=max(1,int((deadline-time.monotonic())*1000)))
                         if expected not in value:
-                            result["execution"]="failed"
-                            result["summary"]="The declared text assertion did not match in this test attempt."
-                            result["steps"].append({"action":action,"selector":step.get("selector","body"),"matched":False})
-                            break
+                            try:
+                                # A loading placeholder is not a completed negative result.
+                                # A literal regex preserves the original substring semantics.
+                                expect(locator).to_contain_text(re.compile(re.escape(expected)),use_inner_text=True,timeout=max(1,int((deadline-time.monotonic())*1000)))
+                                budget.check_time()
+                                value=locator.inner_text(timeout=max(1,int((deadline-time.monotonic())*1000)))
+                            except AssertionError:
+                                budget.check_time()
+                                if locator.count()!=1:
+                                    raise PolicyError("The assertion target is no longer available.")
+                                result["execution"]="failed"
+                                result["summary"]="The declared text assertion did not match within the bounded wait in this test attempt."
+                                result["steps"].append({"action":action,"selector":step.get("selector","body"),"matched":False})
+                                break
                     elif action=="click":
                         locator.click()
                         check_url(page.url,brief["permissions"],resolve=False)

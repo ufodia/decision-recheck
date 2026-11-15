@@ -82,14 +82,30 @@ def _evaluate(bundle,brief,session):
     bundle["decisions"]=decisions
 
 def _role(bundle,role,payload,budget):
-    from .model import ModelClient
+    from .model import ModelClient,safe_model_failure
+    context={
+        "case":{key:bundle[key] for key in ("case_id","title","product","scope")},
+        "sources":bundle["sources"],
+        "artifact_index":[{"id":a["id"],"media_type":a["media_type"]} for a in bundle["artifacts"]],
+        "review_stage":{
+            "phase":"before_tasks" if role=="requirements_researcher" else "after_task" if role=="task_actor" else "after_evaluation",
+            "recorded_task_count":len(bundle.get("tasks",[])),
+            "formal_decision_count":len(bundle.get("decisions",[])),
+            "declared_claim_count":len(payload.get("declared_claims",[])),
+        },
+        **payload,
+    }
     try:
-        proposal=ModelClient(budget).propose(role,payload,{a["id"] for a in bundle["artifacts"]})
+        proposal=ModelClient(budget).propose(role,context,{a["id"] for a in bundle["artifacts"]})
         bundle["agent_proposals"].append(proposal)
         bundle["stages"].append({"role":role,"status":"proposed","at":now()})
     except (Exception,KeyboardInterrupt) as error:
-        bundle["warnings"].append(f"{role} incomplete: {type(error).__name__}; no proposal was fabricated.")
-        bundle["stages"].append({"role":role,"status":"blocked","error_type":type(error).__name__,"at":now()})
+        failure=safe_model_failure(error)
+        detail=failure["category"]
+        if "http_status" in failure:
+            detail+="; HTTP "+str(failure["http_status"])+"; "+failure["provider_code"]
+        bundle["warnings"].append(f"{role} incomplete: {failure['error_type']} ({detail}); no proposal was fabricated.")
+        bundle["stages"].append({"role":role,"status":"blocked","error_type":failure["error_type"],"failure":failure,"at":now()})
         bundle["status"]="partial"
 
 def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool=False)->dict:
@@ -108,7 +124,7 @@ def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool
             raise BriefError("Baseline and brief must share the same case_id.")
     budget=Budget(brief["limits"])
     mode="fixture" if all("inline" in s for s in brief["sources"]) and all(t.get("method")=="fixture" for t in brief["tasks"]) else "live"
-    bundle={"schema_version":"1.0","run_id":str(uuid.uuid4()),"case_id":brief["case_id"],"title":brief["title"],"product":brief["product"],"created_at":now(),"mode":mode,"status":"complete","scope":brief["scope"],"sources":[],"artifacts":[],"tasks":[],"findings":[],"decisions":[],"changes":[],"warnings":[],"agent_proposals":[],"stages":[],"usage":{},"freshness":{"provider":"freshctx","state":"UNVERIFIABLE"}}
+    bundle={"schema_version":"1.0","run_id":str(uuid.uuid4()),"case_id":brief["case_id"],"title":brief["title"],"product":brief["product"],"created_at":now(),"mode":mode,"model_mode":"live" if live_model else "disabled","status":"complete","scope":brief["scope"],"sources":[],"artifacts":[],"tasks":[],"findings":[],"decisions":[],"changes":[],"warnings":[],"agent_proposals":[],"stages":[],"usage":{},"freshness":{"provider":"freshctx","state":"UNVERIFIABLE"}}
     if not brief["sources"]:
         bundle["status"]="partial"
         bundle["warnings"].append("No source was declared.")
@@ -133,7 +149,7 @@ def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool
         source_changes=session.source_changes(old) if old else {}
         bundle["stages"].append({"role":"requirements_researcher","status":"deterministic" if not live_model else "pending","at":now()})
         if live_model:
-            _role(bundle,"requirements_researcher",{"requirements":brief["requirements"],"sources":bundle["sources"]},budget)
+            _role(bundle,"requirements_researcher",{"requirements":brief["requirements"],"sources":bundle["sources"],"declared_claims":brief["claims"]},budget)
         for task in brief["tasks"]:
             reused=_reuse_fixture_task(task,brief,old,baseline,source_changes,output) if old else None
             result,artifacts=reused if reused else run_task(task,brief,budget,output)
@@ -143,14 +159,12 @@ def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool
             if result["execution"] in ("blocked","not_tested","interrupted"):
                 bundle["status"]="partial"
                 bundle["warnings"].append(f"Task {task['id']} was not fully tested.")
-            if live_model:
-                _role(bundle,"task_actor",{"goal":task.get("title",task["id"]),"attempt":result},budget)
-            else:
-                bundle["stages"].append({"role":"task_actor","task_id":task["id"],"status":"fixture_assertion" if mode=="fixture" else "fixed_allowlisted_steps","at":now()})
+            actor_status="reused_historical" if result.get("method")=="reused_historical" else "fixture_assertion" if task.get("method")=="fixture" else "fixed_allowlisted_steps"
+            bundle["stages"].append({"role":"task_actor","task_id":task["id"],"status":actor_status,"model_used":False,"at":now()})
         _evaluate(bundle,brief,session)
         for role in ("offer_support_analyst","evidence_reviewer","report_writer"):
             if live_model:
-                _role(bundle,role,{"findings":bundle["findings"],"decisions":bundle["decisions"],"tasks":bundle["tasks"]},budget)
+                _role(bundle,role,{"findings":bundle["findings"],"decisions":bundle["decisions"],"tasks":bundle["tasks"],"declared_claims":brief["claims"]},budget)
             else:
                 bundle["stages"].append({"role":role,"status":"deterministic","at":now()})
         if old:
@@ -166,12 +180,14 @@ def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool
             bundle["freshness"]=session.export("CURRENT")
             if session.guard.result:
                 bundle["freshness"]["receipts"].append({"purpose":"current_report_export",**session.guard.result.to_dict()})
+            bundle["usage"]={**bundle["usage"],**budget.usage()}
             _write_reports(output,bundle)
         allowed,state=session.gated_write(write_current)
         if not allowed:
             bundle["freshness"]=session.export(state)
             bundle["status"]="partial"
             bundle["warnings"].append("Current-status export was blocked. This is an explicitly historical or partial report; a new scoped recheck is needed.")
+            bundle["usage"]={**bundle["usage"],**budget.usage()}
             _write_reports(output,bundle)
     errors=validate_bundle(output)
     if errors:

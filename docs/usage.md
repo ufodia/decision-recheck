@@ -63,6 +63,8 @@ For example, this is the shape of a **read-only browser task**. Replace the rese
 
 Use `allowed_hosts: ["your-product.example"]` and `allowed_actions: ["read", "assert_text"]` for that example. Add only other hosts the approved page actually needs; do not use a wildcard to avoid diagnosing blocked resources. Real browser attempts rerun on recheck.
 
+Text assertions allow up to five seconds, bounded by the remaining run deadline, for delayed content to match. A permanent mismatch fails; a missing/disappearing target or an exhausted deadline remains incomplete. The outcome is specific to that recorded attempt.
+
 **Choose matching value types.** JSON can provide numeric prices and boolean entitlements. HTML selector extraction returns text: `"$29 / month"` is not a numeric `29`, so `lte: 20` cannot establish a budget result from it. Use a numeric JSON field for numeric comparisons, or a text comparison for an explicitly textual requirement. Missing, incompatible or inaccessible values remain unknown.
 
 **Understand the three different files.** A brief is an input specification. `bundle.json` is a captured run. A report is a readable view of that run. The website imports a bundle, not a brief; use `run --brief` to execute a brief and `validate --bundle` to check a complete captured bundle with its artifacts.
@@ -101,6 +103,8 @@ Each snapshot accepts at most eight sources, five requirements, ten claims, and 
 Keep missing sources, authentication, CAPTCHA, timeouts, canceled work, and exhausted budgets visible in the partial report. Do not turn these into a completed audit or a failed product verdict.
 
 Real browser task recipes rerun during a recheck. Only the built-in pure fixture tasks can reuse a validated unchanged result; the report labels this historical reuse and preserves its original time. A changed task specification or scope forces a fresh fixture attempt.
+
+Several old decisions may depend on the same source. Within one baseline-comparison batch, they share a newly fetched observation; that short-lived batch is discarded before the final export independently rechecks the live source. This does not reuse an archived page as current evidence. Reported usage includes the final validation reads.
 
 ## Serve the public demo locally
 
