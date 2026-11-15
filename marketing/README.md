@@ -2,12 +2,22 @@
 
 English launch materials for the public repository and demo. All product examples in the three artwork panels are fictional and follow the checked demo case. The artwork is explanatory illustration, not a screenshot or a claim of customer results.
 
-## Ready to use
+## Publication record
+
+Verified on November 15, 2026:
+
+- **LinkedIn:** scheduled for November 16, 2026 at 18:00 Europe/Istanbul, first in the existing queue. The post contains all three images with custom alt text. It is scheduled, not yet published; no public post URL is available.
+- **Buy Me a Coffee:** [the public project introduction is live](https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision), with the first artwork panel and the Open-source tools category. Follower email delivery was disabled.
+- **GitHub:** the project is featured in [ufodia's profile](https://github.com/ufodia), and the repository's Sponsor button points to Buy Me a Coffee through `.github/FUNDING.yml`.
+
+The recorded queue position is a point-in-time observation. No sponsorship campaign, membership tier, price, or sponsor outreach was changed.
+
+## Launch materials
 
 - `linkedin-post.txt`: the primary launch caption, under 3,000 characters.
 - `buy-me-a-coffee-post.md`: the detailed project introduction.
 - `buymeacoffee-post.html`: the same article body with semantic headings, lists, and links for a rich-text editor.
-- `launch-manifest.json`: separate article title, content paths, intended audience, and image order; publication remains pending until read back from the platform.
+- `launch-manifest.json`: article title, content paths, audience, image order, and verified scheduling/publication details.
 - `sponsor-description.txt`: a concise support description without promised benefits or invented sponsorship tiers.
 - `launch-preview.html`: editable, self-contained source and visual preview for all three images.
 - `images/01-product-change.png`, `02-copy-and-fit.png`, `03-inspect-the-evidence.png`: upload in that order.

@@ -7,11 +7,23 @@
     "body_html": "buymeacoffee-post.html",
     "body_markdown": "buy-me-a-coffee-post.md",
     "visibility_intent": "public",
-    "publication_status": "prepared_not_published"
+    "publication_status": "published_verified",
+    "publication_date": "2026-11-15",
+    "url": "https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision",
+    "category": "Open-source tools",
+    "email_followers": false,
+    "cover_image": "images/01-product-change.png"
   },
   "linkedin": {
     "caption": "linkedin-post.txt",
-    "scheduling_status": "prepared_not_scheduled",
+    "scheduling_status": "scheduled_verified",
+    "scheduled_at": "2026-11-16T18:00:00+03:00",
+    "queue_position_at_verification": 1,
+    "queue_count_at_verification": 15,
+    "verified_on": "2026-11-15",
+    "audience": "Anyone",
+    "scheduled_post_id": null,
+    "publication_url": null,
     "timezone": "Europe/Istanbul",
     "image_order": [
       "images/01-product-change.png",
@@ -22,5 +34,11 @@
   },
   "artwork_source": "launch-preview.html",
   "artwork_dimensions": {"width": 1200, "height": 1500},
-  "author": "ufodia"
+  "author": "ufodia",
+  "support": {
+    "url": "https://buymeacoffee.com/ufodia",
+    "github_sponsor_button": ".github/FUNDING.yml",
+    "scope": "GitHub Sponsor button and project-specific Buy Me a Coffee article"
+  },
+  "verification": "Native LinkedIn queue showed this post first at the scheduled time, with three images and custom alt text. Buy Me a Coffee confirmed publication and the public article was read back. Scheduled does not mean published; the queue may change after this observation."
 }
