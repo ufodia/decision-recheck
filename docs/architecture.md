@@ -1,0 +1,40 @@
+# Architecture
+
+Decision Recheck is a local SaaS audit application layer. It reuses FreshCtx for evidence dependencies and freshness, and Playwright for browser execution. It does not implement a second general-purpose dependency engine.
+
+## Data flow
+
+1. Accept and validate an operator-reviewed brief: scope, requirements, supplied claims, source descriptions, task recipes, and budgets.
+2. Capture selected source observations and permitted task events in isolated sessions.
+3. Store raw evidence separately from structured findings, with bundle-local locators and integrity hashes.
+4. Connect domain findings and decisions to upstream observation/reasoning references.
+5. Produce owner, buyer, and marketing/support views from the same validated records.
+6. On an explicit recheck, fetch current scoped evidence, retain the baseline, and report affected decisions.
+
+Current-status report output must be gated by fresh source validation immediately before the actual writer runs. Historical and partial reports remain available with an explicit label. An old successful task retains its original timestamp; a new task attempt is needed to describe a current observed outcome.
+
+Pure deterministic fixture tasks can reuse a prior result when their complete declared dependencies, task specification, and scope remain equivalent. The method is labeled `reused_historical`, the original time is retained, and usage counts show executed versus reused attempts. Real browser tasks conservatively rerun on every recheck; the first release does not infer a website's complete dependencies from its URL.
+
+HTTP collection resolves and validates the destination at connection time and connects to a numeric address while retaining the original HTTP host, TLS server name, and certificate checks. Browser launches pin the declared host mappings, deny unmatched names, block WebSockets, and enforce request/action scope. These controls apply to the owned test-browser process, not the operator's signed-in browser or system configuration. Context isolation and these controls do not establish a general-purpose browser sandbox.
+
+## Specialist roles
+
+| Role | Responsibility |
+| --- | --- |
+| Requirements researcher | Turn the supplied brief into explicit criteria and scoped source candidates. |
+| Task actors | Attempt declared goals using allowed tools and separate sessions. |
+| Offer/support analyst | Compare claims, documents, and observed checkpoints. |
+| Evidence reviewer | Inspect referenced artifacts, scope, contradictions, and unsupported conclusions. |
+| Report writer | Explain accepted structured records for each reader. |
+
+The local coordinator owns time, action/call limits, allowed URLs, stage progress, and failure records. Role separation is an organization of work, not evidence of statistical independence.
+
+## Storage
+
+A run directory contains `bundle.json`, local artifacts, and role reports. The fictional demo contains separate A/B/C/footer run directories and a summary/index. Source observations, artifact integrity, and live freshness remain different concepts.
+
+Do not reuse personal browser profiles. Keep API keys, cookies, and private run outputs outside the source tree. Review a bundle before sharing it.
+
+## Hosting
+
+The `site/` directory is a buildless static demonstration. It can be served with an ordinary HTTP server and deployed on Vercel using `vercel.json`. Its model-free example uses generated CLI data. The Python runner executes on the operator's machine; no server-side AI service is implied by the website.

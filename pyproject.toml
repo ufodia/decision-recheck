@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "decision-recheck"
+version = "0.1.0"
+description = "Evidence-based SaaS promise audits for product owners, buyers, and marketing teams."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+authors = [{name = "ufodia"}]
+dependencies = [
+  "freshctx==0.17.0",
+  "playwright>=1.56,<2",
+  "pydantic>=2.12,<3",
+  "httpx==0.28.1",
+  "httpcore==1.0.9",
+]
+
+[project.scripts]
+decision-recheck = "decision_recheck.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ufodia/decision-recheck"
+Repository = "https://github.com/ufodia/decision-recheck"
+Issues = "https://github.com/ufodia/decision-recheck/issues"
+Funding = "https://buymeacoffee.com/ufodia"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-timeout>=2.3,<3", "build>=1.2,<2"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/decision_recheck"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+timeout = 45

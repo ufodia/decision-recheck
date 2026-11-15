@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Decision Recheck — Final Project Plan · ufodia</title>
+<style>
+:root{color-scheme:light;--ink:#153c33;--paper:#f7f3e9;--muted:#52675e;--line:#cbd1c4;--light:#e8ecdf;--accent:#c8df97;--rust:#8b3f25}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 'Segoe UI',Arial,sans-serif}main{max-width:1140px;margin:auto;padding:44px 54px 76px}a{color:#215c4d;text-underline-offset:3px}a:focus-visible{outline:3px solid var(--rust);outline-offset:4px}header{display:flex;justify-content:space-between;gap:24px;border-bottom:2px solid var(--ink);padding-bottom:20px;font-size:13px;letter-spacing:1px}.eyebrow{font:12px/1.6 Consolas,monospace;letter-spacing:1.6px;text-transform:uppercase;margin-top:40px}h1{font:normal 74px/1.03 Georgia,serif;letter-spacing:-2px;margin:22px 0}.lead{font:27px/1.4 Georgia,serif;max-width:880px}.muted{color:var(--muted);font-size:15px}h2{font:normal 33px/1.2 Georgia,serif;border-top:1px solid var(--line);padding-top:26px;margin:48px 0 18px}h3{font-size:20px;line-height:1.4;margin:26px 0 10px}p{margin:13px 0}.verdict{padding:26px 30px;background:var(--ink);color:var(--paper);margin:28px 0}.verdict .eyebrow{color:var(--accent);margin:0 0 12px}.verdict p:last-child{margin-bottom:0}.change{border-left:5px solid var(--rust);background:#f0e6d7;padding:16px 22px;margin:24px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}th,td{padding:13px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--light);font:12px/1.5 Consolas,monospace;letter-spacing:.6px;text-transform:uppercase}td:first-child{min-width:130px;font-weight:600}ol,ul{padding-left:24px}li{margin:8px 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:24px 0}.flow div{border-top:3px solid var(--ink);background:var(--light);padding:14px 12px;font-size:15px}.flow small{font:12px Consolas,monospace;color:var(--muted);display:block;margin-bottom:8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}.toc{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;margin:25px 0 38px}.card{border:1px solid var(--line);padding:17px 21px;background:#eff0e5}.label{font:12px Consolas,monospace;letter-spacing:1px;color:var(--muted)}code,pre{font:13px/1.65 Consolas,monospace}code{background:#e4e9dc;padding:2px 5px;overflow-wrap:anywhere}pre{background:#e4e9dc;padding:20px;overflow:auto;white-space:pre}.demo{border-left:5px solid var(--ink);padding:8px 22px;background:var(--light);margin:22px 0}.source-list{font-size:15px}.source-list li{margin:13px 0}footer{border-top:2px solid var(--ink);margin-top:45px;padding-top:22px;font-size:14px}section{scroll-margin-top:18px}@media(max-width:720px){main{padding:24px 22px 48px}h1{font-size:49px;letter-spacing:-1.5px}.lead{font-size:23px}header{font-size:11px;gap:14px}h2{font-size:29px}.two,.flow{grid-template-columns:1fr}.verdict{padding:22px}th,td{padding:11px}.toc{gap:10px 18px}}@media print{body{background:white;font-size:10.5pt}main{max-width:none;padding:0}h1{font-size:40pt}h2{font-size:23pt;break-after:avoid}h3,th{break-after:avoid}.lead{font-size:17pt}.toc{display:none}.verdict,.demo,.card,tr{break-inside:avoid}table{font-size:8.5pt}a{color:inherit}.flow div{font-size:9pt}header{font-size:9pt}pre{font-size:8pt}}
+</style>
+</head>
+<body><main>
+<header><strong>ufodia / open-source tools</strong><span>FINAL PLAN v1.0 · 15 NOVEMBER 2026</span></header>
+<p class="muted"><strong>Historical design specification.</strong> This approved plan predates implementation. See the repository README and validation record for the implemented release and observed test results.</p>
+<p class="eyebrow">Product decision audit pack · implementation has not started</p>
+<h1>Decision Recheck</h1>
+<p class="lead">Test the promise. Explain the decision.<br>Recheck what changed.</p>
+<p class="muted">A working product name, not a reserved repository, package, domain or trademark. This document finalizes the proposed scope and supersedes the earlier research recommendation. All product capabilities are planned. English is the language of code-facing documentation, reports and launch materials.</p>
+<div class="verdict"><p class="eyebrow">Final decision / build an application pack</p><p>Create a small open-source SaaS audit pack with a local CLI and skill entry point. Use existing browser and evidence-freshness infrastructure. Add scoped offer/task checks, reviewable evidence and three useful report views: product owner, buyer, and marketing/support.</p><p>The product is the repeatable review workflow and its test cases. A new general-purpose agent framework or freshness engine is unnecessary.</p></div>
+<nav class="toc" aria-label="Plan sections"><a href="#research">Research decision</a><a href="#people">Three audiences</a><a href="#scope">Frozen scope</a><a href="#workflow">Workflow and demo</a><a href="#architecture">Architecture</a><a href="#agents">Agent contracts</a><a href="#quality">Release gates</a><a href="#delivery">Delivery plan</a><a href="#launch">Launch and support</a><a href="#sources">Sources</a></nav>
+
+<section id="research"><h2>01 / What the final research changed</h2>
+<div class="change"><strong>Correction to the earlier proposal:</strong> evidence dependencies, selective invalidation and decision revalidation already exist. They must not be advertised as this project's invention.</div>
+<div class="table-wrap"><table><thead><tr><th>Primary source</th><th>Documented overlap</th><th>Decision for this project</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/Hyperwise-LLC/freshctx">FreshCtx</a></td><td>An Apache-2.0 Python runtime for declared evidence dependencies, selective staleness and revalidation before protected actions. Its document examples flag changed sources without deciding whether revised content still supports a claim.</td><td>Reuse as the freshness dependency. Add SaaS-specific interpretation and task checks above it.</td></tr>
+<tr><td><a href="https://github.com/qmilab/lodestar">Lodestar</a></td><td>An Apache-2.0 research project connecting observations, claims, evidence, decisions, actions and revisions, with governance and reports.</td><td>Do not build another generic trust or decision-tracing platform.</td></tr>
+<tr><td><a href="https://github.com/sevenboxlabs/sevenbox#license">Sevenbox</a></td><td>Decision-dependency records and compensation workflows. Its SDK/adapters and required engine have different licensing terms.</td><td>Keep it a comparison reference; do not assume the entire dependency stack is open source.</td></tr>
+<tr><td><a href="https://github.com/DarkWorldCoder/market-mirror">MarketMirror</a></td><td>AGPL-3.0 synthetic-buyer marketing studies and website checks. The documented examples already include an advertising promise conflicting with a card requirement.</td><td>Promise-versus-experience checking is existing territory. Do not copy its implementation into an MIT project.</td></tr>
+<tr><td><a href="https://github.com/salespeak-ai/buyer-eval-skill">Buyer Eval</a></td><td>MIT buying-research skill with evidence-qualified claims, material unknowns, decision-changing questions and an HTML brief.</td><td>A portable evidence-based buying report is not itself a differentiator.</td></tr>
+<tr><td><a href="https://github.com/loukan42/chaosfolk">Chaosfolk</a></td><td>MIT browser-audit skill with replayable findings and regression workflows; the documentation describes it as alpha.</td><td>Reuse the pattern of reproducible findings. A skill, fictional users and screenshots alone do not establish novelty.</td></tr>
+</tbody></table></div>
+<p><strong>Positioning:</strong> a focused review pack for SaaS plan promises and user outcomes, with a ready-to-run broken/fixed demo and decision-change reports. This is a practical integration hypothesis, not a claim of technical uniqueness or proven demand.</p>
+<p class="muted">Method: targeted searches followed by primary repositories, documentation, license descriptions and a research abstract. No competing software was installed, no competitor benchmark was independently repeated, and no customer interviews have been conducted. An alpha label or an open issue does not prove an entire project is unusable or unfinished.</p>
+</section>
+
+<section id="people"><h2>02 / One review, three audiences</h2>
+<p>All three audiences are in v0.1. They share captured facts, but use different criteria and receive separate conclusions. Initial distribution can target small SaaS teams while buyer and marketing/support usefulness are evaluated separately.</p>
+<div class="table-wrap"><table><thead><tr><th>Audience and job</th><th>Required report</th><th>Useful outcome</th></tr></thead><tbody>
+<tr><td>Product owner<br>Find what blocks the promised outcome.</td><td>Ranked findings, affected plan/locale, expected and observed behavior, reproduction steps, evidence links and local issue drafts.</td><td>A reviewer accepts a concrete correction or a targeted follow-up test.</td></tr>
+<tr><td>Buyer or user<br>Decide whether the offer meets explicit needs.</td><td>Requirement matrix with plan, currency, billing period and evidence date; hard constraints; observed versus documented evidence; an optional documentary alternative and unresolved questions.</td><td>Each requirement has an evidence-supported fit or an explicit unknown. The documentary alternative is never presented as browser-tested.</td></tr>
+<tr><td>Marketing and support<br>Keep supplied promises and answers aligned.</td><td>Claim coverage, stale or conflicting statements, evidence-linked wording/help drafts and questions for a real-customer experiment.</td><td>Every proposed rewrite links to its supporting evidence. A wording repair does not silently resolve a product limitation or buyer constraint.</td></tr>
+</tbody></table></div>
+<p>Agents perform constrained tasks; they do not represent a population of customers. The pack reports observed behavior and evidence gaps. It does not turn simulated enthusiasm into purchase probability, conversion lift, advertising ROI or market demand.</p>
+</section>
+
+<section id="scope"><h2>03 / Frozen v0.1 scope</h2>
+<div class="two"><div><h3>Inputs and limits</h3><ul>
+<li>One authorized web application; one explicitly selected plan, locale, currency and billing basis per case.</li>
+<li>Three to five user requirements, up to ten supplied or reviewed claims, and at most eight approved source URLs in total.</li>
+<li>Optional public-document comparison for one alternative. Its browser behavior remains untested.</li>
+<li>Up to three task attempts per snapshot, each in a separate context: understand a plan; perform one core/export task; find the relevant help or exit information. One comparison includes a baseline and one explicit recheck, at most six attempts across the pair.</li>
+<li>Supplied advertisement/offer text and selected pricing/product/help content. No campaign-account connection is needed.</li>
+</ul></div><div><h3>Required deliverables</h3><ul>
+<li>Local CLI, a portable skill entry point and a model-free fictional fixture.</li>
+<li>Versioned JSON evidence bundle with captured artifacts and referenced freshness receipts.</li>
+<li>Three English report views and a reviewed old-versus-new decision summary.</li>
+<li>Scoped recheck against current sources and relevant task outcomes.</li>
+<li>A complete partial report when work is blocked, canceled, missing or over budget.</li>
+</ul></div></div>
+<p><strong>Deferred:</strong> broad web crawling, many-product procurement suites, demographic persona panels, scheduled cloud monitoring, ad-platform integrations, production purchases, account creation, subscription cancellation, outbound support messages and automatic issue publication. Exit-route inspection stops before cancellation or another destructive action.</p>
+<p>Production inspection is limited to approved public/read-only tasks. Task execution that creates or changes data uses a designated test environment with synthetic data and an explicit action allowance. The runner does not attach to the operator's personal browser profile.</p>
+</section>
+
+<section id="workflow"><h2>04 / Complete review workflow</h2>
+<div class="flow" role="list"><div role="listitem"><small>01 / BRIEF</small>Requirements, claims, scope and permissions</div><div role="listitem"><small>02 / CAPTURE</small>Sources and isolated task evidence</div><div role="listitem"><small>03 / REVIEW</small>Support, conflict, fit and unknowns</div><div role="listitem"><small>04 / REPORT</small>Owner, buyer and marketing/support views</div><div role="listitem"><small>05 / RECHECK</small>Current sources, affected tasks and decision changes</div></div>
+<ol>
+<li>The operator reviews the generated brief, scope and planned actions. Inferred requirements are labeled and require acceptance before they become hard constraints.</li>
+<li>The collector captures selected source fields/excerpts with time and scope. Actor sessions receive a goal and allowed actions, without seeing another actor's conclusions.</li>
+<li>The offer/support analyst links claims to relevant artifacts. A deterministic validator rejects broken source IDs, missing scope and invalid record shapes.</li>
+<li>The evidence reviewer checks material findings and contrary evidence. Unreviewed AI conclusions stay proposed.</li>
+<li>The local report shows coverage, accepted findings, disagreements and missing work. It may propose a decision; a human accepts or rejects it.</li>
+<li>A later recheck refetches the scoped live source, preserves the old observation and uses the configured freshness layer to identify affected dependencies. Relevant tasks are rerun within the approved allowance.</li>
+<li>The decision summary explains which conclusions changed, which remained supported, and which are now unknown. A wording repair does not automatically repair product fit.</li>
+</ol>
+<p>Immediately before writing a report labeled current, place the actual report-writing callback behind the verified FreshCtx revalidation boundary. Stale or unverifiable dependencies prevent that current-status export. A clearly labeled historical or partial report remains available through a separate path. Display the check time and checked fields; no report promises indefinite currency. Task results retain their attempt time and require a new attempt before being described as freshly tested.</p>
+<div class="demo"><p class="label">Fictional release demonstration</p><p><strong>A:</strong> Starter costs $9/month, CSV export works, and the buyer's maximum budget is $20/month. The offer and help text agree.</p><p><strong>B:</strong> Starter becomes $29 and export moves to $49 Pro. The old ad and help answer remain. Recheck shows a plan/task discrepancy, a buyer budget failure and stale wording.</p><p><strong>C:</strong> Ad/help wording is corrected. The documentation issue resolves; the buyer's budget failure remains.</p><p><strong>Control:</strong> only the footer changes. Relevant scoped observations stay equivalent; no full task rerun should be required. The repaired C snapshot is a separate explicit recheck with its own allowance, not an unbudgeted third snapshot.</p></div>
+<p><strong>Critical distinction:</strong> checking the hash of an archived screenshot only establishes that the archive did not change. A current-source check must actually revisit the scoped live source. A successful check does not establish truth, human usability or future availability.</p>
+</section>
+
+<section id="architecture"><h2>05 / Architecture and reuse</h2>
+<div class="table-wrap"><table><thead><tr><th>Component</th><th>Chosen approach</th><th>Responsibility</th></tr></thead><tbody>
+<tr><td>Local runner</td><td>Python 3.12; a small original CLI; locked dependencies and Windows-first setup.</td><td>Case configuration, budgets, stage checkpoints, manifests and report assembly.</td></tr>
+<tr><td>Freshness</td><td>Direct FreshCtx Python integration; 0.17.0 is a compatibility-spike candidate, not a tested dependency in this task.</td><td>Map declared domain dependencies to upstream checks and preserve upstream receipts. Do not create a parallel generic invalidation engine.</td></tr>
+<tr><td>Browser</td><td><a href="https://playwright.dev/python/docs/browser-contexts">Playwright Python contexts</a> and <a href="https://playwright.dev/python/docs/trace-viewer">local traces</a>.</td><td>Separate task sessions, bounded observations, screenshots and reproducible actions. Context isolation is not a security sandbox.</td></tr>
+<tr><td>Domain adapters</td><td>Scoped HTTP fields or operator-approved page selectors. Validate the supported comparison rules during the spike.</td><td>Plan, price, billing basis, feature entitlement and help/offer excerpts. Record extractor version and comparison basis.</td></tr>
+<tr><td>Model access</td><td>One validated provider/model configuration at launch; environment-provided credentials; a typed adapter contract.</td><td>Structured proposals and concise explanations. Record provider/model and prompt version. Publish only tested compatibility.</td></tr>
+<tr><td>Storage and viewer</td><td>Per-run versioned JSON/artifact directories, upstream receipts, a static HTML viewer with escaped content.</td><td>Historical evidence, review states and portable reports. No application server or cloud database is required.</td></tr>
+<tr><td>Skill</td><td><a href="https://agentskills.io/specification">Agent Skills format</a>, with instructions, references and runner invocation.</td><td>Collect the brief and invoke the same CLI. Runtime code enforces limits; the skill file does not enforce them.</td></tr>
+</tbody></table></div>
+<p>The Python choice keeps the first release in the same runtime as the chosen freshness dependency and browser API. A second Node runtime, web dashboard, LangGraph/CrewAI orchestration layer, vector database and optional Python sidecar are unnecessary for v0.1.</p>
+<p>The compatibility spike must prove baseline capture, restart/persistence behavior, current-source revalidation, selective effects and unavailable-source handling on Windows. If those checks fail, stop the recheck release, document the failure and narrow the pack to explicitly historical reports until a compatible upstream path is verified. Do not silently substitute an untested custom engine.</p>
+<h3>Proposed CLI surface — design, not executable instructions yet</h3>
+<pre>decision-recheck demo
+decision-recheck init
+decision-recheck run --brief brief.json
+decision-recheck recheck --baseline run-id
+decision-recheck report --run run-id --view owner|buyer|marketing
+decision-recheck validate --bundle path</pre>
+</section>
+
+<section id="records"><h2>06 / Evidence and decision contracts</h2>
+<p><code>Requirement → Scoped claim → Source / Task check → Finding → Decision</code></p>
+<p>Stable IDs connect records to the upstream freshness receipts. Every material item includes product/plan/locale scope, capture time, source kind, method, producer, reviewed status and contrary evidence. Task records add starting state, permitted actions, actual action events, expected/observed outcome and artifact locators. Store concise reasons and observable events, not private model reasoning.</p>
+<div class="table-wrap"><table><thead><tr><th>Separate axis</th><th>Examples</th><th>Rule</th></tr></thead><tbody>
+<tr><td>Execution</td><td>Not run · completed · failed · blocked · interrupted</td><td>A blocked task does not prove a feature is absent.</td></tr>
+<tr><td>Evidence basis</td><td>Vendor claim · vendor document · observed task · supplied user evidence</td><td>Several agents citing one source remain one source.</td></tr>
+<tr><td>Claim support</td><td>Supported within scope · conflicting · insufficient</td><td>Documents and observed behavior remain distinguishable.</td></tr>
+<tr><td>Freshness</td><td>Current within checked scope · changed · unverifiable · historical only</td><td>Retain upstream state details. Current is not synonymous with true.</td></tr>
+<tr><td>Requirement fit</td><td>Meets · fails · conditional · inconclusive</td><td>A hard-constraint failure cannot be averaged away by unrelated strengths.</td></tr>
+<tr><td>Review</td><td>Proposed · accepted · rejected · review required</td><td>New evidence may reopen review without erasing the old decision.</td></tr>
+</tbody></table></div>
+<p>Price comparisons must share currency, billing period, tax basis and required plan. Annualized or ambiguous offers remain conditional until normalized. Source canonicalization may ignore a cosmetic region only when the chosen field scope and rule are recorded. A missing selector, empty extraction, changed extractor version or ambiguous parse requires review and cannot silently become current. Ambiguous semantic changes create review tasks rather than automatic truth judgments.</p>
+</section>
+
+<section id="agents"><h2>07 / Agent contracts and operating limits</h2>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th>Input → output</th><th>Boundary</th></tr></thead><tbody>
+<tr><td>Requirements researcher</td><td>Operator brief and approved sources → explicit criteria and source candidates.</td><td>No silent hard-constraint inference; no unbounded crawling.</td></tr>
+<tr><td>Task actors</td><td>One goal, declared constraints and clean test session → actual steps, outcome and artifacts.</td><td>Up to three attempts per snapshot; no peer conclusions; approved tools only.</td></tr>
+<tr><td>Offer/support analyst</td><td>Claims, docs and task evidence → supported/conflicting/insufficient proposals.</td><td>Cannot treat a sales answer as independent proof.</td></tr>
+<tr><td>Evidence reviewer</td><td>Proposed findings and artifacts → checked references, objections and accepted/rejected proposals.</td><td>Agreement is not evidence; preserve unresolved disagreement.</td></tr>
+<tr><td>Report writer</td><td>Validated records and reviewed decisions → three audience views.</td><td>No new facts, invented source IDs or fabricated commercial forecasts.</td></tr>
+</tbody></table></div>
+<p>The coordinator is ordinary deterministic code. Per-snapshot default: at most two concurrent browser sessions, twelve permitted browser actions per task, thirty-six browser actions total, forty model calls and a twenty-minute deadline. A baseline/recheck pair has an explicit aggregate allowance of at most seventy-two browser actions, eighty model calls and forty minutes; the configured case budget can reduce these limits. Caps include research, actors, synthesis, review, report writing and retries. These are initial caps, not measured performance promises. Live mode also requires a configured token cap and operator spending ceiling when enforceable; the adapter reserves a conservative per-call allowance before dispatch.</p>
+<p>Provider prices and actual usage must be timestamped and labeled. A hard monetary ceiling is claimed only when the adapter can enforce a conservative bound; otherwise expose call/token/time caps and mark monetary usage unavailable or estimated. No paid inference is needed for the fixture demo. No automatic provider fallback or added calls occur after a cap is reached.</p>
+<p>Five roles do not imply five independent models or human respondents. Compare the role-separated pipeline with a single-agent baseline at the same resource limits; keep additional sessions only when they improve verified outcomes.</p>
+</section>
+
+<section id="controls"><h2>08 / Execution, privacy and partial failures</h2>
+<ul>
+<li>Enforce domain and action allowlists before tool execution, including redirects and new navigation targets. Restrict arbitrary script execution and external data egress.</li>
+<li>Default to public read-only pages. Permit synthetic test writes only for the specific test application and actions declared in the brief.</li>
+<li>Treat page text, downloaded material and imported reports as untrusted data. They cannot change tools, permissions, budgets or report instructions.</li>
+<li>CAPTCHA, authentication, expired sessions, rate limits and unavailable sources become explicit blocked/unverifiable results. No bypass or invented success.</li>
+<li>Use disposable synthetic inputs. Credentials stay outside bundles; raw traces can contain sensitive data and remain local unless a reviewed redacted export is deliberately shared.</li>
+<li>Local execution does not mean a configured cloud-model adapter receives no data. Describe the exact page excerpts/artifacts sent and keep telemetry off by default.</li>
+<li>Escape all source text in HTML reports. Export manifests list included and omitted artifacts; missing, corrupt or altered files cannot appear as verified evidence.</li>
+<li>Cancel and resume at stage checkpoints with idempotent local records. An uncertain interrupted write is recorded for human reconciliation, never blindly replayed.</li>
+</ul>
+<p>Deployment of a future documentation/demo site is a separate delivery step. Vercel would host static documentation and a clearly labeled recorded/fixture demonstration; browser execution and long agent runs stay local. Live site publication and any associated Search Console changes follow the user's applicable authorization rules.</p>
+</section>
+
+<section id="quality"><h2>09 / Release gates and honest measurements</h2>
+<p>These are proposed targets. No benchmark score, pilot result, customer demand or supported platform claim has been achieved in this planning task.</p>
+<div class="table-wrap"><table><thead><tr><th>Gate</th><th>Required check</th><th>Pass condition</th></tr></thead><tbody>
+<tr><td>Evidence integrity</td><td>Valid, missing, swapped and malformed artifact references; source injection; contradictory evidence.</td><td>All high-priority findings resolve to actual scoped artifacts. Zero fabricated source IDs accepted.</td></tr>
+<tr><td>Decision recheck</td><td>At least twenty planted inconsistencies and twenty clean controls, including price, plan, locale and irrelevant edits.</td><td>Expected dependency effects match every declared deterministic case. Publish the full scenario set and failures. Ambiguous interpretation remains review-required; no clean control is silently called a product defect.</td></tr>
+<tr><td>Source freshness</td><td>Live change with unchanged archive; unavailable source; scoped footer change; preserved historical decision.</td><td>Live change cannot pass because an archive hash is stable. Unavailable never becomes current.</td></tr>
+<tr><td>Finding usefulness</td><td>Human review of each proposed high-priority finding.</td><td>Internal triage precision target ≥85% on the declared fixture set; also publish scenario recall, false stale alerts, denominators and reviewer corrections. Do not market a headline accuracy percentage from this small sample.</td></tr>
+<tr><td>Controls and failure</td><td>Selected unauthorized actions, cross-session leaks, cap overruns, cancellation, timeout and provider failure.</td><td>Every selected control case passes; every interrupted run produces an accurate partial report.</td></tr>
+<tr><td>Baseline comparison</td><td>Single-agent review plus existing browser/freshness tools, at comparable resource limits.</td><td>Record time to a reviewed actionable result, corrections and usage. Remove extra agent stages that add cost without useful findings.</td></tr>
+<tr><td>Three-audience pilot</td><td>Five volunteer owners, two buyer-side reviewers and two marketing/support reviewers; disclose overlap if any.</td><td>Target three owner follow-up tasks, two repeat owner users within fourteen days, and one useful decision/correction per reviewer in each other group. Record negative feedback. These small samples are directional.</td></tr>
+<tr><td>Restore and setup</td><td>Fresh checkout, fixture run, live adapter smoke check and offline report on Windows and Linux.</td><td>Reproduction works from the committed lockfile and documentation. macOS remains unclaimed until tested.</td></tr>
+</tbody></table></div>
+<p>Publish a scenario-level confusion matrix and a finding-level precision table so duplicate findings cannot inflate success. For live pilots, track reviewed actionable findings, time saved versus the stated baseline, correction burden, repeat use and actual inference usage. Stars and donations are separate distribution outcomes.</p>
+</section>
+
+<section id="delivery"><h2>10 / Delivery plan and ownership</h2>
+<p>Planning assumption: one experienced developer, existing browser access and volunteer availability. Allow approximately four to six weeks for a narrow prototype after a two-day compatibility spike, then two weeks for pilot follow-through and release work. Re-estimate after the spike; the schedule is not a completion guarantee.</p>
+<div class="table-wrap"><table><thead><tr><th>Work package</th><th>Output</th><th>Exit gate / owner</th></tr></thead><tbody>
+<tr><td>0 · Two-day spike</td><td>FreshCtx/Playwright compatibility, one scoped live-source change, one archive control and manual three-view baseline.</td><td>Upstream revalidation works on Windows and the workflow yields a useful cross-role result. Owner: ufodia.</td></tr>
+<tr><td>1 · Weeks 1–2</td><td>Brief/schema, deterministic fixture, JSON bundles, domain-to-upstream mapping, CLI and three-view HTML skeleton.</td><td>A → B → C fixture and cosmetic control run without a model. Owner: ufodia.</td></tr>
+<tr><td>2 · Weeks 3–4</td><td>Isolated task execution, one live model configuration, role contracts, caps, review flow and recheck summaries.</td><td>Complete/blocked/interrupted cases have truthful evidence and scope. Owner: ufodia.</td></tr>
+<tr><td>3 · Weeks 5–6</td><td>Fixture benchmark, baseline comparison, Windows/Linux restore checks, docs, privacy exports and release candidate.</td><td>Declared technical gates pass; limitations are published. Owner: ufodia.</td></tr>
+<tr><td>4 · Following two weeks</td><td>Three-audience pilot, repeat-use review, prioritized corrections and public demo preparation.</td><td>Publish results and decide whether the pack earns ongoing maintenance. Owner: ufodia.</td></tr>
+</tbody></table></div>
+<p><strong>Stop or reduce scope:</strong> if the compatibility spike fails, the existing-tools baseline is equally useful with no repeat-work advantage, or pilot reviewers cannot use the reports, keep a smaller fixture/report adapter rather than expanding into a platform. A dashboard, more agents and more providers do not resolve a missing user benefit.</p>
+</section>
+
+<section id="repository"><h2>11 / Repository and documentation standard</h2>
+<p>Planned first-party package layout; filenames and commands become real only during implementation:</p>
+<pre>decision-recheck/
+  src/decision_recheck/   # CLI, domain records, adapters, roles, reports
+  skills/decision-recheck/
+  examples/              # fictional broken/fixed app and case bundles
+  tests/                 # contract, controls, fixtures and end-to-end checks
+  docs/                  # architecture, evidence, privacy, model support, recovery
+  assets/                # original cover, diagrams and real demo screenshots
+  pyproject.toml
+  uv.lock
+  README.md
+  LICENSE
+  THIRD_PARTY_NOTICES.md
+  CONTRIBUTING.md
+  SECURITY.md
+  CHANGELOG.md
+  .env.example
+  .github/</pre>
+<p>The premium English README must include the problem, a short fixture demonstration, three annotated report screenshots, quick start, the exact tested support matrix, architecture, limitations, costs, privacy, contribution examples and the support button. Commands must be executed on a clean checkout before publication. Use original diagrams and captured results; do not invent badges, stars, outcomes or testimonial quotes.</p>
+<p>Use MIT for original first-party code, copyright ufodia, with upstream notices and dependency licenses preserved. Initially ufodia is the sole first-party maintainer/contributor; dependencies retain their own attribution. Commit summaries stay short and descriptive. Completed authorized implementation work must pass checks, integrate through the ordinary protected process into GitHub <code>main</code>, and record the verified remote SHA.</p>
+</section>
+
+<section id="launch"><h2>12 / Launch, contribution and support plan</h2>
+<p><strong>English launch message:</strong> “Your product changed. Which buying advice, campaign claim and support answer should change with it? Decision Recheck connects scoped source checks and real test tasks to three reviewable reports.”</p>
+<ol>
+<li><strong>Before launch:</strong> publish the model-free A/B/C demo, full fixture results, upstream credits and a short limitations page. Ask pilot participants for consent before naming them or sharing their material.</li>
+<li><strong>GitHub launch:</strong> use one annotated before/after example, a 60–90 second recording, three report images and small contribution issues: a source extractor, a clean control, a false-positive reproduction or a task fixture.</li>
+<li><strong>LinkedIn launch package:</strong> prepare three original English visuals: changed offer, reproduced task result, three affected decisions. Each visual shows concrete evidence and clear typography. Publish only measured results and label the fictional example.</li>
+<li><strong>Buy Me a Coffee:</strong> add an optional <a href="https://buymeacoffee.com/ufodia">support ufodia</a> button in the README and demo. Explain that support funds fixture maintenance, compatibility checks and documentation. Keep core functionality and the offline demo free.</li>
+<li><strong>First month:</strong> share one reproducible case or fix weekly, publish a short changelog and invite narrowly scoped contributions. No artificial testimonials or unsupported “world first” headline.</li>
+</ol>
+<p>Measure GitHub visitors/stars where available, completed demos, valid issue reports, LinkedIn engagement and actual support events separately. Use tagged launch links and optional project identifiers for attribution; shared Buy Me a Coffee payments without reliable attribution remain unattributed. No donation or revenue target is presented as a forecast.</p>
+</section>
+
+<section id="sources"><h2>13 / Research record and remaining uncertainty</h2>
+<p>The implementation decision is final for this plan: an adapter-first SaaS audit pack, not a new generic reasoning or freshness platform. Remaining engineering uncertainty belongs in the compatibility spike; remaining demand uncertainty belongs in the pilot.</p>
+<ul class="source-list">
+<li><a href="https://github.com/Hyperwise-LLC/freshctx">FreshCtx repository</a>, <a href="https://freshctx.com/">official overview</a> and <a href="https://github.com/Hyperwise-LLC/freshctx/blob/main/docs/ADAPTER_CONTRACT.md">adapter contract</a>: existing dependency/freshness mechanisms and integration boundaries.</li>
+<li><a href="https://github.com/qmilab/lodestar">Lodestar</a> and <a href="https://github.com/sevenboxlabs/sevenbox#license">Sevenbox</a>: adjacent decision-tracing systems and licensing distinctions.</li>
+<li><a href="https://github.com/DarkWorldCoder/market-mirror">MarketMirror</a>, <a href="https://github.com/salespeak-ai/buyer-eval-skill">Buyer Eval</a> and <a href="https://github.com/loukan42/chaosfolk">Chaosfolk</a>: existing marketing, buyer and browser-audit workflows.</li>
+<li><a href="https://playwright.dev/python/docs/browser-contexts">Playwright isolation</a>, <a href="https://playwright.dev/python/docs/trace-viewer">trace documentation</a> and <a href="https://agentskills.io/specification">Agent Skills specification</a>: intended infrastructure and packaging.</li>
+<li><a href="https://arxiv.org/abs/2607.26348">When Synthetic Users Fail</a> (preprint): reports limits under its demographic-prompting survey protocols across two domains. It is not a direct validation of this browser-task pack; its abstract supports caution about treating synthetic respondents as real people.</li>
+</ul>
+<p class="muted">Sources were reviewed on 15 November 2026. Public documentation is evidence of what a project describes, not independent proof of runtime behavior. Market demand, integration reliability, live-task accuracy, cost and funding remain unmeasured.</p>
+</section>
+<footer><strong>Decision Recheck · Final project plan v1.0 · ufodia</strong><p>This artifact completes research and planning. Product implementation, paid model runs, repository creation, deployment and social publication are subsequent work. The earlier research note is retained as history; this plan replaces its generic freshness-engine recommendation.</p></footer>
+</main></body></html>

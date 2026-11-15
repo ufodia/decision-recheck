@@ -1,0 +1,23 @@
+name: Reproducible finding
+description: Report an incorrect result or a failed workflow using synthetic evidence.
+title: "[Bug]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include version, operating system, plan/locale, expected result, and actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Use fictional inputs. Remove credentials, private URLs, customer records, and personal screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and scope
+      description: Provide safe artifact IDs or a small redacted fixture, with the command and result.

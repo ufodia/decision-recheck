@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "case_id": "synthetic-saas",
+  "title": "The CSV export promise",
+  "product": "Fictional Fieldnote SaaS",
+  "scope": {
+    "plan": "Starter",
+    "locale": "en-US",
+    "currency": "USD",
+    "billing_period": "month",
+    "tax_basis": "exclusive"
+  },
+  "permissions": {
+    "allowed_hosts": [],
+    "allow_private_network": false,
+    "allow_test_writes": false,
+    "allowed_actions": [
+      "read",
+      "assert_text"
+    ]
+  },
+  "sources": [
+    {
+      "id": "pricing",
+      "kind": "pricing",
+      "format": "json",
+      "inline": {
+        "plan": "Starter",
+        "price": 9,
+        "pro_price": 49,
+        "features": {
+          "csv_export": true
+        },
+        "footer": "Fictional demo."
+      },
+      "fields": {
+        "price": "price",
+        "csv_export": "features.csv_export"
+      }
+    },
+    {
+      "id": "offer",
+      "kind": "offer",
+      "format": "json",
+      "inline": {
+        "csv_export": true,
+        "text": "Starter includes CSV export."
+      },
+      "fields": {
+        "csv_export": "csv_export",
+        "text": "text"
+      }
+    },
+    {
+      "id": "help",
+      "kind": "help",
+      "format": "json",
+      "inline": {
+        "csv_export": true,
+        "text": "Export from Settings on Starter."
+      },
+      "fields": {
+        "csv_export": "csv_export",
+        "text": "text"
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "budget",
+      "label": "Stay within $20 per month",
+      "source_id": "pricing",
+      "field": "price",
+      "operator": "lte",
+      "expected": 20,
+      "hard": true
+    },
+    {
+      "id": "export",
+      "label": "CSV export is included in the selected plan",
+      "source_id": "pricing",
+      "field": "csv_export",
+      "operator": "eq",
+      "expected": true,
+      "hard": true,
+      "task_id": "attempt-export"
+    },
+    {
+      "id": "help-findability",
+      "label": "Export guidance is present",
+      "source_id": "help",
+      "field": "text",
+      "operator": "contains",
+      "expected": "Export",
+      "hard": false
+    }
+  ],
+  "claims": [
+    {
+      "id": "offer-export",
+      "label": "Advertising agrees with plan entitlement",
+      "source_id": "offer",
+      "field": "csv_export",
+      "actual_source_id": "pricing",
+      "actual_field": "csv_export"
+    },
+    {
+      "id": "help-export",
+      "label": "Help answer agrees with plan entitlement",
+      "source_id": "help",
+      "field": "csv_export",
+      "actual_source_id": "pricing",
+      "actual_field": "csv_export"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "understand-plan",
+      "title": "Read the selected plan",
+      "method": "fixture",
+      "check": "plan",
+      "source_id": "pricing",
+      "depends_on": [
+        "pricing"
+      ],
+      "dependencies_complete": true
+    },
+    {
+      "id": "attempt-export",
+      "title": "Attempt CSV export",
+      "method": "fixture",
+      "check": "export",
+      "source_id": "pricing",
+      "depends_on": [
+        "pricing"
+      ],
+      "dependencies_complete": true
+    },
+    {
+      "id": "find-help",
+      "title": "Find export guidance",
+      "method": "fixture",
+      "check": "help",
+      "source_id": "help",
+      "depends_on": [
+        "help"
+      ],
+      "dependencies_complete": true
+    }
+  ]
+}

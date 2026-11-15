@@ -1,0 +1,15 @@
+.git
+.venv
+.pytest_cache
+__pycache__
+runs
+test-results
+playwright-report
+.env
+.env.*
+tests
+src
+examples
+docs
+uv.lock
+pyproject.toml

@@ -1,0 +1,1517 @@
+{
+  "schema_version": "1.0",
+  "run_id": "50d6b7da-7ae8-4e6d-b87f-080e1b0140c6",
+  "case_id": "synthetic-saas",
+  "title": "The CSV export promise",
+  "product": "Fictional Fieldnote SaaS",
+  "created_at": "2026-11-15T15:33:46Z",
+  "mode": "fixture",
+  "status": "complete",
+  "scope": {
+    "plan": "Starter",
+    "locale": "en-US",
+    "currency": "USD",
+    "billing_period": "month",
+    "tax_basis": "exclusive"
+  },
+  "sources": [
+    {
+      "id": "pricing",
+      "kind": "pricing",
+      "url": "inline:pricing",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "status": "captured",
+      "values": {
+        "price": 29,
+        "csv_export": false
+      },
+      "artifact_id": "source-pricing",
+      "observation_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809"
+    },
+    {
+      "id": "offer",
+      "kind": "offer",
+      "url": "inline:offer",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "status": "captured",
+      "values": {
+        "csv_export": true,
+        "text": "Starter includes CSV export."
+      },
+      "artifact_id": "source-offer",
+      "observation_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+    },
+    {
+      "id": "help",
+      "kind": "help",
+      "url": "inline:help",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "status": "captured",
+      "values": {
+        "csv_export": true,
+        "text": "Export from Settings on Starter."
+      },
+      "artifact_id": "source-help",
+      "observation_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "source-pricing",
+      "path": "artifacts/source-pricing.json",
+      "sha256": "67a05f7c3feffdb2319e8cbf41183d477f51c2cc3570cef2a872c8854958c31c",
+      "size_bytes": 113,
+      "media_type": "application/json"
+    },
+    {
+      "id": "source-offer",
+      "path": "artifacts/source-offer.json",
+      "sha256": "e92b867c48f80977d04dc2e80ca469bd3fb136d0d7e0b849fd2048c0b96f1ae4",
+      "size_bytes": 60,
+      "media_type": "application/json"
+    },
+    {
+      "id": "source-help",
+      "path": "artifacts/source-help.json",
+      "sha256": "4417ff2f8fd37ac729754594c60d58f88cd31cde8100725d58a7a2b232de07c7",
+      "size_bytes": 64,
+      "media_type": "application/json"
+    },
+    {
+      "id": "task-capture-understand-plan",
+      "path": "artifacts/task-capture-understand-plan.txt",
+      "sha256": "3d975b55df8aa6cdb43cda6980dbd96890fa5ceb919045ff002d14ba908e1141",
+      "size_bytes": 37,
+      "media_type": "text/plain"
+    },
+    {
+      "id": "task-capture-attempt-export",
+      "path": "artifacts/task-capture-attempt-export.txt",
+      "sha256": "0a6bd5b338173484fea7ea27334b387fb3838739f2386306f717f9c9ed744cab",
+      "size_bytes": 33,
+      "media_type": "text/plain"
+    },
+    {
+      "id": "task-capture-find-help",
+      "path": "artifacts/task-capture-find-help.txt",
+      "sha256": "567d53ce608631a505a5208cccbc708b876975afba5bfbd96c73acf80f857939",
+      "size_bytes": 32,
+      "media_type": "text/plain"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "understand-plan",
+      "title": "Read the selected plan",
+      "method": "fixture_assertion",
+      "execution": "passed",
+      "summary": "Deterministic fictional plan assertion: Selected Starter plan: $29 per month.",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "evidence_ids": [
+        "task-capture-understand-plan"
+      ],
+      "steps": [
+        {
+          "action": "fixture_plan",
+          "observed": "Selected Starter plan: $29 per month."
+        }
+      ]
+    },
+    {
+      "id": "attempt-export",
+      "title": "Attempt CSV export",
+      "method": "fixture_assertion",
+      "execution": "failed",
+      "summary": "Deterministic fictional export assertion: CSV export requires the Pro plan.",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "evidence_ids": [
+        "task-capture-attempt-export"
+      ],
+      "steps": [
+        {
+          "action": "fixture_export",
+          "observed": "CSV export requires the Pro plan."
+        }
+      ]
+    },
+    {
+      "id": "find-help",
+      "title": "Find export guidance",
+      "method": "reused_historical",
+      "execution": "passed",
+      "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional help assertion: Export from Settings on Starter.",
+      "checked_at": "2026-11-15T15:33:46Z",
+      "evidence_ids": [
+        "task-capture-find-help"
+      ],
+      "steps": [
+        {
+          "action": "fixture_help",
+          "observed": "Export from Settings on Starter."
+        }
+      ],
+      "reused_from": "90cc2ffa-4476-462a-8bdf-b86ceb910835"
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding-budget",
+      "title": "Requirement is not met: Stay within $20 per month",
+      "summary": "Observed scoped value: 29; required lte 20.",
+      "severity": "high",
+      "support": "conflicting",
+      "evidence_ids": [
+        "source-pricing"
+      ],
+      "review": "proposed",
+      "audiences": [
+        "owner",
+        "buyer"
+      ],
+      "suggestion": "Review the plan/requirement mismatch. Keep the buyer constraint explicit; a copy change alone cannot resolve it."
+    },
+    {
+      "id": "finding-export",
+      "title": "Requirement is not met: CSV export is included in the selected plan",
+      "summary": "Observed scoped value: False; required eq True. Linked task outcome: failed. A blocked attempt establishes no absence.",
+      "severity": "high",
+      "support": "conflicting",
+      "evidence_ids": [
+        "source-pricing",
+        "task-capture-attempt-export"
+      ],
+      "review": "proposed",
+      "audiences": [
+        "owner",
+        "buyer"
+      ],
+      "suggestion": "Review the plan/requirement mismatch. Keep the buyer constraint explicit; a copy change alone cannot resolve it."
+    },
+    {
+      "id": "finding-claim-offer-export",
+      "title": "Advertising agrees with plan entitlement",
+      "summary": "Supplied claim field: True. Scoped product/document field: False.",
+      "severity": "high",
+      "support": "conflicting",
+      "evidence_ids": [
+        "source-offer",
+        "source-pricing"
+      ],
+      "review": "proposed",
+      "audiences": [
+        "owner",
+        "marketing"
+      ],
+      "suggestion": "Reproduce the scoped behavior, then qualify the supplied statement to match supported facts."
+    },
+    {
+      "id": "finding-claim-help-export",
+      "title": "Help answer agrees with plan entitlement",
+      "summary": "Supplied claim field: True. Scoped product/document field: False.",
+      "severity": "high",
+      "support": "conflicting",
+      "evidence_ids": [
+        "source-help",
+        "source-pricing"
+      ],
+      "review": "proposed",
+      "audiences": [
+        "owner",
+        "marketing"
+      ],
+      "suggestion": "Reproduce the scoped behavior, then qualify the supplied statement to match supported facts."
+    },
+    {
+      "id": "finding-task-attempt-export",
+      "title": "Declared task assertion did not match: Attempt CSV export",
+      "summary": "Deterministic fictional export assertion: CSV export requires the Pro plan.",
+      "severity": "high",
+      "support": "conflicting",
+      "evidence_ids": [
+        "task-capture-attempt-export"
+      ],
+      "review": "proposed",
+      "audiences": [
+        "owner",
+        "buyer",
+        "marketing"
+      ],
+      "suggestion": "Reproduce the linked attempt and inspect its recorded steps before changing product or copy. An incomplete attempt does not establish that a feature is absent.",
+      "reproduction_steps": [
+        {
+          "action": "fixture_export",
+          "observed": "CSV export requires the Pro plan."
+        }
+      ],
+      "classification": "task_outcome",
+      "is_product_defect": false
+    }
+  ],
+  "decisions": [
+    {
+      "id": "decision-buyer-budget",
+      "audience": "buyer",
+      "requirement_id": "budget",
+      "title": "Stay within $20 per month",
+      "fit": "fails",
+      "summary": "Observed scoped value: 29; required lte 20.",
+      "evidence_ids": [
+        "source-pricing"
+      ],
+      "review": "proposed",
+      "hard": true
+    },
+    {
+      "id": "decision-buyer-export",
+      "audience": "buyer",
+      "requirement_id": "export",
+      "title": "CSV export is included in the selected plan",
+      "fit": "fails",
+      "summary": "Observed scoped value: False; required eq True. Linked task outcome: failed. A blocked attempt establishes no absence.",
+      "evidence_ids": [
+        "source-pricing",
+        "task-capture-attempt-export"
+      ],
+      "review": "proposed",
+      "hard": true
+    },
+    {
+      "id": "decision-buyer-help-findability",
+      "audience": "buyer",
+      "requirement_id": "help-findability",
+      "title": "Export guidance is present",
+      "fit": "meets",
+      "summary": "Observed scoped value: 'Export from Settings on Starter.'; required contains 'Export'.",
+      "evidence_ids": [
+        "source-help"
+      ],
+      "review": "proposed",
+      "hard": false
+    },
+    {
+      "id": "decision-owner-alignment",
+      "audience": "owner",
+      "title": "Readiness for the supplied user requirements",
+      "fit": "fails",
+      "summary": "Review the linked inconsistencies and correction drafts.",
+      "evidence_ids": [
+        "source-pricing",
+        "task-capture-attempt-export",
+        "source-offer",
+        "source-help"
+      ],
+      "review": "proposed"
+    },
+    {
+      "id": "decision-marketing-alignment",
+      "audience": "marketing",
+      "title": "Supplied promise and document alignment",
+      "fit": "fails",
+      "summary": "Review the linked inconsistencies and correction drafts.",
+      "evidence_ids": [
+        "source-offer",
+        "source-pricing",
+        "source-help"
+      ],
+      "review": "proposed"
+    }
+  ],
+  "changes": [
+    {
+      "source_id": "pricing",
+      "kind": "changed",
+      "state": "STALE_SOURCE",
+      "affected_ids": [
+        "decision-buyer-budget",
+        "decision-buyer-export",
+        "finding-claim-offer-export",
+        "finding-claim-help-export",
+        "decision-owner-alignment",
+        "decision-marketing-alignment"
+      ]
+    },
+    {
+      "source_id": "offer",
+      "kind": "unchanged",
+      "state": "CURRENT",
+      "affected_ids": []
+    },
+    {
+      "source_id": "help",
+      "kind": "unchanged",
+      "state": "CURRENT",
+      "affected_ids": []
+    },
+    {
+      "source_id": "attempt:understand-plan",
+      "kind": "changed",
+      "state": "STALE_SOURCE",
+      "affected_ids": [
+        "decision-owner-alignment",
+        "decision-marketing-alignment"
+      ]
+    },
+    {
+      "source_id": "attempt:attempt-export",
+      "kind": "changed",
+      "state": "STALE_SOURCE",
+      "affected_ids": [
+        "decision-buyer-export",
+        "decision-owner-alignment",
+        "decision-marketing-alignment"
+      ]
+    },
+    {
+      "source_id": "attempt:find-help",
+      "kind": "unchanged",
+      "state": "CURRENT",
+      "affected_ids": []
+    }
+  ],
+  "warnings": [
+    "Fictional fixture: inline data and deterministic task assertions are not live customer or vendor evidence.",
+    "Unaffected pure fixture attempts were reused as historical evidence with their original times. They were not freshly executed."
+  ],
+  "agent_proposals": [],
+  "stages": [
+    {
+      "role": "requirements_researcher",
+      "status": "deterministic",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "task_actor",
+      "task_id": "understand-plan",
+      "status": "fixture_assertion",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "task_actor",
+      "task_id": "attempt-export",
+      "status": "fixture_assertion",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "task_actor",
+      "task_id": "find-help",
+      "status": "fixture_assertion",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "offer_support_analyst",
+      "status": "deterministic",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "evidence_reviewer",
+      "status": "deterministic",
+      "at": "2026-11-15T15:33:46Z"
+    },
+    {
+      "role": "report_writer",
+      "status": "deterministic",
+      "at": "2026-11-15T15:33:46Z"
+    }
+  ],
+  "usage": {
+    "model_calls": 0,
+    "browser_actions": 0,
+    "reserved_tokens": 0,
+    "actual_tokens": 0,
+    "elapsed_seconds": 0.016,
+    "monetary_cost": null,
+    "monetary_status": "unavailable",
+    "attempts_executed": 2,
+    "attempts_reused": 1
+  },
+  "freshness": {
+    "provider": "freshctx",
+    "version": "0.17.0",
+    "state": "CURRENT",
+    "checked_at": "2026-11-15T15:33:46Z",
+    "meaning": "Selected declared source fields were revalidated. CURRENT is not truth or a fresh browser-task result.",
+    "receipts": [
+      {
+        "source_id": "pricing",
+        "purpose": "fixture_task_selection",
+        "state": "STALE_SOURCE",
+        "subject_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.631987+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.632987+00:00"
+      },
+      {
+        "source_id": "offer",
+        "purpose": "fixture_task_selection",
+        "state": "CURRENT",
+        "subject_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.632987+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.632987+00:00"
+      },
+      {
+        "source_id": "help",
+        "purpose": "fixture_task_selection",
+        "state": "CURRENT",
+        "subject_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.632987+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.632987+00:00"
+      },
+      {
+        "domain_id": "decision-buyer-budget",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "2e56cf0e-3c52-49f6-a39e-812c9f82004e",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.636984+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.636984+00:00"
+      },
+      {
+        "domain_id": "decision-buyer-export",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "ae350664-8139-4c9d-adfb-771d1a886460",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+          "66009173-c251-4997-b23c-8fd5a9f14d11"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.637986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.637986+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.637986+00:00"
+      },
+      {
+        "domain_id": "decision-buyer-help-findability",
+        "purpose": "baseline_recheck",
+        "state": "CURRENT",
+        "subject_id": "c77194f7-7dff-4658-9a1a-7fed37733a79",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.637986+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.638986+00:00"
+      },
+      {
+        "domain_id": "finding-claim-offer-export",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "94df7c1e-3b32-4c0c-abf7-d605898e6a0a",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.638986+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.638986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.638986+00:00"
+      },
+      {
+        "domain_id": "finding-claim-help-export",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "1d466c9a-624c-4e5f-b4d6-265b4187cecf",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.639986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.639986+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.639986+00:00"
+      },
+      {
+        "domain_id": "decision-owner-alignment",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "82c5fe25-55ee-4e82-9e8a-e993d7298c4b",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+          "66009173-c251-4997-b23c-8fd5a9f14d11",
+          "f78d0a00-535a-4bfa-8da3-b694c5a114c0"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.640987+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.640987+00:00"
+      },
+      {
+        "domain_id": "decision-marketing-alignment",
+        "purpose": "baseline_recheck",
+        "state": "STALE_REASONING",
+        "subject_id": "d74c991e-f46d-454e-a435-85f2e121253b",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+          "66009173-c251-4997-b23c-8fd5a9f14d11",
+          "f78d0a00-535a-4bfa-8da3-b694c5a114c0"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.641986+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.641986+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.641986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.641986+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.641986+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.642986+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.642986+00:00"
+      },
+      {
+        "source_id": "pricing",
+        "purpose": "baseline_source_recheck",
+        "state": "STALE_SOURCE",
+        "subject_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+        "causes": [
+          "5d68cf5d-348a-4c75-88fe-46fa0c745d57"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.642986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.642986+00:00"
+      },
+      {
+        "source_id": "offer",
+        "purpose": "baseline_source_recheck",
+        "state": "CURRENT",
+        "subject_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.643986+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.643986+00:00"
+      },
+      {
+        "source_id": "help",
+        "purpose": "baseline_source_recheck",
+        "state": "CURRENT",
+        "subject_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.643986+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.643986+00:00"
+      },
+      {
+        "source_id": "attempt:understand-plan",
+        "purpose": "baseline_source_recheck",
+        "state": "STALE_SOURCE",
+        "subject_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+        "causes": [
+          "f78d0a00-535a-4bfa-8da3-b694c5a114c0"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.644986+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.644986+00:00"
+      },
+      {
+        "source_id": "attempt:attempt-export",
+        "purpose": "baseline_source_recheck",
+        "state": "STALE_SOURCE",
+        "subject_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+        "causes": [
+          "66009173-c251-4997-b23c-8fd5a9f14d11"
+        ],
+        "adapter_results": [
+          {
+            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T15:33:46.644986+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "block",
+        "checked_at": "2026-11-15T15:33:46.644986+00:00"
+      },
+      {
+        "source_id": "attempt:find-help",
+        "purpose": "baseline_source_recheck",
+        "state": "CURRENT",
+        "subject_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.645986+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.645986+00:00"
+      },
+      {
+        "purpose": "current_report_export",
+        "state": "CURRENT",
+        "subject_id": "ccf8259e-f43f-4dc2-a87a-95349c24d90e",
+        "causes": [],
+        "adapter_results": [
+          {
+            "token_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.645986+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.645986+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.645986+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.645986+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.646987+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T15:33:46.646987+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          }
+        ],
+        "policy_decision": "allow",
+        "checked_at": "2026-11-15T15:33:46.646987+00:00"
+      }
+    ],
+    "objects": {
+      "observations": {
+        "pricing": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://source/pricing",
+          "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://source/pricing",
+            "name": "read_scoped_source",
+            "arguments": {
+              "fields": {
+                "price": "price",
+                "csv_export": "features.csv_export"
+              },
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "url": "inline:pricing"
+            },
+            "arguments_sha256": "1d28cb716d589be8bf5b5d12adaca9bb012778ba734710832dce3ee0625f2e3b",
+            "safe": true,
+            "version": null,
+            "validator_key": "bd673d70193068e99350e834079b59610140695e17c6f820ac19de4a77c968f4",
+            "freshness_strategy": "exact"
+          },
+          "id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+          "observed_at": "2026-11-15T15:33:46.627979+00:00"
+        },
+        "offer": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://source/offer",
+          "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://source/offer",
+            "name": "read_scoped_source",
+            "arguments": {
+              "fields": {
+                "csv_export": "csv_export",
+                "text": "text"
+              },
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "url": "inline:offer"
+            },
+            "arguments_sha256": "4bac614bc2a17f986d7d6f41b4f0c922f7367d9db0993f0cc64a96a489b29465",
+            "safe": true,
+            "version": null,
+            "validator_key": "d7f358fe17ab0e9372702e7688af9d30dc7d4543ad8986c34bc81c9f4717f227",
+            "freshness_strategy": "exact"
+          },
+          "id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+          "observed_at": "2026-11-15T15:33:46.629987+00:00"
+        },
+        "help": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://source/help",
+          "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://source/help",
+            "name": "read_scoped_source",
+            "arguments": {
+              "fields": {
+                "csv_export": "csv_export",
+                "text": "text"
+              },
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "url": "inline:help"
+            },
+            "arguments_sha256": "4a31d11ea97fee7ef4bceabc9e98498a5820d0fa545853d991fe77a670aa1c24",
+            "safe": true,
+            "version": null,
+            "validator_key": "a4e5a1bf0e1b5421d3f81636d6849980649e3efeb653bf16931236c0661517e5",
+            "freshness_strategy": "exact"
+          },
+          "id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+          "observed_at": "2026-11-15T15:33:46.630987+00:00"
+        },
+        "attempt:understand-plan": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://attempt/understand-plan",
+          "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://attempt/understand-plan",
+            "name": "read_recorded_attempt",
+            "arguments": {
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "task_spec": {
+                "id": "understand-plan",
+                "title": "Read the selected plan",
+                "method": "fixture",
+                "check": "plan",
+                "source_id": "pricing",
+                "depends_on": [
+                  "pricing"
+                ],
+                "dependencies_complete": true
+              },
+              "fixture_contract": "pure-fixture-v1"
+            },
+            "arguments_sha256": "e20dd361546bf1542ecc1ab52e12fc748088c7372ad98f7ace0482c4b4e153be",
+            "safe": true,
+            "version": null,
+            "validator_key": "5e7fd31caf305498359241911b3d31497aae2e353d8fb7697b465c3dc836eb04",
+            "freshness_strategy": "exact"
+          },
+          "id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+          "observed_at": "2026-11-15T15:33:46.633988+00:00"
+        },
+        "attempt:attempt-export": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://attempt/attempt-export",
+          "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://attempt/attempt-export",
+            "name": "read_recorded_attempt",
+            "arguments": {
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "task_spec": {
+                "id": "attempt-export",
+                "title": "Attempt CSV export",
+                "method": "fixture",
+                "check": "export",
+                "source_id": "pricing",
+                "depends_on": [
+                  "pricing"
+                ],
+                "dependencies_complete": true
+              },
+              "fixture_contract": "pure-fixture-v1"
+            },
+            "arguments_sha256": "a92bc88a4d6a3955a5e293acdd47b15b458c1e86a601c516be788104d130c9ff",
+            "safe": true,
+            "version": null,
+            "validator_key": "aba45c6633d6b72e144f25953c143aac495a9ba053324876fdb49cb3eeb93c88",
+            "freshness_strategy": "exact"
+          },
+          "id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+          "observed_at": "2026-11-15T15:33:46.634984+00:00"
+        },
+        "attempt:find-help": {
+          "adapter": "mcp",
+          "locator": "decision-recheck://attempt/find-help",
+          "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+          "validator": "v1",
+          "metadata": {
+            "server": "decision-recheck://attempt/find-help",
+            "name": "read_recorded_attempt",
+            "arguments": {
+              "scope": {
+                "plan": "Starter",
+                "locale": "en-US",
+                "currency": "USD",
+                "billing_period": "month",
+                "tax_basis": "exclusive"
+              },
+              "task_spec": {
+                "id": "find-help",
+                "title": "Find export guidance",
+                "method": "fixture",
+                "check": "help",
+                "source_id": "help",
+                "depends_on": [
+                  "help"
+                ],
+                "dependencies_complete": true
+              },
+              "fixture_contract": "pure-fixture-v1"
+            },
+            "arguments_sha256": "2f1a0f0a73ffa07b7cf8cd8885df433cf6379cc2ffb06421474a99bbbab1c362",
+            "safe": true,
+            "version": null,
+            "validator_key": "90242f7176ebe9a7491f62c01275662a4355bf107198df182138c09698102969",
+            "freshness_strategy": "exact"
+          },
+          "id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+          "observed_at": "2026-11-15T15:33:46.636984+00:00"
+        }
+      },
+      "reasoning": {
+        "decision-buyer-budget": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809"
+          ],
+          "digest": "c1c038e42ca893bea4ced0c877ba12d473003758394cd700cc5408f845db983d",
+          "metadata": {
+            "domain_id": "decision-buyer-budget"
+          },
+          "id": "c5a608b3-f490-4f76-be3d-5f76e1bfbf09",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "decision-buyer-export": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809"
+          ],
+          "digest": "9c3439d5f11eb77f76b2f362085b22df6389bb50a367ba6a88111afce6cc42b3",
+          "metadata": {
+            "domain_id": "decision-buyer-export"
+          },
+          "id": "eede7f8e-aac6-48ed-8007-265aebbba9be",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "decision-buyer-help-findability": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+          ],
+          "digest": "cc01217172906a003d36507fc36b625ebd35c08dc3e2a1cff494389488fb1403",
+          "metadata": {
+            "domain_id": "decision-buyer-help-findability"
+          },
+          "id": "e460293a-f6fb-4e15-9a2a-a7e0623d36ac",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "finding-claim-offer-export": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          ],
+          "digest": "b314b29fe4709138c9ed405688f2459eba0fc6c5bc58759b21235d211acca521",
+          "metadata": {
+            "domain_id": "finding-claim-offer-export"
+          },
+          "id": "fb2788bf-8f99-4177-9004-609754d69d43",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "finding-claim-help-export": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809"
+          ],
+          "digest": "07025e5ead7ba769afcfbd3d8de08d970fda8c257cf8e5751ab25ff438492e10",
+          "metadata": {
+            "domain_id": "finding-claim-help-export"
+          },
+          "id": "a29678bb-88ff-4a5e-bdfd-90fc8536d67b",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "decision-owner-alignment": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+            "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          ],
+          "digest": "639c9e8ded8c54d2eace4cc977dc21be68d619eec8ca950cdb42d66e846c03fe",
+          "metadata": {
+            "domain_id": "decision-owner-alignment"
+          },
+          "id": "f224cce4-b879-4866-a0d9-f7621ed74fa4",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        },
+        "decision-marketing-alignment": {
+          "kind": "decision-recheck",
+          "dependencies": [
+            "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+            "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          ],
+          "digest": "1f96e3545535cc0c64071e0b47e929458fae87becb3d3b60cfb70bcd169ecd12",
+          "metadata": {
+            "domain_id": "decision-marketing-alignment"
+          },
+          "id": "994056d1-3246-4f2c-8489-b0260a99b3bf",
+          "created_at": "2026-11-15T15:33:46.636984+00:00"
+        }
+      }
+    }
+  }
+}
