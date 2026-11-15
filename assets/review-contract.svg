@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="752" viewBox="0 0 1280 752" role="img" aria-labelledby="title desc">
+  <title id="title">Four optional model roles, with application-rendered decisions</title>
+  <desc id="desc">The requirements researcher selects planning priorities before tasks. After evaluation, the offer and support analyst, evidence reviewer, and report writer prioritize application-defined review items. Declared browser tasks run deterministically. Validated selections retain exact recorded verdicts and require behavior verification before factual documentation changes. Rejected responses remain partial. The same evidence supports owner, buyer, and marketing and support reports; consistency does not prove source truth.</desc>
+  <rect width="1280" height="752" fill="#f6f3e9"/>
+  <path d="M48 76h1184M48 692h1184" stroke="#c4cebb"/>
+  <text x="48" y="48" fill="#56675d" font-family="Consolas,monospace" font-size="13" letter-spacing="2">DECISION RECHECK / OPTIONAL LOCAL MODEL REVIEW</text>
+  <text x="48" y="139" fill="#153e34" font-family="Georgia,serif" font-size="43" letter-spacing="-1">Four roles. Recorded decisions stay intact.</text>
+  <text x="48" y="177" fill="#56675d" font-family="Arial,sans-serif" font-size="19">Models choose review priorities. The application supplies the facts, fits, and required follow-ups.</text>
+
+  <g fill="#fcfaf4" stroke="#b8c6ae">
+    <rect x="48" y="212" width="284" height="176"/>
+    <rect x="348" y="212" width="284" height="176"/>
+    <rect x="648" y="212" width="284" height="176"/>
+    <rect x="948" y="212" width="284" height="176"/>
+  </g>
+  <g fill="#56675d" font-family="Consolas,monospace" font-size="12" letter-spacing="1">
+    <text x="68" y="241">01 / BEFORE TASKS</text>
+    <text x="368" y="241">02 / AFTER EVALUATION</text>
+    <text x="668" y="241">03 / AFTER EVALUATION</text>
+    <text x="968" y="241">04 / AFTER EVALUATION</text>
+  </g>
+  <g fill="#153e34" font-family="Georgia,serif" font-size="27">
+    <text x="68" y="284">Requirements</text>
+    <text x="68" y="315">researcher</text>
+    <text x="368" y="284">Offer &amp; support</text>
+    <text x="368" y="315">analyst</text>
+    <text x="668" y="284">Evidence</text>
+    <text x="668" y="315">reviewer</text>
+    <text x="968" y="284">Report</text>
+    <text x="968" y="315">writer</text>
+  </g>
+  <g fill="#56675d" font-family="Arial,sans-serif" font-size="15">
+    <text x="68" y="353">Select source-review</text>
+    <text x="68" y="375">planning priorities.</text>
+    <text x="368" y="353">Prioritize comparisons</text>
+    <text x="368" y="375">and permitted follow-ups.</text>
+    <text x="668" y="353">Prioritize decisions</text>
+    <text x="668" y="375">and scoped review items.</text>
+    <text x="968" y="353">Arrange canonical</text>
+    <text x="968" y="375">decision explanations.</text>
+  </g>
+  <text x="48" y="422" fill="#56675d" font-family="Arial,sans-serif" font-size="16">Task actor: deterministic browser checks and recorded events, without model narration.</text>
+
+  <rect x="48" y="450" width="1184" height="162" fill="#153e34"/>
+  <text x="72" y="480" fill="#d8ef9a" font-family="Consolas,monospace" font-size="12" letter-spacing="1">VALIDATE SELECTED IDS / RENDER FROM CURRENT EVIDENCE RECORDS</text>
+  <path d="M639 500v54" stroke="#527064"/>
+  <g fill="#f6f3e9" font-family="Georgia,serif" font-size="27">
+    <text x="72" y="531">Recorded verdicts remain exact.</text>
+    <text x="665" y="531">Verify behavior before factual edits.</text>
+  </g>
+  <text x="72" y="583" fill="#d7e0d2" font-family="Arial,sans-serif" font-size="16">Reject invalid, incomplete, or stale selections. Rejected responses remain visible as partial work.</text>
+
+  <g fill="#153e34" font-family="Arial,sans-serif" font-size="17">
+    <text x="48" y="653">Product owner</text>
+    <text x="245" y="653">Buyer / user</text>
+    <text x="420" y="653">Marketing / support</text>
+  </g>
+  <text x="1232" y="653" text-anchor="end" fill="#56675d" font-family="Arial,sans-serif" font-size="15">Three views of the same scoped evidence.</text>
+  <text x="48" y="724" fill="#56675d" font-family="Arial,sans-serif" font-size="14">Consistency does not prove source truth or complete product behavior.</text>
+  <text x="1232" y="724" text-anchor="end" fill="#56675d" font-family="Consolas,monospace" font-size="12">OPEN SOURCE / UFODIA</text>
+</svg>

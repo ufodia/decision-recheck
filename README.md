@@ -6,8 +6,9 @@
   <a href="https://decision-recheck.vercel.app/">Live demo</a> ·
   <a href="https://github.com/ufodia/decision-recheck/actions">Checks</a> ·
   <a href="#run-the-demo">Quick start</a> ·
+  <a href="#four-model-roles-one-decision-contract">Four roles</a> ·
+  <a href="#real-llm-validation">Live LLM validation</a> ·
   <a href="docs/architecture.md">Architecture</a> ·
-  <a href="docs/evidence.md">Evidence contract</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
@@ -17,7 +18,9 @@
 
 Decision Recheck is an open-source SaaS audit pack. It connects a person's requirements, a product's promises, and scoped task evidence to three reviewable reports. When an offer changes, an explicit recheck shows which conclusions need another look.
 
-It runs locally, produces portable HTML/JSON evidence bundles, and includes a fictional release-change demonstration that requires no API key or paid inference.
+**Four optional LLM roles help prioritize the review. The application renders the exact recorded decisions and required follow-ups.** A model cannot soften a recorded failure into a readiness claim.
+
+It runs locally and produces portable HTML/JSON evidence bundles. The [real LLM validation](#real-llm-validation) records a fresh four-role baseline and recheck against public HTTPX documentation. The interactive fictional demo requires no API key or paid inference.
 
 **Start here:** [explore the interactive example](https://decision-recheck.vercel.app/#demo), [run it locally](#run-the-demo), or [configure a real review](docs/usage.md#connect-your-own-product).
 
@@ -35,15 +38,53 @@ It runs locally, produces portable HTML/JSON evidence bundles, and includes a fi
 
 Each conclusion retains its evidence basis and scope. Observed task behavior, vendor documentation, freshness, requirement fit, and human review remain separate.
 
+## Four model roles. One decision contract.
+
+With explicit `--live-model`, the local runner requests four role reviews from your configured provider. Each role selects and orders allowed item IDs from an application-owned catalog for its current context.
+
+| Role | Stage | What it contributes |
+| --- | --- | --- |
+| **Requirements researcher** | Before task execution | Selects source-review planning priorities. It does not certify requirement fulfillment. |
+| **Offer and support analyst** | After evaluation | Prioritizes recorded comparisons and permitted follow-ups. |
+| **Evidence reviewer** | After evaluation | Prioritizes recorded decisions, evidence limits, and follow-ups. |
+| **Report writer** | After evaluation | Arranges the application's decision explanations for review. |
+
+The **browser task actor is deterministic**: it executes the declared checks and records events directly, without model narration. Four model roles and three audience reports serve different purposes; they are not independent confirmations of a claim.
+
+<img src="assets/review-contract.svg" alt="Four optional model roles select review priorities; the application validates item IDs and renders recorded decisions and required follow-ups" width="100%">
+
+The output contract keeps model-selected priorities attached to the current evidence:
+
+- **Exact decisions:** the later roles must include every formal fit decision. A recorded `fails` remains `fails`.
+- **Required preconditions:** verify the underlying behavior **before changing factual documentation**. A preferred buyer outcome does not make a documented fact wrong.
+- **Strict validation:** unknown or duplicate IDs, omitted required items, extra prose, replacement verdicts, stale context, and mismatched evidence references are rejected. Rejected work remains partial, without silent repair, hidden retry, or provider fallback.
+
+The application rebuilds the wording from current bundle records. This ensures consistency with those records; it does not establish source truth, correct operator criteria, or complete product behavior. See the [decision-consistent review contract](docs/commentary-consistency.md).
+
 ## What runs where
 
 | Experience | What you provide | What you get |
 | --- | --- | --- |
 | **Browser demo** | Nothing; no account or API key | Four recorded fictional snapshots, three report views, captured artifacts and a downloadable evidence ZIP. |
 | **Local audit runner** | A JSON brief with sources, requirements and fixed task assertions | Captured evidence, scoped findings, audience reports and an explicit recheck against a previous run. |
-| **Optional model proposals** | Your compatible provider, model and API key; explicit `--live-model` | Structured draft interpretations within the configured limits. Human review still matters. |
+| **Four optional model roles** | Your compatible provider, model and API key; explicit `--live-model` | Prioritized canonical review items, with decisions and required follow-ups rendered by the application. Human review still matters. |
 
 The website is an evidence viewer. To review your own application, use the local runner. Importing a bundle JSON into the website previews its metadata locally; it neither runs an audit nor verifies the bundle's artifact files.
+
+## Real LLM validation
+
+On **November 15, 2026**, the current contract was tested against the real **HTTPX Introduction and QuickStart documentation**, using OpenAI **`gpt-4.1-mini`**. The completed baseline and recheck used **eight distinct new provider responses**, with no recorded response replayed or substituted.
+
+| Verification | Recorded result |
+| --- | --- |
+| **Fresh baseline** | Four new role responses; all four selections accepted. |
+| **Fresh recheck** | Four new role responses; all four selections accepted. A real read-only browser task reran and passed its three text assertions. |
+| **Decision preservation** | Three requirements meet, one intentionally incompatible timeout criterion fails, and a two-hour support SLA stays inconclusive within the selected evidence. The recorded fits and behavior-verification precondition remain intact. |
+| **Full local suite** | 335 tests passed, zero skipped, on Windows with installed Chrome. |
+
+The website checks inspected documentation. They did not execute HTTPX's library behavior, measure a runtime timeout, test a support service, or establish human usability. The later model roles selected the required minimum catalog items, demonstrating live contract compliance rather than novel insights or independent corroboration.
+
+An earlier strict attempt rejected two invalid selections and remained partial. Clarifying the request's mandatory IDs allowed both completed runs to pass the unchanged validation boundary. Read the [live validation record](docs/commentary-live-validation-2026-11-15.md) and its [sanitized execution evidence](docs/evidence/commentary-consistency-2026-11-15.json) for scope, timestamps, usage, and limits.
 
 ## The case that explains it
 
@@ -79,7 +120,7 @@ uv sync --locked
 uv run decision-recheck demo --output runs/demo
 ```
 
-Open `runs/demo/index.html`. The demo writes actual CLI bundles and role reports for the four fictional snapshots. **No browser installation or API key is needed for this command.** It makes no paid model calls.
+Open `runs/demo/index.html`. The demo writes actual CLI bundles and audience reports for the four fictional snapshots. **No browser installation or API key is needed for this command.** It makes no paid model calls.
 
 ```text
 runs/demo/
@@ -145,10 +186,10 @@ See [usage and setup](docs/usage.md) for the case contract and operating limits.
 - **Inspectable:** local artifacts and stable references support the report; validation detects missing or altered evidence.
 - **Honest about access:** an untested or blocked workflow stays untested or blocked.
 - **Rechecked against current sources:** an unchanged archive hash cannot establish that a live page is still the same.
-- **Reviewable:** a proposed interpretation remains distinguishable from an accepted decision.
+- **Reviewable:** model-selected priorities remain distinct from recorded fits and human acceptance.
 - **Portable:** local HTML reports and JSON bundles can be inspected without a hosted account.
 
-<img src="assets/architecture.svg" alt="Approved brief, isolated checks, captured evidence, FreshCtx validation, and three role reports" width="100%">
+<img src="assets/architecture.svg" alt="Approved brief, isolated checks, captured evidence, FreshCtx validation, and three audience reports" width="100%">
 
 ## Architecture and upstream credit
 
@@ -166,11 +207,9 @@ Source freshness does not establish factual truth. A successful task does not es
 
 The static demo displays fictional local results. It has no server-side model key or remote audit service. Live model access is opt-in and may incur the operator's provider charges. See [model access and privacy](docs/model-and-privacy.md) for the tested contract and verification limits.
 
-To check an actual deployed website with optional model proposals, follow the [bounded live-site walkthrough](docs/live-site-review.md). It includes a read-only brief, explicit provider configuration, known positive/negative/unknown requirements, and a baseline/recheck review checklist.
+To check an actual deployed website with optional model review, follow the [bounded live-site walkthrough](docs/live-site-review.md). It includes a read-only brief, explicit provider configuration, known positive/negative/unknown requirements, and a baseline/recheck review checklist. Models receive selected structured evidence and citation metadata, not full raw files or screenshot pixels.
 
-The [HTTPX validation record](docs/httpx-live-validation-2026-11-15.md) documents the four-role runner against a different real website using fresh OpenAI responses, including a reproduced recommendation problem, its prompt correction and remaining prose limitations.
-
-The current [decision-consistent review contract](docs/commentary-consistency.md) closes that report boundary: four model roles prioritize canonical review items, while exact verdicts and required follow-ups are rendered from recorded evidence. Unsupported free prose cannot become a report conclusion.
+The [earlier HTTPX review](docs/httpx-live-validation-2026-11-15.md) preserves the free-form recommendation problems that motivated the current contract. Its prose limitations are historical context; the [current live validation](docs/commentary-live-validation-2026-11-15.md) verifies the enforced report boundary.
 
 The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [deployment and recovery](docs/deployment.md) for the static hosting configuration and verification steps.
 
