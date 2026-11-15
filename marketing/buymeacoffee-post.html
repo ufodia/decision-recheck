@@ -1,35 +1,50 @@
-<p>A pricing page changes. A feature moves to another plan. The campaign, help answer, and buying recommendation still describe the old offer.</p>
-<p><strong>Decision Recheck</strong> is my open-source SaaS audit pack for making those disagreements visible and reviewable.</p>
+<p>A price changes. A feature moves to another plan. The advertisement, support answer, and buying recommendation still describe yesterday's product.</p>
+<p><strong>Decision Recheck</strong> is my open-source SaaS audit pack for finding those disagreements, tracing them to evidence, and revisiting the decision when the product changes.</p>
+<p>The latest version adds four optional live LLM review roles with a strict boundary: <strong>the model can prioritize review items; it cannot rewrite the recorded decision.</strong></p>
 <p><a href="https://decision-recheck.vercel.app/">Explore the interactive demo</a> · <a href="https://github.com/ufodia/decision-recheck">Read the source on GitHub</a></p>
-<h2>A small case with three different consequences</h2>
-<p>The included demonstration uses a <strong>fictional</strong> product and buyer:</p>
+<h2>One change. Three decisions to revisit.</h2>
+<p>The demonstration follows a <strong>fictional</strong> product and buyer:</p>
 <ul>
-<li>Starter originally costs <strong>$9/month</strong> and includes CSV export.</li>
-<li>Starter changes to <strong>$29/month</strong>, while CSV export moves to <strong>$49/month Pro</strong>.</li>
-<li>The advertisement and support answer still describe the original offer.</li>
+<li>Starter originally costs <strong>$9/month</strong>, including CSV export.</li>
+<li>Starter rises to <strong>$29/month</strong>; CSV export moves to <strong>$49/month Pro</strong>.</li>
+<li>The advertisement and help answer still promise the original offer.</li>
 <li>The buyer's monthly budget remains <strong>$20</strong>.</li>
 </ul>
-<p>That change creates different questions for different people. A product owner needs a reproducible mismatch. A buyer needs to understand whether the product still meets their requirements. Marketing and support need to revisit statements that no longer agree with the product evidence.</p>
-<p>The demo also includes a corrected-copy snapshot. The advertisement and help answer are repaired, but the buyer's budget failure remains. Fixing one problem must not silently erase another.</p>
-<h2>What you can use today</h2>
-<p>Decision Recheck runs locally and produces portable HTML reports and JSON evidence bundles. A case connects explicit requirements, scoped sources, permitted task checks, captured artifacts, and findings.</p>
-<p>You can:</p>
+<p>A product owner needs the mismatch reproduced. A buyer needs to know whether the plan still fits. Marketing and support need to identify statements that no longer match the evidence.</p>
+<p>Correcting the advertisement and help answer resolves the copy mismatch, but the buyer's budget failure remains. A better paragraph cannot make an unaffordable plan affordable.</p>
+<p>Decision Recheck preserves that distinction across three audience reports connected to the same scoped evidence bundle.</p>
+<h2>Four roles, with clear responsibilities</h2>
+<p>Optional live model review uses your configured provider. Each run requests four roles:</p>
+<ol>
+<li><strong>Requirements researcher</strong> selects source-review planning priorities before task execution.</li>
+<li><strong>Offer and support analyst</strong> prioritizes recorded comparison items and permitted follow-ups after evaluation.</li>
+<li><strong>Evidence reviewer</strong> prioritizes recorded decisions, scope limits, and follow-ups within the supplied evidence.</li>
+<li><strong>Report writer</strong> arranges application-owned decision explanations for the final review.</li>
+</ol>
+<p>The browser task actor executes declared checks deterministically. It records what happened without asking a model to invent the outcome. Four model roles and three audience reports serve different purposes; they are not independent confirmations of a claim.</p>
+<h2>Keep the decision attached to its evidence</h2>
+<p>Unrestricted prose can introduce a subtle contradiction: a recorded failure becomes “ready with exceptions,” or an unmet requirement becomes a recommendation to rewrite an inconvenient fact.</p>
+<p>Each model now receives a finite catalog of application-defined review items and returns <strong>only selected item IDs</strong>. The application validates those selections and renders the wording from current evidence records.</p>
 <ul>
-<li>Review the same evidence from <strong>product owner</strong>, <strong>buyer/user</strong>, and <strong>marketing/support</strong> perspectives.</li>
-<li>Follow a finding to its supporting local artifacts and inspect its scope.</li>
-<li>Save a baseline and explicitly recheck after the source or offer changes.</li>
-<li>See blocked, untested, and uncertain work without turning missing access into a negative feature claim.</li>
-<li>Validate bundle references and artifact integrity before sharing a report.</li>
+<li>Required decisions and evidence preconditions cannot be omitted.</li>
+<li>Unknown or duplicate IDs, extra prose, replacement verdicts, stale context, and mismatched evidence references are rejected.</li>
+<li>A recorded <strong>fails</strong> outcome stays <strong>fails</strong> in the review.</li>
+<li>Factual documentation changes require <strong>verification of the underlying behavior first</strong>. A preferred buyer outcome is not evidence that a documented fact is wrong.</li>
 </ul>
-<p>The fictional demo requires <strong>no API key or paid inference</strong>. Optional model roles can propose structured interpretations for human review. FreshCtx provides the dependency and freshness mechanisms; Playwright supplies the browser checks. Their work is credited in the repository.</p>
-<h2>Try it in a few minutes</h2>
-<p>Open the <a href="https://decision-recheck.vercel.app/">demo workbench</a>, choose <strong>Changed offer</strong>, then compare the three audience reports. Switch to <strong>Corrected copy</strong> and look at what changes—and what still fails.</p>
-<p>For a local run, the <a href="https://github.com/ufodia/decision-recheck#run-the-demo">README</a> covers Python 3.12, dependency setup, the CLI, and your first brief. Start with the fictional case before adapting a brief to an application you are authorized to test.</p>
-<h2>What this first version does not claim</h2>
-<p>The public website displays fictional local results; it does not run an audit service or hold a server-side model key. A real case needs an operator-defined scope, sources, and task checks.</p>
-<p>An automated task result does not establish human usability. Fresh evidence does not guarantee a correct interpretation. The project does not predict conversion, purchase probability, revenue, or market demand from simulated users. Paid-provider inference is separate from the included fixture validation.</p>
-<h2>Help shape the next useful case</h2>
-<p>A small, reproducible example is especially valuable: a feature moving between plans, a stale support answer, a currency/billing mismatch, or a false positive the current rules should handle better. The repository includes contribution guidance and a security policy.</p>
-<p>If Decision Recheck saves you review time, <a href="https://github.com/ufodia/decision-recheck">star the repository</a>, try a case, or share a useful issue. If you would like to support the work financially, <a href="https://buymeacoffee.com/ufodia">buy me a coffee</a>. Support helps me maintain reproducible fixtures, browser compatibility, and clear documentation.</p>
-<p>The core and model-free demo remain open source under the MIT license.</p>
-<p>Built and maintained by <strong>ufodia</strong>.</p>
+<p>A rejected response leaves visible partial work, without silent repair, hidden retry, or provider fallback. Human review still matters: consistent reporting does not prove that a source is true or that the operator chose the right requirements.</p>
+<h2>Tested with fresh responses on a real website</h2>
+<p>On <strong>November 15, 2026</strong>, I tested the current contract against the public <strong>HTTPX Introduction and QuickStart documentation</strong>, using OpenAI <strong>gpt-4.1-mini</strong>.</p>
+<p>The completed baseline and recheck received <strong>eight distinct new provider responses: four per run</strong>. No recorded response was replayed or substituted. The recheck also reran a read-only browser task with three text assertions.</p>
+<p>The case included positive, negative, and unknown outcomes. Three requirements were supported by the selected evidence. An intentionally incompatible requirement for documentation stating “no default timeout” failed. A two-hour support SLA remained inconclusive within those selected pages. The reports retained those outcomes and the instruction to verify behavior before changing factual documentation.</p>
+<p>These checks examined documentation; they did not execute the HTTPX library, measure its runtime timeout, or test a support service. The models selected the required catalog items, demonstrating contract compliance rather than novel insights or independent corroboration.</p>
+<p>An earlier strict attempt rejected two invalid selections and remained partial. After the request clarified the mandatory IDs, both completed runs passed the unchanged validation boundary. The full local suite also passed <strong>335 tests, with zero skipped</strong>.</p>
+<p>Read the <a href="https://github.com/ufodia/decision-recheck/blob/main/docs/commentary-live-validation-2026-11-15.md">live validation record and its limits</a> and the <a href="https://github.com/ufodia/decision-recheck/blob/main/docs/commentary-consistency.md">decision-consistency contract</a>.</p>
+<h2>Try the evidence before connecting a model</h2>
+<p>The <a href="https://decision-recheck.vercel.app/">public demo</a> is a static, fictional walkthrough requiring <strong>no account, API key, or paid inference</strong>. Compare <strong>Changed offer</strong> with <strong>Corrected copy</strong>, open the three report views, and follow the evidence links.</p>
+<p>Real website checks and optional live LLM calls run through the local Python runner. You define the scope, sources, requirements, task checks, provider, and limits. Live provider use may incur charges. Models receive selected structured evidence and citation metadata, not full raw files or screenshot pixels.</p>
+<p>The runner produces portable HTML reports and JSON bundles, supports an explicit baseline and recheck, and exposes blocked or uncertain work. FreshCtx supplies dependency and freshness mechanisms; Playwright supplies browser checks. The <a href="https://github.com/ufodia/decision-recheck#run-the-demo">README</a> covers setup and usage.</p>
+<h2>Help make the next decision easier to review</h2>
+<p>Try a case, <a href="https://github.com/ufodia/decision-recheck">star the repository</a>, or contribute a small reproduction: a feature moving between plans, a stale help answer, or a false positive. The project does not predict conversion, purchase probability, or market demand from simulated users.</p>
+<p>If this work saves you review time, <a href="https://buymeacoffee.com/ufodia">buy me a coffee</a>. Support helps maintain reproducible cases, browser compatibility, regression checks, and clear documentation.</p>
+<p>Built and maintained by <strong>ufodia</strong>. The core and model-free demo remain open source under the <strong>MIT license</strong>.
+</p>

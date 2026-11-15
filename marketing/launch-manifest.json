@@ -9,6 +9,9 @@
     "visibility_intent": "public",
     "publication_status": "published_verified",
     "publication_date": "2026-11-15",
+    "content_updated_on": "2026-11-15",
+    "update_status": "saved_and_public_read_back",
+    "updated_feature": "Four optional local model roles, application-rendered decision consistency, and the dated fresh 4+4 HTTPX LLM validation with its scope and limits.",
     "url": "https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision",
     "category": "Open-source tools",
     "email_followers": false,
@@ -43,5 +46,5 @@
     "github_sponsor_button": ".github/FUNDING.yml",
     "scope": "GitHub Sponsor button and project-specific Buy Me a Coffee article"
   },
-  "verification": "Native LinkedIn queue showed this post first at the scheduled time, with three images and custom alt text. Buy Me a Coffee confirmed publication and the public article was read back. Scheduled does not mean published; the queue may change after this observation."
+  "verification": "Native LinkedIn queue showed this post first at the scheduled time, with three images and custom alt text. Buy Me a Coffee's existing article was updated through Save changes and the public permalink was read back with all six new sections, the original artwork, working project/source links, and the support CTA. Public visibility and the Open-source tools category were retained; no follower email was requested. Scheduled does not mean published; the queue may change after this observation."
 }

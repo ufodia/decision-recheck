@@ -7,7 +7,7 @@ English launch materials for the public repository and demo. All product example
 Verified on November 15, 2026:
 
 - **LinkedIn:** scheduled for November 16, 2026 at 18:00 Europe/Istanbul, first in the existing queue. The post contains all three images with custom alt text. It is scheduled, not yet published; no public post URL is available.
-- **Buy Me a Coffee:** [the public project introduction is live](https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision), with the first artwork panel and the Open-source tools category. Follower email delivery was disabled.
+- **Buy Me a Coffee:** [the public project introduction is live](https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision), with the first artwork panel and the Open-source tools category. The existing article was updated and read back on November 15 with the four optional local model roles, application-rendered decision consistency, and the fresh baseline/recheck validation (four new responses per run). It links the dated 335-test record and explains the HTTPX documentation-only scope, the static demo, and local provider use. Its title, permalink, artwork, public visibility, and category were preserved. Follower email delivery was disabled at publication; this edit used Save changes without requesting an email.
 - **GitHub:** the project is featured in [ufodia's profile](https://github.com/ufodia), and the repository's Sponsor button points to Buy Me a Coffee through `.github/FUNDING.yml`.
 
 The recorded queue position is a point-in-time observation. No sponsorship campaign, membership tier, price, or sponsor outreach was changed.
