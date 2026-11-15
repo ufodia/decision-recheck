@@ -64,11 +64,15 @@ def _evaluate(bundle,brief,session):
             findings.append({"id":"finding-task-"+task["id"],"title":("Declared task assertion did not match: " if failed else "Task coverage is incomplete: ")+task["title"],"summary":task["summary"],"severity":"high" if failed else "info","support":"conflicting" if failed else "insufficient","evidence_ids":task["evidence_ids"],"review":"proposed","audiences":["owner","buyer","marketing"],"suggestion":"Reproduce the linked attempt and inspect its recorded steps before changing product or copy. An incomplete attempt does not establish that a feature is absent.","reproduction_steps":task.get("steps",[]),"classification":"task_outcome","is_product_defect":False})
     for audience,title in (("owner","Readiness for the supplied user requirements"),("marketing","Supplied promise and document alignment")):
         relevant=[f for f in findings if audience in f["audiences"] and (audience!="marketing" or f["id"].startswith("finding-claim-"))]
-        conflict=any(f["support"]=="conflicting" for f in relevant)
-        insufficient=any(f["support"]=="insufficient" for f in relevant)
-        evidence=list(dict.fromkeys(e for f in relevant for e in f["evidence_ids"]))
+        requirements=[d for d in decisions if d["audience"]=="buyer"] if audience=="owner" else []
+        conflict=any(f["support"]=="conflicting" for f in relevant) or any(d["fit"]=="fails" for d in requirements)
+        insufficient=any(f["support"]=="insufficient" for f in relevant) or any(d["fit"]=="inconclusive" for d in requirements)
+        conditional=any(d["fit"]=="conditional" for d in requirements)
+        evidence=list(dict.fromkeys(e for record in [*relevant,*requirements] for e in record["evidence_ids"]))
         rid="decision-"+audience+"-alignment"
-        decisions.append({"id":rid,"audience":audience,"title":title,"fit":"fails" if conflict else "inconclusive" if insufficient or not relevant else "meets","summary":"Review the linked inconsistencies and correction drafts." if conflict else "Evidence is incomplete in the declared scope." if insufficient or not relevant else "The checked statements agree with the supplied document fields. Inspect task coverage separately; this is not proof of full product behavior.","evidence_ids":evidence,"review":"proposed"})
+        fit="fails" if conflict else "inconclusive" if insufficient or not (relevant or requirements) else "conditional" if conditional else "meets"
+        summary="Review the linked inconsistencies and correction drafts." if fit=="fails" else "Evidence is incomplete in the declared scope." if fit=="inconclusive" else "Requirement fit depends on the stated unresolved conditions; review them before deciding." if fit=="conditional" else "The checked requirements and supplied statements agree within the declared scope. Inspect task coverage separately; this is not proof of full product behavior." if audience=="owner" else "The checked statements agree with the supplied document fields. Inspect task coverage separately; this is not proof of full product behavior."
+        decisions.append({"id":rid,"audience":audience,"title":title,"fit":fit,"summary":summary,"evidence_ids":evidence,"review":"proposed"})
         deps=list(dict.fromkeys(s for c in brief["claims"] for s in (c["source_id"],c["actual_source_id"])))
         if audience=="owner":
             deps=list(dict.fromkeys(deps+[r["source_id"] for r in brief["requirements"]]))
@@ -103,7 +107,7 @@ def run_case(brief:dict|Path,output:Path,baseline:Path|None=None,live_model:bool
         if old.get("case_id")!=brief["case_id"]:
             raise BriefError("Baseline and brief must share the same case_id.")
     budget=Budget(brief["limits"])
-    mode="fixture" if all("inline" in s for s in brief["sources"]) else "live"
+    mode="fixture" if all("inline" in s for s in brief["sources"]) and all(t.get("method")=="fixture" for t in brief["tasks"]) else "live"
     bundle={"schema_version":"1.0","run_id":str(uuid.uuid4()),"case_id":brief["case_id"],"title":brief["title"],"product":brief["product"],"created_at":now(),"mode":mode,"status":"complete","scope":brief["scope"],"sources":[],"artifacts":[],"tasks":[],"findings":[],"decisions":[],"changes":[],"warnings":[],"agent_proposals":[],"stages":[],"usage":{},"freshness":{"provider":"freshctx","state":"UNVERIFIABLE"}}
     if not brief["sources"]:
         bundle["status"]="partial"

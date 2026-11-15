@@ -1,6 +1,7 @@
 """Fixed allowlisted browser actions in independent clean contexts."""
 from __future__ import annotations
 import json
+import math
 import os
 from pathlib import Path
 from .policy import Budget,PolicyError,check_action,check_url,browser_resolver_rules
@@ -93,9 +94,11 @@ def run_task(task:dict,brief:dict,budget:Budget,output:Path)->tuple[dict,list[di
                     if action=="read":
                         value=locator.inner_text()
                     elif action=="assert_text":
+                        expected=step.get("value","")
+                        if not isinstance(expected,str) or not expected.strip():
+                            raise PolicyError("assert_text needs a non-empty expected text value.")
                         assertions+=1
                         value=locator.inner_text()
-                        expected=step.get("value","")
                         if expected not in value:
                             result["execution"]="failed"
                             result["summary"]="The declared text assertion did not match in this test attempt."
@@ -140,13 +143,16 @@ def fixture_task(task,brief,output):
     values=(source or {}).get("inline",{})
     kind=task.get("check","export")
     if kind=="plan":
-        allowed=isinstance(values,dict) and values.get("price") is not None
-        data="Selected Starter plan: $"+str(values.get("price"))+" per month."
+        price=values.get("price") if isinstance(values,dict) else None
+        allowed=True if isinstance(price,(int,float)) and not isinstance(price,bool) and math.isfinite(price) else None
+        data="Selected Starter plan: $"+str(price)+" per month." if allowed else "Fixture plan price is unknown."
     elif kind=="help":
-        allowed=isinstance(values,dict) and bool(values.get("text"))
-        data=values.get("text","Help answer missing.")
+        text=values.get("text") if isinstance(values,dict) else None
+        allowed=bool(text.strip()) if isinstance(text,str) else None
+        data=text if isinstance(text,str) and text.strip() else "Fixture help answer is unavailable."
     else:
-        allowed=values.get("features",{}).get("csv_export") if isinstance(values,dict) else None
+        features=values.get("features",{}) if isinstance(values,dict) else None
+        allowed=features.get("csv_export") if isinstance(features,dict) else None
         data="name,value\nSynthetic item,1\n" if allowed is True else "CSV export requires the Pro plan." if allowed is False else "Fixture entitlement is unknown."
     execution="passed" if allowed is True else "failed" if allowed is False else "blocked"
     capture=artifact(output,"task-capture-"+task["id"],data,"csv" if kind=="export" and allowed is True else "txt","text/csv" if kind=="export" and allowed is True else "text/plain")

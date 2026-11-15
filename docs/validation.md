@@ -6,7 +6,7 @@ This record describes observed checks, not a guarantee of defect-free behavior o
 
 | Check | Observed result |
 | --- | --- |
-| Complete Python, real-browser, HTTP, model-protocol, CLI, and static-demo suite | **195 passed, 0 skipped**, 44.75 seconds |
+| Complete Python, real-browser, HTTP, model-protocol, CLI, and static-demo suite | **230 passed, 0 skipped**, 55.90 seconds |
 | Test entry point | `DRC_BROWSER_CHANNEL=chrome uv run python scripts/check.py -q` (set the variable using the host shell's syntax) |
 | Python / operating system | CPython 3.12.10 / Windows |
 | Actual browser channel | Explicit installed Chrome 157.0.8103.51; separate temporary contexts |
@@ -14,9 +14,17 @@ This record describes observed checks, not a guarantee of defect-free behavior o
 | Packaging | Source distribution and wheel built successfully |
 | Isolated wheel restore | Imported from an isolated installed wheel, generated all four snapshots, validated baseline with zero errors |
 | Skill format | Bundled skill-creator validator passed |
-| Responsive demo | Six widths from 320 to 1440 pixels, four snapshots, three report views; inspected desktop and mobile captures |
+| Responsive demo | Latest review: four widths (320, 390, 768, 1440), four snapshots, three report views; 48 combinations without overflow or JavaScript errors, plus inspected desktop/mobile captures |
 
-The complete test helper starts an owned loopback static server and stops it after pytest. Running pytest alone skips five optional website tests unless `DRC_DEMO_URL` is supplied.
+The complete test helper starts an owned loopback static server and stops it after pytest. Running pytest alone skips eight optional website tests unless `DRC_DEMO_URL` is supplied.
+
+## Follow-up functional audit
+
+The second review reproduced defects before adding fixes. Owner summaries now retain inconclusive or conditional requirements and include positive requirement evidence. Empty browser text assertions are rejected. Malformed brief/bundle records return validation errors, unexpected fixture values remain unknown, and UTF-8 BOM JSON from Windows editors is accepted. A real browser attempt is no longer labeled wholly fictional merely because its documentary sources are inline.
+
+An independent CLI journey exercised `init → run → validate → report → source change → recheck → validate` against a mutable owned loopback source. The original baseline remained byte-identical and network requests stayed GET-only. Numeric price comparisons require normalized JSON numbers; HTML selector text is not automatically parsed as currency.
+
+Website regressions cover failed catalog loading followed by local import, preserving an import during a late network failure, retrying successfully, and selecting the changed offer before loading finishes. The main call to action now opens the promised snapshot. Eight complete browser tests passed locally.
 
 The locally downloaded Chromium build failed its positive launch control on this Windows installation; no success was inferred from blocked negative tests. Windows release verification explicitly selected the installed Chrome channel. The default bundled Chromium path remains a separate setup requirement.
 

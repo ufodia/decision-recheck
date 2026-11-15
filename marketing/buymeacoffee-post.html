@@ -1,0 +1,35 @@
+<p>A pricing page changes. A feature moves to another plan. The campaign, help answer, and buying recommendation still describe the old offer.</p>
+<p><strong>Decision Recheck</strong> is my open-source SaaS audit pack for making those disagreements visible and reviewable.</p>
+<p><a href="https://decision-recheck.vercel.app/">Explore the interactive demo</a> · <a href="https://github.com/ufodia/decision-recheck">Read the source on GitHub</a></p>
+<h2>A small case with three different consequences</h2>
+<p>The included demonstration uses a <strong>fictional</strong> product and buyer:</p>
+<ul>
+<li>Starter originally costs <strong>$9/month</strong> and includes CSV export.</li>
+<li>Starter changes to <strong>$29/month</strong>, while CSV export moves to <strong>$49/month Pro</strong>.</li>
+<li>The advertisement and support answer still describe the original offer.</li>
+<li>The buyer's monthly budget remains <strong>$20</strong>.</li>
+</ul>
+<p>That change creates different questions for different people. A product owner needs a reproducible mismatch. A buyer needs to understand whether the product still meets their requirements. Marketing and support need to revisit statements that no longer agree with the product evidence.</p>
+<p>The demo also includes a corrected-copy snapshot. The advertisement and help answer are repaired, but the buyer's budget failure remains. Fixing one problem must not silently erase another.</p>
+<h2>What you can use today</h2>
+<p>Decision Recheck runs locally and produces portable HTML reports and JSON evidence bundles. A case connects explicit requirements, scoped sources, permitted task checks, captured artifacts, and findings.</p>
+<p>You can:</p>
+<ul>
+<li>Review the same evidence from <strong>product owner</strong>, <strong>buyer/user</strong>, and <strong>marketing/support</strong> perspectives.</li>
+<li>Follow a finding to its supporting local artifacts and inspect its scope.</li>
+<li>Save a baseline and explicitly recheck after the source or offer changes.</li>
+<li>See blocked, untested, and uncertain work without turning missing access into a negative feature claim.</li>
+<li>Validate bundle references and artifact integrity before sharing a report.</li>
+</ul>
+<p>The fictional demo requires <strong>no API key or paid inference</strong>. Optional model roles can propose structured interpretations for human review. FreshCtx provides the dependency and freshness mechanisms; Playwright supplies the browser checks. Their work is credited in the repository.</p>
+<h2>Try it in a few minutes</h2>
+<p>Open the <a href="https://decision-recheck.vercel.app/">demo workbench</a>, choose <strong>Changed offer</strong>, then compare the three audience reports. Switch to <strong>Corrected copy</strong> and look at what changes—and what still fails.</p>
+<p>For a local run, the <a href="https://github.com/ufodia/decision-recheck#run-the-demo">README</a> covers Python 3.12, dependency setup, the CLI, and your first brief. Start with the fictional case before adapting a brief to an application you are authorized to test.</p>
+<h2>What this first version does not claim</h2>
+<p>The public website displays fictional local results; it does not run an audit service or hold a server-side model key. A real case needs an operator-defined scope, sources, and task checks.</p>
+<p>An automated task result does not establish human usability. Fresh evidence does not guarantee a correct interpretation. The project does not predict conversion, purchase probability, revenue, or market demand from simulated users. Paid-provider inference is separate from the included fixture validation.</p>
+<h2>Help shape the next useful case</h2>
+<p>A small, reproducible example is especially valuable: a feature moving between plans, a stale support answer, a currency/billing mismatch, or a false positive the current rules should handle better. The repository includes contribution guidance and a security policy.</p>
+<p>If Decision Recheck saves you review time, <a href="https://github.com/ufodia/decision-recheck">star the repository</a>, try a case, or share a useful issue. If you would like to support the work financially, <a href="https://buymeacoffee.com/ufodia">buy me a coffee</a>. Support helps me maintain reproducible fixtures, browser compatibility, and clear documentation.</p>
+<p>The core and model-free demo remain open source under the MIT license.</p>
+<p>Built and maintained by <strong>ufodia</strong>.</p>

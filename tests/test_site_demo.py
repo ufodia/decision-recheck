@@ -123,3 +123,82 @@ def test_invalid_and_oversized_import_preserve_working_fixture(demo_page):
     expect(page.locator("#demo-feedback")).to_contain_text("smaller than 2 MB")
     page.locator('[data-role="buyer"]').click()
     expect(page.locator("#report-content")).to_contain_text("fails")
+
+
+@pytest.fixture
+def unloaded_demo_page():
+    """Own a browser before navigation so initial network failures can be tested."""
+    base_url = os.environ.get("DRC_DEMO_URL")
+    if not base_url:
+        pytest.skip("Set DRC_DEMO_URL to test the served static demo")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(channel=os.environ.get("DRC_BROWSER_CHANNEL", "chromium"), headless=True)
+        page = browser.new_page(accept_downloads=True)
+        errors = []
+        page.on("pageerror", lambda error: errors.append(str(error)))
+        catalog = page.request.get(urljoin(base_url, "/data/demo.json")).json()
+        yield page, base_url, catalog
+        browser.close()
+        assert errors == [], errors
+
+
+def _import_example(page, catalog):
+    bundle = deepcopy(catalog["snapshots"][0]["bundle"])
+    bundle["title"] = "My retained local review"
+    page.locator("#bundle-file").set_input_files({
+        "name": "local-review.json", "mimeType": "application/json",
+        "buffer": json.dumps(bundle).encode(),
+    })
+    expect(page.locator("#case-title")).to_have_text("My retained local review")
+    return bundle
+
+
+def test_missing_catalog_keeps_import_until_successful_retry(unloaded_demo_page):
+    page, base_url, catalog = unloaded_demo_page
+    def fail(route):
+        route.fulfill(status=503, body="temporarily unavailable")
+    page.route("**/data/demo.json", fail)
+    page.goto(base_url)
+    expect(page.locator("#retry-fixture")).to_be_visible()
+    bundle = _import_example(page, catalog)
+    page.locator('[data-snapshot="B"]').click()
+    expect(page.locator("#case-title")).to_have_text(bundle["title"])
+    expect(page.locator("#demo-feedback")).to_contain_text("local preview stays open")
+    expect(page.locator("#open-report")).to_be_hidden()
+    assert page.locator('[data-snapshot][aria-selected="true"]').count() == 0
+    page.unroute("**/data/demo.json", fail)
+    page.locator("#retry-fixture").click()
+    expect(page.locator("#retry-fixture")).to_be_hidden()
+    expect(page.locator("#case-title")).to_have_text(bundle["title"])
+    page.locator('[data-snapshot="B"]').click()
+    expect(page.locator('[data-snapshot="B"]')).to_have_attribute("aria-selected", "true")
+    expect(page.locator("#case-title")).to_contain_text("within budget")
+    expect(page.locator("#open-report")).to_have_attribute("href", "/data/B/report-owner.html")
+
+
+def test_late_catalog_failure_does_not_replace_imported_status(unloaded_demo_page):
+    page, base_url, catalog = unloaded_demo_page
+    pending = []
+    page.route("**/data/demo.json", lambda route: pending.append(route))
+    page.goto(base_url, wait_until="domcontentloaded")
+    bundle = _import_example(page, catalog)
+    status = page.locator("#run-status").text_content()
+    assert pending, "The catalog request must be outstanding for this regression"
+    pending[0].fulfill(status=503, body="unavailable")
+    expect(page.locator("#retry-fixture")).to_be_visible()
+    expect(page.locator("#run-status")).to_have_text(status)
+    expect(page.locator("#case-title")).to_have_text(bundle["title"])
+    expect(page.locator("#download-bundle")).to_be_enabled()
+
+
+def test_changed_offer_cta_remembers_selection_while_loading(unloaded_demo_page):
+    page, base_url, catalog = unloaded_demo_page
+    pending = []
+    page.route("**/data/demo.json", lambda route: pending.append(route))
+    page.goto(base_url, wait_until="domcontentloaded")
+    page.locator("#explore-changed-offer").click()
+    assert pending
+    pending[0].fulfill(status=200, content_type="application/json", body=json.dumps(catalog))
+    expect(page.locator('[data-snapshot="B"]')).to_have_attribute("aria-selected", "true")
+    expect(page.locator("#open-report")).to_have_attribute("href", "/data/B/report-owner.html")
+    expect(page.locator("#report-content")).to_contain_text("fails")

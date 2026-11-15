@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "run_id": "9feb1238-7ff0-414f-bec1-f84bcc7cce13",
+  "run_id": "5e5cd5fd-306e-44af-8c3e-9b1bf6b79b54",
   "case_id": "synthetic-saas",
   "title": "The CSV export promise",
   "product": "Fictional Fieldnote SaaS",
-  "created_at": "2026-11-15T15:33:46Z",
+  "created_at": "2026-11-15T17:08:17Z",
   "mode": "fixture",
   "status": "complete",
   "scope": {
@@ -19,40 +19,40 @@
       "id": "pricing",
       "kind": "pricing",
       "url": "inline:pricing",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "price": 29,
         "csv_export": false
       },
       "artifact_id": "source-pricing",
-      "observation_id": "4624503d-266d-424c-ae0a-b23df00998b4"
+      "observation_id": "92108652-d429-442f-b417-f0441cbabf93"
     },
     {
       "id": "offer",
       "kind": "offer",
       "url": "inline:offer",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "csv_export": false,
         "text": "CSV export available on Pro."
       },
       "artifact_id": "source-offer",
-      "observation_id": "1359b5bd-c6de-4132-9af4-363e43953d92"
+      "observation_id": "cfdbe366-d158-41f2-9ec5-d970e6953eca"
     },
     {
       "id": "help",
       "kind": "help",
       "url": "inline:help",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "csv_export": false,
         "text": "Export is available on the Pro plan."
       },
       "artifact_id": "source-help",
-      "observation_id": "532538ea-2d43-4628-91d2-c89ce633eddc"
+      "observation_id": "3f871a02-a0f8-4b11-9c22-a651c430a334"
     }
   ],
   "artifacts": [
@@ -106,7 +106,7 @@
       "method": "reused_historical",
       "execution": "passed",
       "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional plan assertion: Selected Starter plan: $29 per month.",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-understand-plan"
       ],
@@ -116,7 +116,7 @@
           "observed": "Selected Starter plan: $29 per month."
         }
       ],
-      "reused_from": "50d6b7da-7ae8-4e6d-b87f-080e1b0140c6"
+      "reused_from": "cdd074d1-69a7-48d4-ac22-afcc38770184"
     },
     {
       "id": "attempt-export",
@@ -124,7 +124,7 @@
       "method": "fixture_assertion",
       "execution": "failed",
       "summary": "Deterministic fictional export assertion: CSV export requires the Pro plan.",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-attempt-export"
       ],
@@ -141,7 +141,7 @@
       "method": "fixture_assertion",
       "execution": "passed",
       "summary": "Deterministic fictional help assertion: Export is available on the Pro plan.",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-find-help"
       ],
@@ -375,40 +375,40 @@
     {
       "role": "requirements_researcher",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "understand-plan",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "attempt-export",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "find-help",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "offer_support_analyst",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "evidence_reviewer",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "report_writer",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     }
   ],
   "usage": {
@@ -426,20 +426,20 @@
     "provider": "freshctx",
     "version": "0.17.0",
     "state": "CURRENT",
-    "checked_at": "2026-11-15T15:33:46Z",
+    "checked_at": "2026-11-15T17:08:17Z",
     "meaning": "Selected declared source fields were revalidated. CURRENT is not truth or a fresh browser-task result.",
     "receipts": [
       {
         "source_id": "pricing",
         "purpose": "fixture_task_selection",
         "state": "CURRENT",
-        "subject_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+        "subject_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.663984+00:00",
+            "checked_at": "2026-11-15T17:08:17.793160+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -454,21 +454,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.664983+00:00"
+        "checked_at": "2026-11-15T17:08:17.793160+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "fixture_task_selection",
         "state": "STALE_SOURCE",
-        "subject_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+        "subject_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
         "causes": [
-          "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          "4cb0c403-dca3-4cca-889a-63b7fd35bae1"
         ],
         "adapter_results": [
           {
-            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+            "token_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.664983+00:00",
+            "checked_at": "2026-11-15T17:08:17.794148+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -483,21 +483,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.664983+00:00"
+        "checked_at": "2026-11-15T17:08:17.794148+00:00"
       },
       {
         "source_id": "help",
         "purpose": "fixture_task_selection",
         "state": "STALE_SOURCE",
-        "subject_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+        "subject_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.664983+00:00",
+            "checked_at": "2026-11-15T17:08:17.794148+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -512,19 +512,19 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.665983+00:00"
+        "checked_at": "2026-11-15T17:08:17.794148+00:00"
       },
       {
         "domain_id": "decision-buyer-budget",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "c5a608b3-f490-4f76-be3d-5f76e1bfbf09",
+        "subject_id": "e8b4e1c5-b99e-4054-a560-7db4935254d0",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.668983+00:00",
+            "checked_at": "2026-11-15T17:08:17.798152+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -539,19 +539,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.668983+00:00"
+        "checked_at": "2026-11-15T17:08:17.798152+00:00"
       },
       {
         "domain_id": "decision-buyer-export",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "eede7f8e-aac6-48ed-8007-265aebbba9be",
+        "subject_id": "27e35408-12db-4ed6-8142-05daf30a9224",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "token_id": "b58b958a-38c2-419a-b04c-5fd36db7d00c",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.669983+00:00",
+            "checked_at": "2026-11-15T17:08:17.798152+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -565,9 +565,9 @@
             "retryable": false
           },
           {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.669983+00:00",
+            "checked_at": "2026-11-15T17:08:17.798152+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -582,21 +582,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.669983+00:00"
+        "checked_at": "2026-11-15T17:08:17.798152+00:00"
       },
       {
         "domain_id": "decision-buyer-help-findability",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "e460293a-f6fb-4e15-9a2a-a7e0623d36ac",
+        "subject_id": "d1c47e28-8a81-432f-8835-3e7730479374",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.669983+00:00",
+            "checked_at": "2026-11-15T17:08:17.798152+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -611,37 +611,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.670982+00:00"
+        "checked_at": "2026-11-15T17:08:17.799153+00:00"
       },
       {
         "domain_id": "finding-claim-offer-export",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "fb2788bf-8f99-4177-9004-609754d69d43",
+        "subject_id": "586e3248-c0a8-458a-a0ec-80add0df50fa",
         "causes": [
-          "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          "4cb0c403-dca3-4cca-889a-63b7fd35bae1"
         ],
         "adapter_results": [
           {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.670982+00:00",
-            "evidence": {
-              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+            "token_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.670982+00:00",
+            "checked_at": "2026-11-15T17:08:17.799153+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -653,40 +637,40 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.799153+00:00",
+            "evidence": {
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.670982+00:00"
+        "checked_at": "2026-11-15T17:08:17.799153+00:00"
       },
       {
         "domain_id": "finding-claim-help-export",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "a29678bb-88ff-4a5e-bdfd-90fc8536d67b",
+        "subject_id": "89eca2cd-4e12-46bc-a15b-84ebf71e7b1a",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.670982+00:00",
-            "evidence": {
-              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
-              "server": "decision-recheck://source/help",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -698,74 +682,42 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
+            "evidence": {
+              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.671982+00:00"
+        "checked_at": "2026-11-15T17:08:17.800148+00:00"
       },
       {
         "domain_id": "decision-owner-alignment",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "f224cce4-b879-4866-a0d9-f7621ed74fa4",
+        "subject_id": "b085be00-6637-4a9f-be83-7c63e5eca9f6",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
-          "94e253d2-a43d-4929-ac44-c3e286f835cc",
-          "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
+          "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "token_id": "095b5c40-aace-413c-9383-328d7331f8c9",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
-            "evidence": {
-              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
-              "server": "decision-recheck://attempt/attempt-export",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
-            "evidence": {
-              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
-              "server": "decision-recheck://source/help",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
-            "evidence": {
-              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
             "evidence": {
               "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
               "server": "decision-recheck://attempt/understand-plan",
@@ -779,9 +731,41 @@
             "retryable": false
           },
           {
-            "token_id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "token_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
+            "evidence": {
+              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "b58b958a-38c2-419a-b04c-5fd36db7d00c",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -795,12 +779,28 @@
             "retryable": false
           },
           {
-            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.671982+00:00",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
             "evidence": {
-              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
-              "server": "decision-recheck://source/offer",
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T17:08:17.800148+00:00",
+            "evidence": {
+              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
+              "server": "decision-recheck://source/help",
               "name": "read_scoped_source",
               "duration_ms": 0.0,
               "freshness_strategy": "exact",
@@ -812,71 +812,23 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.671982+00:00"
+        "checked_at": "2026-11-15T17:08:17.800148+00:00"
       },
       {
         "domain_id": "decision-marketing-alignment",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "994056d1-3246-4f2c-8489-b0260a99b3bf",
+        "subject_id": "d4efa4b6-5c15-43a4-a3fb-a319ed41658d",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
-          "94e253d2-a43d-4929-ac44-c3e286f835cc",
-          "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
+          "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "token_id": "095b5c40-aace-413c-9383-328d7331f8c9",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
-            "evidence": {
-              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
-              "server": "decision-recheck://attempt/attempt-export",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
-            "evidence": {
-              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
-              "server": "decision-recheck://source/help",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
-            "evidence": {
-              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
             "evidence": {
               "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
               "server": "decision-recheck://attempt/understand-plan",
@@ -890,9 +842,41 @@
             "retryable": false
           },
           {
-            "token_id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "token_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
+            "evidence": {
+              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "b58b958a-38c2-419a-b04c-5fd36db7d00c",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -906,12 +890,28 @@
             "retryable": false
           },
           {
-            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.672983+00:00",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
             "evidence": {
-              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
-              "server": "decision-recheck://source/offer",
+              "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
+            "outcome": "changed",
+            "checked_at": "2026-11-15T17:08:17.801148+00:00",
+            "evidence": {
+              "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
+              "server": "decision-recheck://source/help",
               "name": "read_scoped_source",
               "duration_ms": 0.0,
               "freshness_strategy": "exact",
@@ -923,19 +923,19 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.673982+00:00"
+        "checked_at": "2026-11-15T17:08:17.801148+00:00"
       },
       {
         "source_id": "pricing",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+        "subject_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "4c4a1f3f-f446-4a22-9d8b-b0d696e7e809",
+            "token_id": "e06fa375-5bce-4c39-be29-ac860d4dc0c1",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.673982+00:00",
+            "checked_at": "2026-11-15T17:08:17.802148+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -950,21 +950,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.673982+00:00"
+        "checked_at": "2026-11-15T17:08:17.802148+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+        "subject_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
         "causes": [
-          "bee702f4-4e6d-403c-8f5c-201b3e85d708"
+          "4cb0c403-dca3-4cca-889a-63b7fd35bae1"
         ],
         "adapter_results": [
           {
-            "token_id": "bee702f4-4e6d-403c-8f5c-201b3e85d708",
+            "token_id": "4cb0c403-dca3-4cca-889a-63b7fd35bae1",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.674983+00:00",
+            "checked_at": "2026-11-15T17:08:17.802148+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -979,21 +979,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.674983+00:00"
+        "checked_at": "2026-11-15T17:08:17.802148+00:00"
       },
       {
         "source_id": "help",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+        "subject_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
         "causes": [
-          "27205f01-cedc-4897-b6f8-c74dfef2e5a8"
+          "e306a6cb-7b1e-4d80-9f72-37f186bd6b66"
         ],
         "adapter_results": [
           {
-            "token_id": "27205f01-cedc-4897-b6f8-c74dfef2e5a8",
+            "token_id": "e306a6cb-7b1e-4d80-9f72-37f186bd6b66",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.674983+00:00",
+            "checked_at": "2026-11-15T17:08:17.803147+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -1008,19 +1008,19 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.674983+00:00"
+        "checked_at": "2026-11-15T17:08:17.803147+00:00"
       },
       {
         "source_id": "attempt:understand-plan",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+        "subject_id": "095b5c40-aace-413c-9383-328d7331f8c9",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "750c600c-c43f-4b1f-b799-bfb8cdde61bd",
+            "token_id": "095b5c40-aace-413c-9383-328d7331f8c9",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.675983+00:00",
+            "checked_at": "2026-11-15T17:08:17.803147+00:00",
             "evidence": {
               "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
               "server": "decision-recheck://attempt/understand-plan",
@@ -1035,19 +1035,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.675983+00:00"
+        "checked_at": "2026-11-15T17:08:17.803147+00:00"
       },
       {
         "source_id": "attempt:attempt-export",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+        "subject_id": "b58b958a-38c2-419a-b04c-5fd36db7d00c",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "0dce2913-c14f-41ff-84d0-f7313a2eba61",
+            "token_id": "b58b958a-38c2-419a-b04c-5fd36db7d00c",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.675983+00:00",
+            "checked_at": "2026-11-15T17:08:17.804147+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -1062,21 +1062,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.675983+00:00"
+        "checked_at": "2026-11-15T17:08:17.804147+00:00"
       },
       {
         "source_id": "attempt:find-help",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+        "subject_id": "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
         "causes": [
-          "94e253d2-a43d-4929-ac44-c3e286f835cc"
+          "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b"
         ],
         "adapter_results": [
           {
-            "token_id": "94e253d2-a43d-4929-ac44-c3e286f835cc",
+            "token_id": "b9b19317-8b6d-4f52-b09a-a1a1cf2b674b",
             "outcome": "changed",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
+            "checked_at": "2026-11-15T17:08:17.804147+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -1091,18 +1091,18 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T15:33:46.676986+00:00"
+        "checked_at": "2026-11-15T17:08:17.804147+00:00"
       },
       {
         "purpose": "current_report_export",
         "state": "CURRENT",
-        "subject_id": "0f5debea-b219-450d-a971-5e2315330c5a",
+        "subject_id": "f2313870-235c-4e2f-864f-0ffb17f28d86",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "4624503d-266d-424c-ae0a-b23df00998b4",
+            "token_id": "92108652-d429-442f-b417-f0441cbabf93",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
+            "checked_at": "2026-11-15T17:08:17.804147+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -1116,25 +1116,9 @@
             "retryable": false
           },
           {
-            "token_id": "8dd6a397-74e2-4113-9a07-606c5fc42b72",
+            "token_id": "cfdbe366-d158-41f2-9ec5-d970e6953eca",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
-            "evidence": {
-              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
-              "server": "decision-recheck://attempt/attempt-export",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "1359b5bd-c6de-4132-9af4-363e43953d92",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
+            "checked_at": "2026-11-15T17:08:17.805148+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -1148,9 +1132,25 @@
             "retryable": false
           },
           {
-            "token_id": "532538ea-2d43-4628-91d2-c89ce633eddc",
+            "token_id": "e5943aba-437e-4195-a5a1-d3980c1305a8",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
+            "checked_at": "2026-11-15T17:08:17.805148+00:00",
+            "evidence": {
+              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
+              "server": "decision-recheck://attempt/attempt-export",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "3f871a02-a0f8-4b11-9c22-a651c430a334",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.805148+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -1164,25 +1164,9 @@
             "retryable": false
           },
           {
-            "token_id": "5ca47c0f-dc05-40c3-8eb0-bebda5259c55",
+            "token_id": "1e24f205-0cbb-4f25-b1c7-808e3f03e301",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
-            "evidence": {
-              "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
-              "server": "decision-recheck://attempt/find-help",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "dee16530-fff6-4627-a654-5f70617a7df7",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.676986+00:00",
+            "checked_at": "2026-11-15T17:08:17.805148+00:00",
             "evidence": {
               "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
               "server": "decision-recheck://attempt/understand-plan",
@@ -1194,10 +1178,26 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "a130fe43-f7e1-4ed3-bf04-b0673901e211",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.805148+00:00",
+            "evidence": {
+              "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.676986+00:00"
+        "checked_at": "2026-11-15T17:08:17.805148+00:00"
       }
     ],
     "objects": {
@@ -1230,8 +1230,8 @@
             "validator_key": "bd673d70193068e99350e834079b59610140695e17c6f820ac19de4a77c968f4",
             "freshness_strategy": "exact"
           },
-          "id": "4624503d-266d-424c-ae0a-b23df00998b4",
-          "observed_at": "2026-11-15T15:33:46.659984+00:00"
+          "id": "92108652-d429-442f-b417-f0441cbabf93",
+          "observed_at": "2026-11-15T17:08:17.789640+00:00"
         },
         "offer": {
           "adapter": "mcp",
@@ -1261,8 +1261,8 @@
             "validator_key": "d7f358fe17ab0e9372702e7688af9d30dc7d4543ad8986c34bc81c9f4717f227",
             "freshness_strategy": "exact"
           },
-          "id": "1359b5bd-c6de-4132-9af4-363e43953d92",
-          "observed_at": "2026-11-15T15:33:46.661985+00:00"
+          "id": "cfdbe366-d158-41f2-9ec5-d970e6953eca",
+          "observed_at": "2026-11-15T17:08:17.790640+00:00"
         },
         "help": {
           "adapter": "mcp",
@@ -1292,8 +1292,8 @@
             "validator_key": "a4e5a1bf0e1b5421d3f81636d6849980649e3efeb653bf16931236c0661517e5",
             "freshness_strategy": "exact"
           },
-          "id": "532538ea-2d43-4628-91d2-c89ce633eddc",
-          "observed_at": "2026-11-15T15:33:46.662986+00:00"
+          "id": "3f871a02-a0f8-4b11-9c22-a651c430a334",
+          "observed_at": "2026-11-15T17:08:17.792144+00:00"
         },
         "attempt:understand-plan": {
           "adapter": "mcp",
@@ -1330,8 +1330,8 @@
             "validator_key": "5e7fd31caf305498359241911b3d31497aae2e353d8fb7697b465c3dc836eb04",
             "freshness_strategy": "exact"
           },
-          "id": "dee16530-fff6-4627-a654-5f70617a7df7",
-          "observed_at": "2026-11-15T15:33:46.666983+00:00"
+          "id": "1e24f205-0cbb-4f25-b1c7-808e3f03e301",
+          "observed_at": "2026-11-15T17:08:17.796151+00:00"
         },
         "attempt:attempt-export": {
           "adapter": "mcp",
@@ -1368,8 +1368,8 @@
             "validator_key": "aba45c6633d6b72e144f25953c143aac495a9ba053324876fdb49cb3eeb93c88",
             "freshness_strategy": "exact"
           },
-          "id": "8dd6a397-74e2-4113-9a07-606c5fc42b72",
-          "observed_at": "2026-11-15T15:33:46.667983+00:00"
+          "id": "e5943aba-437e-4195-a5a1-d3980c1305a8",
+          "observed_at": "2026-11-15T17:08:17.796151+00:00"
         },
         "attempt:find-help": {
           "adapter": "mcp",
@@ -1406,107 +1406,107 @@
             "validator_key": "90242f7176ebe9a7491f62c01275662a4355bf107198df182138c09698102969",
             "freshness_strategy": "exact"
           },
-          "id": "5ca47c0f-dc05-40c3-8eb0-bebda5259c55",
-          "observed_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "a130fe43-f7e1-4ed3-bf04-b0673901e211",
+          "observed_at": "2026-11-15T17:08:17.797153+00:00"
         }
       },
       "reasoning": {
         "decision-buyer-budget": {
           "kind": "decision-recheck",
           "dependencies": [
-            "4624503d-266d-424c-ae0a-b23df00998b4"
+            "92108652-d429-442f-b417-f0441cbabf93"
           ],
-          "digest": "4443a11711c1369023ac2adb60e7d33b5f97b462a3fd56e8c9615d967e16069d",
+          "digest": "a48c9ed482febdc7b9cbd6aee9b7c10ee079c9f4d4dbfa065c63044b76f8115f",
           "metadata": {
             "domain_id": "decision-buyer-budget"
           },
-          "id": "dd28fc83-6360-41e2-b5cd-8e6b002f44ec",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "c22b56a9-868c-4992-997d-4a770242ec9c",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "decision-buyer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "4624503d-266d-424c-ae0a-b23df00998b4",
-            "8dd6a397-74e2-4113-9a07-606c5fc42b72"
+            "92108652-d429-442f-b417-f0441cbabf93",
+            "e5943aba-437e-4195-a5a1-d3980c1305a8"
           ],
-          "digest": "0e4f853f56c35639d48c79d64a8cfe84e347ef91aa2f230d2eade2ea6d9592d6",
+          "digest": "d9c2e4bf223b6dbbc9bb04c441436fea2654f5c122f3b4e09b360708ae87bcec",
           "metadata": {
             "domain_id": "decision-buyer-export"
           },
-          "id": "08d4e6f7-27cc-4dc6-9aa2-09b585fdc565",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "6d595ec0-2d78-4251-a9ed-608973aa3c29",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "decision-buyer-help-findability": {
           "kind": "decision-recheck",
           "dependencies": [
-            "532538ea-2d43-4628-91d2-c89ce633eddc"
+            "3f871a02-a0f8-4b11-9c22-a651c430a334"
           ],
-          "digest": "a69288e05425894f7dfb8636f4a0b872e017e55bf30b532fa50c70002210870f",
+          "digest": "8ad0665745977f4d653d7d8e5e3a6ca3ef05b2d82f75f1da26f20e09dc0f720a",
           "metadata": {
             "domain_id": "decision-buyer-help-findability"
           },
-          "id": "9ce2795b-c9b8-46a2-931c-d1234e00ef46",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "8f5e0a97-3c85-4ffe-bf76-00a53f41ba48",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "finding-claim-offer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "1359b5bd-c6de-4132-9af4-363e43953d92",
-            "4624503d-266d-424c-ae0a-b23df00998b4"
+            "92108652-d429-442f-b417-f0441cbabf93",
+            "cfdbe366-d158-41f2-9ec5-d970e6953eca"
           ],
-          "digest": "f9b433cbb9a893cc91afee25a827183563d0c6fdfed7fa9d6ca0a820f567c507",
+          "digest": "6f73b353334b5635ed5d77151a82089e955d0731e72aa1d32f8266445c5557ea",
           "metadata": {
             "domain_id": "finding-claim-offer-export"
           },
-          "id": "15f90ba0-2f20-47c8-893d-28076c43ba89",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "6a241f8d-ed9e-491d-949b-f2c1c0b0db42",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "finding-claim-help-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "4624503d-266d-424c-ae0a-b23df00998b4",
-            "532538ea-2d43-4628-91d2-c89ce633eddc"
+            "3f871a02-a0f8-4b11-9c22-a651c430a334",
+            "92108652-d429-442f-b417-f0441cbabf93"
           ],
-          "digest": "19c0464a9b61f173af1c2c440fb1d155035cb3fa9784074299c3839cac34b5fd",
+          "digest": "31ba93615c2b6c4187e26e433120b1005a97bc9c407cfb30718cb74ab6153154",
           "metadata": {
             "domain_id": "finding-claim-help-export"
           },
-          "id": "4bdaf2ce-3724-4c39-9c58-c846dd47be6d",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "84ada478-f878-47e2-b07e-5130bb7b3e50",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "decision-owner-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "1359b5bd-c6de-4132-9af4-363e43953d92",
-            "4624503d-266d-424c-ae0a-b23df00998b4",
-            "532538ea-2d43-4628-91d2-c89ce633eddc",
-            "5ca47c0f-dc05-40c3-8eb0-bebda5259c55",
-            "8dd6a397-74e2-4113-9a07-606c5fc42b72",
-            "dee16530-fff6-4627-a654-5f70617a7df7"
+            "1e24f205-0cbb-4f25-b1c7-808e3f03e301",
+            "3f871a02-a0f8-4b11-9c22-a651c430a334",
+            "92108652-d429-442f-b417-f0441cbabf93",
+            "a130fe43-f7e1-4ed3-bf04-b0673901e211",
+            "cfdbe366-d158-41f2-9ec5-d970e6953eca",
+            "e5943aba-437e-4195-a5a1-d3980c1305a8"
           ],
-          "digest": "d1907cb08cb15582504df4cf3bf2855fb5d3a0e9f7436afc5ae40c482c317ad2",
+          "digest": "baf6c9f31e9a9863dde211f48bf388f50ffd8722f256849cf746aee3f3509304",
           "metadata": {
             "domain_id": "decision-owner-alignment"
           },
-          "id": "93f8ccdb-5413-4a36-88fd-ed784fa7ba3e",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "8eac74d9-fa32-4483-acd0-32a108e933c9",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         },
         "decision-marketing-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "1359b5bd-c6de-4132-9af4-363e43953d92",
-            "4624503d-266d-424c-ae0a-b23df00998b4",
-            "532538ea-2d43-4628-91d2-c89ce633eddc",
-            "5ca47c0f-dc05-40c3-8eb0-bebda5259c55",
-            "8dd6a397-74e2-4113-9a07-606c5fc42b72",
-            "dee16530-fff6-4627-a654-5f70617a7df7"
+            "1e24f205-0cbb-4f25-b1c7-808e3f03e301",
+            "3f871a02-a0f8-4b11-9c22-a651c430a334",
+            "92108652-d429-442f-b417-f0441cbabf93",
+            "a130fe43-f7e1-4ed3-bf04-b0673901e211",
+            "cfdbe366-d158-41f2-9ec5-d970e6953eca",
+            "e5943aba-437e-4195-a5a1-d3980c1305a8"
           ],
-          "digest": "cfff6ab3e46c34a7dc6937f31f9d7128f0da6db428bff09c7b0bbaecc766893e",
+          "digest": "52393a9bee97bd9e3499ec709efdafd9e9a3672c33df56c6da57e8a018c544ee",
           "metadata": {
             "domain_id": "decision-marketing-alignment"
           },
-          "id": "f537fc59-7669-4a92-a962-4254cd4938ba",
-          "created_at": "2026-11-15T15:33:46.668983+00:00"
+          "id": "fed49242-f9e8-46ad-bf62-041793c24c69",
+          "created_at": "2026-11-15T17:08:17.797153+00:00"
         }
       }
     }

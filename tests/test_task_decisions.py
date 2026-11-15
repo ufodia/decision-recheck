@@ -36,3 +36,4 @@ def test_linked_task_can_substantiate_documented_requirement(tmp_path, local_sou
     bundle = run_case(task_brief(local_sources), tmp_path / "run")
     assert bundle["tasks"][0]["execution"] == "passed", bundle["tasks"]
     assert buyer_fit(bundle) == "meets"
+    assert bundle["mode"] == "live", "A real browser task must not be labeled as a wholly fictional fixture"

@@ -14,7 +14,7 @@ class BriefError(ValueError):
     pass
 
 def load_brief(value: dict | str | Path) -> dict:
-    brief = copy.deepcopy(value) if isinstance(value, dict) else json.loads(Path(value).read_text(encoding="utf-8"))
+    brief = copy.deepcopy(value) if isinstance(value, dict) else json.loads(Path(value).read_text(encoding="utf-8-sig"))
     if not isinstance(brief, dict):
         raise BriefError("The brief must be a JSON object.")
     if brief.get("schema_version", SCHEMA_VERSION) != SCHEMA_VERSION:
@@ -22,10 +22,15 @@ def load_brief(value: dict | str | Path) -> dict:
     brief.setdefault("schema_version", SCHEMA_VERSION)
     brief.setdefault("case_id", brief.get("id","review"))
     brief.setdefault("title", "Product decision review")
+    if not isinstance(brief["case_id"],str) or not ID.fullmatch(brief["case_id"]):
+        raise BriefError("case_id needs a safe stable string id.")
     brief.setdefault("scope", {})
     if not isinstance(brief["scope"],dict):
         raise BriefError("scope must be an object.")
     brief.setdefault("product", brief["scope"].get("product","Supplied product"))
+    for key in ("title","product"):
+        if not isinstance(brief[key],str) or not brief[key].strip():
+            raise BriefError(f"{key} must be a non-empty string.")
     brief.setdefault("permissions", {})
     brief.setdefault("limits", {})
     if not isinstance(brief["limits"],dict):
@@ -38,7 +43,7 @@ def load_brief(value: dict | str | Path) -> dict:
     all_ids=set()
     for key in ("sources","requirements","claims","tasks"):
         for item in brief[key]:
-            if not isinstance(item,dict) or not ID.fullmatch(str(item.get("id",""))):
+            if not isinstance(item,dict) or not isinstance(item.get("id"),str) or not ID.fullmatch(item["id"]):
                 raise BriefError(f"Every {key} record needs a safe stable id.")
             if item["id"] in all_ids:
                 raise BriefError(f"Duplicate record id: {item['id']}")
@@ -51,26 +56,57 @@ def load_brief(value: dict | str | Path) -> dict:
             raise BriefError("Source format must be json, text or html.")
         if not isinstance(source.get("fields",{}),dict):
             raise BriefError("Source fields must be an object.")
+        if any(not isinstance(key,str) or not key or not isinstance(path,str) for key,path in source.get("fields",{}).items()):
+            raise BriefError("Source fields need non-empty string names and string paths or selectors.")
+        if "url" in source and (not isinstance(source["url"],str) or not source["url"].strip()):
+            raise BriefError("Source url must be a non-empty string.")
     task_ids={t["id"] for t in brief["tasks"]}
     for req in brief["requirements"]:
-        if req.get("task_id") is not None and req["task_id"] not in task_ids:
+        if req.get("task_id") is not None and (not isinstance(req["task_id"],str) or req["task_id"] not in task_ids):
             raise BriefError("Requirement references an undeclared task.")
-        if req.get("source_id") not in source_ids:
+        if not isinstance(req.get("source_id"),str) or req["source_id"] not in source_ids:
             raise BriefError(f"Unknown requirement source: {req.get('source_id')}")
         if req.get("operator","eq") not in ("eq","lte","gte","contains"):
             raise BriefError("Requirement operator must be eq, lte, gte or contains.")
         if not isinstance(req.get("field"),str) or "expected" not in req:
             raise BriefError("Requirements need field and expected.")
+        if not isinstance(req.get("hard",True),bool):
+            raise BriefError("Requirement hard must be a boolean.")
+        if "label" in req and not isinstance(req["label"],str):
+            raise BriefError("Requirement label must be a string.")
     for claim in brief["claims"]:
-        if claim.get("source_id") not in source_ids or claim.get("actual_source_id") not in source_ids:
+        if any(not isinstance(claim.get(key),str) or claim[key] not in source_ids for key in ("source_id","actual_source_id")):
             raise BriefError("Claims must reference two declared sources.")
         if not isinstance(claim.get("field"),str) or not isinstance(claim.get("actual_field"),str):
             raise BriefError("Claims need field and actual_field.")
+        if "label" in claim and not isinstance(claim["label"],str):
+            raise BriefError("Claim label must be a string.")
     for task in brief["tasks"]:
         if not isinstance(task.get("steps",[]),list) or len(task.get("steps",[]))>12:
             raise BriefError("A task has at most twelve steps.")
         if task.get("method","browser") not in ("browser","fixture"):
             raise BriefError("Task method must be browser or fixture.")
+        if "title" in task and not isinstance(task["title"],str):
+            raise BriefError("Task title must be a string.")
+        if task.get("method","browser")=="fixture":
+            source=next((s for s in brief["sources"] if s["id"]==task.get("source_id")),None)
+            if source is None or not isinstance(source.get("inline"),dict):
+                raise BriefError("Fixture tasks require a declared inline object source.")
+            if task.get("check","export") not in ("plan","help","export"):
+                raise BriefError("Fixture check must be plan, help or export.")
+        elif not isinstance(task.get("url"),str) or not task["url"].strip():
+            raise BriefError("Browser tasks need a non-empty url string.")
+        if "depends_on" in task and (not isinstance(task["depends_on"],list) or any(not isinstance(dep,str) or dep not in source_ids for dep in task["depends_on"])):
+            raise BriefError("Task dependencies must reference declared source ids.")
+        if "dependencies_complete" in task and not isinstance(task["dependencies_complete"],bool):
+            raise BriefError("dependencies_complete must be a boolean.")
+        for step in task.get("steps",[]):
+            if not isinstance(step,dict) or not isinstance(step.get("action"),str):
+                raise BriefError("Every task step needs a string action.")
+            if not isinstance(step.get("selector","body"),str) or not step.get("selector","body").strip():
+                raise BriefError("Task selectors must be non-empty strings.")
+            if step["action"]=="assert_text" and (not isinstance(step.get("value"),str) or not step["value"].strip()):
+                raise BriefError("assert_text needs a non-empty expected text value.")
     limits={**DEFAULT_LIMITS,**brief["limits"]}
     for key in DEFAULT_LIMITS:
         v=limits[key]

@@ -15,6 +15,7 @@
   --mono: Consolas, 'Courier New', monospace;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 26px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-underline-offset: 4px; }
@@ -24,8 +25,8 @@ button { color: inherit; }
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid #a34c26; outline-offset: 5px; }
 h1, h2, h3, p { margin: 0; }
 .page-width { max-width: 1280px; padding-left: 60px; padding-right: 60px; margin: auto; }
-.skip-link { position: fixed; z-index: 10; left: 20px; top: -80px; padding: 12px 20px; background: var(--ink); color: white; }
-.skip-link:focus { top: 16px; }
+.skip-link { position: fixed; z-index: 10; left: 20px; top: -80px; padding: 12px 20px; background: var(--ink); color: white; opacity: 0; }
+.skip-link:focus { top: 16px; opacity: 1; }
 .site-header { display: flex; align-items: center; justify-content: space-between; min-height: 108px; position: relative; }
 .site-header:after { content: ''; position: absolute; bottom: 0; left: 60px; right: 60px; height: 1px; background: var(--line); }
 .brand { display: flex; gap: 11px; align-items: center; text-decoration: none; font-size: 15px; line-height: 1.22; letter-spacing: -.3px; }
@@ -90,6 +91,17 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
 .demo-notice { display: flex; gap: 11px; align-items: baseline; padding: 13px 17px; background: var(--soft); font-size: 11px; margin-bottom: 22px; }
 .demo-notice strong { font-weight: 600; }
 .demo-notice .notice-dot { background: #66824b; width: 5px; height: 5px; }
+.demo-guide { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; list-style: none; padding: 0; margin: 26px 0; }
+.demo-guide li { display: flex; align-items: flex-start; gap: 11px; font-size: 12px; color: var(--muted); }
+.demo-guide li > span { display: grid; place-items: center; flex: none; width: 25px; height: 25px; border: 1px solid #a3b093; border-radius: 50%; font: 11px var(--mono); }
+.demo-guide strong { color: var(--ink); }
+.demo-recovery { margin: 10px 0 20px; }
+.demo-recovery .feedback:empty { display: none; }
+.bundle-archive { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; padding: 13px 16px; margin-bottom: 17px; border: 1px solid var(--line); text-decoration: none; background: var(--soft); }
+.bundle-archive:hover { border-color: var(--ink); }
+.bundle-archive span { font: 10px/1.6 var(--mono); color: var(--muted); }
+.no-script { margin: 0; padding: 16px 24px; background: var(--citrus); font-size: 14px; text-align: center; }
+.evidence-slip .export-price-label { font: 9px var(--mono); color: var(--muted); margin-top: 13px; }
 .snapshot-tabs { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-bottom: 0; background: #e9ecdf; }
 .snapshot-tabs button { background: transparent; border: 0; padding: 17px 16px; display: flex; gap: 12px; text-align: left; align-items: center; cursor: pointer; position: relative; min-height: 82px; }
 .snapshot-tabs button + button { border-left: 1px solid var(--line); }
@@ -145,6 +157,9 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
 .change-note { margin-top: 20px; padding: 12px 15px; border-left: 2px solid #8aa373; background: #edf0e4; }
 .change-note strong { display: block; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
 .change-note p { font: 9px/1.8 var(--mono); color: var(--muted); }
+.change-note summary { cursor: pointer; font: 11px/1.6 var(--mono); }
+.change-note[open] summary { margin-bottom: 10px; }
+.change-note .change-explanation { font: 12px/1.7 var(--sans); padding-bottom: 12px; }
 .finding-evidence a { color: #325f45; cursor: pointer; }
 .finding-label { font: 8px var(--mono); text-transform: uppercase; white-space: nowrap; color: var(--muted); }
 .report-foot { display: flex; justify-content: space-between; gap: 15px; align-items: center; border-top: 1px solid var(--line); padding: 12px 0; font: 8px/1.5 var(--mono); color: var(--muted); }
@@ -202,6 +217,25 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
 .site-footer > div { display: flex; gap: 19px; }
 .site-footer > div a { text-decoration: none; }
 .site-footer > div a:hover { text-decoration: underline; }
+/* Keep the evidence itself comfortably readable; small type is reserved for decoration. */
+.snapshot-tabs strong { font-size: 12px; }
+.snapshot-tabs small { font-size: 11px; }
+.sidebar-description, .scope-note { font-size: 12px; }
+.scope-list div { font-size: 11px; }
+.scope-list dt { white-space: normal; }
+.case-sidebar .button { font-size: 11px; min-height: 44px; }
+.import-label { font-size: 12px; min-height: 38px; padding-top: 8px; }
+.import-note { font-size: 11px; }
+.role-tabs button { font-size: 13px; min-height: 44px; }
+.status-pill, .mini-status, .finding-label { font-size: 10px; }
+.report-summary, .finding p { font-size: 13px; }
+.finding h4 { font-size: 14px; }
+.finding-topline { flex-wrap: wrap; gap: 4px 10px; }
+.report-foot { font-size: 10px; flex-wrap: wrap; }
+.change-note strong, .change-note p { font-size: 10px; }
+.evidence-item summary > span, .evidence-meta { font-size: 10px; }
+.evidence-item h4, .evidence-item p, .evidence-item blockquote { font-size: 12px; }
+.artifact-download { font-size: 12px; }
 @media (min-width: 1500px) { .hero { gap: 70px; } }
 @media (max-width: 1050px) {
   .page-width { padding-left: 35px; padding-right: 35px; }
@@ -240,6 +274,8 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
   .demo-section { padding-top: 50px; padding-bottom: 45px; }
   .section-heading { align-items: flex-start; gap: 22px; flex-direction: column; }
   .section-heading > p { max-width: 570px; }
+  .demo-guide { grid-template-columns: 1fr; gap: 13px; }
+  .bundle-archive { align-items: flex-start; flex-direction: column; gap: 3px; }
   .snapshot-tabs { grid-template-columns: 1fr 1fr; }
   .snapshot-tabs button { min-height: 75px; padding: 14px; }
   .snapshot-tabs button:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
@@ -253,8 +289,8 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
   .case-sidebar h3 { margin: 15px 0 10px; }
   .sidebar-description { grid-column: 1; grid-row: 3; }
   .scope-list { grid-column: 2; grid-row: 2/5; margin: 9px 0 0; }
-  .scope-list div { font-size: 9px; }
-  .scope-note { grid-column: 1; margin: 12px 0 15px; font-size: 9px; }
+  .scope-list div { font-size: 11px; }
+  .scope-note { grid-column: 1; margin: 12px 0 15px; font-size: 11px; }
   .case-sidebar .button { grid-column: 1; max-width: 220px; }
   .import-label { grid-column: 2; margin: 10px 0 0; }
   .import-note { grid-column: 2; margin-top: 8px; }
@@ -300,17 +336,18 @@ h2 { font: normal clamp(35px, 3.35vw, 45px)/1.12 var(--serif); letter-spacing: -
   .purpose-strip > .page-width { padding-top: 20px; padding-bottom: 20px; }
   h2 { font-size: 35px; }
   .demo-notice { font-size: 10px; line-height: 1.7; }
-  .case-sidebar { gap: 0 15px; }
+  .case-sidebar { display: block; }
   .case-sidebar h3 { font-size: 26px; }
-  .scope-list div { font-size: 8px; gap: 6px; }
-  .scope-note { font-size: 8px; }
-  .case-sidebar .button { font-size: 9px; padding: 9px; }
-  .import-note { font-size: 8px; }
-  .role-tabs { gap: 16px; }
-  .role-tabs button { font-size: 10px; }
+  .scope-list { margin: 18px 0; }
+  .scope-list div { font-size: 12px; gap: 12px; }
+  .scope-note { font-size: 12px; }
+  .case-sidebar .button { font-size: 12px; padding: 10px; max-width: none; }
+  .import-note { font-size: 11px; }
+  .role-tabs { gap: 12px; }
+  .role-tabs button { font-size: 12px; line-height: 1.4; text-align: left; }
   .report-area { padding-left: 17px; padding-right: 17px; }
   .report-toolbar .label { font-size: 8px; }
-  .status-pill { font-size: 8px; }
+  .status-pill { font-size: 10px; }
   .report-content h3 { font-size: 26px; }
   .evidence-heading { flex-direction: column; }
   .evidence-heading > p { max-width: 100%; font-size: 11px; }

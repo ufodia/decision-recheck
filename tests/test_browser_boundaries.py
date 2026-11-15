@@ -76,6 +76,13 @@ def test_task_without_assertion_does_not_claim_a_verified_pass(tmp_path, local_s
     assert result["execution"] != "passed"
 
 
+def test_empty_text_assertion_cannot_claim_a_pass(tmp_path, local_sources, installed_browser):
+    local_sources.html("/task", "<h1>Any content would match an empty substring</h1>")
+    result, _ = attempt(local_sources, tmp_path, browser_brief(local_sources), [{"action": "assert_text", "selector": "body", "value": ""}])
+    assert result["execution"] == "blocked"
+    assert result["error_type"] == "PolicyError"
+
+
 def test_password_target_is_checked_from_dom_after_navigation_actions(tmp_path, local_sources, installed_browser):
     local_sources.html("/task", '<button id="reveal" onclick="document.getElementById(\'field\').type=\'password\'">Reveal form</button><input id="field" type="text">')
     brief = browser_brief(local_sources)

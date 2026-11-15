@@ -19,6 +19,8 @@ Decision Recheck is an open-source SaaS audit pack. It connects a person's requi
 
 It runs locally, produces portable HTML/JSON evidence bundles, and includes a fictional release-change demonstration that requires no API key or paid inference.
 
+**Start here:** [explore the interactive example](https://decision-recheck.vercel.app/#demo), [run it locally](#run-the-demo), or [configure a real review](docs/usage.md#connect-your-own-product).
+
 <p>
   <a href="https://buymeacoffee.com/ufodia"><img src="assets/coffee-button.svg" alt="Support ufodia on Buy Me a Coffee" height="44"></a>
 </p>
@@ -32,6 +34,16 @@ It runs locally, produces portable HTML/JSON evidence bundles, and includes a fi
 | **Marketing and support** | Which supplied statements or help answers need new evidence, qualification, or corrected wording? |
 
 Each conclusion retains its evidence basis and scope. Observed task behavior, vendor documentation, freshness, requirement fit, and human review remain separate.
+
+## What runs where
+
+| Experience | What you provide | What you get |
+| --- | --- | --- |
+| **Browser demo** | Nothing; no account or API key | Four recorded fictional snapshots, three report views, captured artifacts and a downloadable evidence ZIP. |
+| **Local audit runner** | A JSON brief with sources, requirements and fixed task assertions | Captured evidence, scoped findings, audience reports and an explicit recheck against a previous run. |
+| **Optional model proposals** | Your compatible provider, model and API key; explicit `--live-model` | Structured draft interpretations within the configured limits. Human review still matters. |
+
+The website is an evidence viewer. To review your own application, use the local runner. Importing a bundle JSON into the website previews its metadata locally; it neither runs an audit nor verifies the bundle's artifact files.
 
 ## The case that explains it
 
@@ -67,7 +79,21 @@ uv sync --locked
 uv run decision-recheck demo --output runs/demo
 ```
 
-Open `runs/demo/index.html`. The demo writes actual CLI bundles and role reports for the four fictional snapshots. It makes no paid model calls.
+Open `runs/demo/index.html`. The demo writes actual CLI bundles and role reports for the four fictional snapshots. **No browser installation or API key is needed for this command.** It makes no paid model calls.
+
+```text
+runs/demo/
+├── index.html                 # Start here: compare all four snapshots
+├── A/                        # Original offer
+├── B/                        # Changed plan, old copy
+├── C/                        # Repaired copy, unchanged buyer constraint
+└── footer/                   # Cosmetic-change control
+    ├── bundle.json           # Versioned evidence and decision records
+    ├── report-owner.html     # Also report-buyer.html and report-marketing.html
+    └── artifacts/            # Captured source and task evidence
+```
+
+Output directories must be new or empty. For a second run, choose a new path such as `runs/demo-2`; existing evidence is never silently replaced.
 
 To reproduce browser task checks, install the browser once:
 
@@ -78,6 +104,18 @@ uv run playwright install --no-shell chromium
 On a Linux host that needs browser system libraries, follow [Playwright's installation guidance](https://playwright.dev/python/docs/intro). Network access is needed for initial dependency/browser installation.
 
 To use an installed browser explicitly, set `DRC_BROWSER_CHANNEL=chrome` or `msedge`. Windows verification uses Chrome in a separate temporary test profile. The default `chromium` channel needs the Playwright browser installation; the runner never silently switches browsers.
+
+<details>
+<summary><strong>Windows PowerShell: use your installed Chrome</strong></summary>
+
+```powershell
+$env:DRC_BROWSER_CHANNEL = "chrome"
+uv run python scripts/check.py
+```
+
+The runner opens a separate temporary context; it does not use your signed-in Chrome profile. The setting applies to the current shell.
+
+</details>
 
 ## Review an application
 
@@ -90,6 +128,8 @@ uv run decision-recheck report --bundle runs/baseline --view buyer --output runs
 ```
 
 Review the generated brief before running it. Use synthetic inputs and a designated test application for any allowed state-changing task. Authentication, CAPTCHA, and unavailable pages must remain visible as blocked or unknown work.
+
+`init` starts with fictional inline data and fixture tasks. Replace those deliberately with your own allowed sources and browser assertions; changing only the product name does not create a live audit. The [own-product guide](docs/usage.md#connect-your-own-product) explains the required edits.
 
 After a source or offer changes:
 
@@ -134,8 +174,8 @@ The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [
 uv sync --locked
 uv run python scripts/check.py
 uv build
-uv run decision-recheck demo --output runs/demo
-uv run decision-recheck validate --bundle runs/demo/A
+uv run decision-recheck demo --output runs/restore-check
+uv run decision-recheck validate --bundle runs/restore-check/A
 ```
 
 The [validation record](docs/validation.md) separates local checks, mocked provider behavior, and live external coverage. GitHub `main` holds the source, lockfile, fixtures, documentation, and deployment configuration. Run bundles and credentials are intentionally excluded.

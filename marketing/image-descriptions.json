@@ -1,0 +1,14 @@
+[
+  {
+    "file": "images/01-product-change.png",
+    "alt": "Decision Recheck: Your product changed. Your advice didn't. In the fictional demo, Starter rises from 9 to 29 dollars per month and CSV export moves to the 49-dollar Pro plan. One offer change creates three decisions to recheck: product, buyer, and marketing or support."
+  },
+  {
+    "file": "images/02-copy-and-fit.png",
+    "alt": "Correct copy. Wrong fit. In the fictional corrected-copy snapshot, the ad and help answer match the new offer, but the buyer still has a 20-dollar monthly budget. Starter costs 29 dollars and Pro with CSV export costs 49 dollars, so the budget requirement still fails."
+  },
+  {
+    "file": "images/03-inspect-the-evidence.png",
+    "alt": "Decision Recheck makes conclusions inspectable through three steps: define requirements and scope, capture sources and permitted task evidence, then recheck against a saved baseline. The same local evidence bundle provides owner, buyer, and marketing or support views. Try the model-free fictional demo, inspect the open-source code, or support ufodia on Buy Me a Coffee."
+  }
+]

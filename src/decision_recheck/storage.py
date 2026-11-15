@@ -20,4 +20,4 @@ def artifact(output:Path,artifact_id:str,data:bytes|str,extension:str="json",med
 def load_bundle(path:str|Path):
     path=Path(path)
     file=path/"bundle.json" if path.is_dir() else path
-    return json.loads(file.read_text(encoding="utf-8")),file.parent
+    return json.loads(file.read_text(encoding="utf-8-sig")),file.parent

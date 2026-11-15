@@ -2,7 +2,7 @@
 
 // This viewer never executes bundle content. All imported text is rendered with
 // textContent; local artifact verification remains the CLI's responsibility.
-const state = { catalog: null, snapshot: 'A', audience: 'owner', imported: null, bundle: null };
+const state = { catalog: null, loading: false, snapshot: 'A', audience: 'owner', imported: null, bundle: null };
 const roleNames = { owner: 'Product owner', buyer: 'Buyer / user', marketing: 'Marketing / support' };
 const roleQuestions = {
   owner: 'What needs a product or documentation review?',
@@ -171,7 +171,18 @@ function renderReport(bundle, lookup) {
   container.append(element('p', 'report-summary', decisions[0] ? safeText(decisions[0].summary) : 'No decision is recorded for this audience. Review the available evidence and missing work.'));
   const statuses = element('div', 'report-statuses');
   const fits = [...new Set(decisions.map(decision => tokenText(decision.fit)))];
-  for (const fit of fits) statuses.append(badge(`Fit: ${fit}`, ['fails', 'inconclusive', 'conditional'].includes(fit)));
+  for (const fit of fits) {
+    const count = decisions.filter(decision => tokenText(decision.fit) === fit).length;
+    const plural = count === 1 ? 'decision' : 'decisions';
+    const labels = {
+      fails: `${count} ${plural} ${count === 1 ? 'fails' : 'fail'}`,
+      meets: `${count} ${plural} ${count === 1 ? 'meets' : 'meet'} requirements`,
+      inconclusive: `${count} inconclusive ${plural}`,
+      conditional: `${count} conditional ${plural}`
+    };
+    const label = decisions.length > 1 ? (labels[fit] || `${fit}: ${count} ${plural}`) : `Fit: ${fit}`;
+    statuses.append(badge(label, ['fails', 'inconclusive', 'conditional'].includes(fit)));
+  }
   statuses.append(badge(`Source check: ${tokenText(bundle.freshness.state)}`, bundle.freshness.state !== 'CURRENT'));
   statuses.append(badge('Conclusions: proposed'));
   container.append(statuses);
@@ -181,8 +192,10 @@ function renderReport(bundle, lookup) {
     container.append(primaryEvidence);
   }
   if (bundle.changes.length) {
-    const changeBox = element('div', 'change-note');
-    changeBox.append(element('strong', '', 'Recorded recheck'));
+    const changeBox = element('details', 'change-note');
+    const changed = bundle.changes.filter(change => isObject(change) && change.kind === 'changed').length;
+    changeBox.append(element('summary', '', `Recorded recheck · ${changed} changed dependency record${changed === 1 ? '' : 's'}`));
+    changeBox.append(element('p', 'change-explanation', 'Expand the source and task dependency trail below. An unchanged record can reuse scoped fixture evidence; live browser tasks still rerun.'));
     for (const change of bundle.changes.slice(0, 8)) {
       if (!isObject(change)) continue;
       const row = element('p');
@@ -227,7 +240,8 @@ function renderReport(bundle, lookup) {
 function render() {
   if (!state.catalog && !state.imported) return;
   const snapshot = state.catalog && state.catalog.snapshots.find(item => item.id === state.snapshot);
-  const bundle = state.imported || snapshot.bundle;
+  const bundle = state.imported || snapshot?.bundle;
+  if (!bundle) return;
   state.bundle = bundle;
   const lookup = renderEvidence(bundle);
   renderReport(bundle, lookup);
@@ -241,6 +255,7 @@ function render() {
   reportLink.hidden = Boolean(state.imported);
   if (!state.imported) reportLink.href = `/data/${state.snapshot}/report-${state.audience}.html`;
   byId('snapshot-panel').setAttribute('aria-labelledby', state.imported ? 'case-title' : `snapshot-${state.snapshot}`);
+  if (state.imported) byId('snapshot-panel').setAttribute('aria-busy', 'false');
   if (state.imported) {
     byId('case-title').textContent = bundle.title;
     document.querySelector('.sidebar-description').textContent = 'Imported evidence metadata. Review the original brief for requirements and budget.';
@@ -255,6 +270,12 @@ function render() {
 }
 
 function chooseSnapshot(id, focus = false) {
+  if (!state.catalog) {
+    byId('demo-feedback').textContent = state.loading
+      ? 'The recorded example is still loading. Your local preview stays open.'
+      : 'The recorded example is unavailable. Retry loading it to switch snapshots; your local preview stays open.';
+    return;
+  }
   state.snapshot = id;
   state.imported = null;
   for (const button of document.querySelectorAll('[data-snapshot]')) {
@@ -299,6 +320,12 @@ function wireTabs(selector, choose, field) {
 
 wireTabs('[data-snapshot]', chooseSnapshot, 'snapshot');
 wireTabs('[data-role]', chooseAudience, 'role');
+byId('explore-changed-offer').addEventListener('click', () => {
+  // Remember the intended example even if the initial catalog request is pending.
+  if (state.catalog) chooseSnapshot('B');
+  else state.snapshot = 'B';
+});
+byId('retry-fixture').addEventListener('click', loadDemo);
 byId('download-bundle').addEventListener('click', () => {
   if (!state.bundle) return;
   const blob = new Blob([`${JSON.stringify(state.bundle, null, 2)}\n`], { type: 'application/json' });
@@ -327,17 +354,38 @@ byId('bundle-file').addEventListener('change', async (event) => {
 });
 
 async function loadDemo() {
+  if (state.loading) return;
+  state.loading = true;
+  byId('retry-fixture').disabled = true;
+  byId('retry-fixture').textContent = 'Loading example…';
+  byId('snapshot-panel').setAttribute('aria-busy', String(!state.imported));
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
   try {
-    const response = await fetch('/data/demo.json', { credentials: 'omit' });
+    const response = await fetch('/data/demo.json', { credentials: 'omit', signal: controller.signal });
     if (!response.ok) throw new Error('The recorded fixture is temporarily unavailable.');
     const text = await response.text();
     if (text.length > 2 * 1024 * 1024) throw new Error('The fixture catalog exceeds the viewer limit.');
     state.catalog = validateCatalog(JSON.parse(text));
-    render();
+    byId('retry-fixture').hidden = true;
+    if (state.imported) render();
+    else chooseSnapshot(state.snapshot);
   } catch (error) {
-    byId('run-status').textContent = 'Fixture unavailable';
-    byId('run-status').classList.add('warning');
-    byId('demo-feedback').textContent = `Could not load the example. ${error.message} You can still run the local demo from the source repository or open your own bundle.`;
+    if (!state.imported) {
+      byId('run-status').textContent = 'Fixture unavailable';
+      byId('run-status').classList.add('warning');
+      byId('report-content').replaceChildren(element('p', 'loading-text', 'The recorded example could not load. Retry below, open a local bundle JSON, or run the example from the repository.'));
+      byId('open-report').hidden = true;
+    }
+    const reason = error.name === 'AbortError' ? 'The request timed out.' : error.message;
+    byId('demo-feedback').textContent = `Could not load the example. ${reason} ${state.imported ? 'Your imported preview remains available.' : 'You can still open your own bundle.'}`;
+    byId('retry-fixture').hidden = false;
+  } finally {
+    clearTimeout(timeout);
+    state.loading = false;
+    byId('retry-fixture').disabled = false;
+    byId('retry-fixture').textContent = 'Retry loading example';
+    byId('snapshot-panel').setAttribute('aria-busy', 'false');
   }
 }
 loadDemo();

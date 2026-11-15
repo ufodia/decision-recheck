@@ -1,0 +1,26 @@
+{
+  "project": "Decision Recheck",
+  "language": "en",
+  "title": "Decision Recheck: when the product changes, recheck the decision",
+  "buymeacoffee": {
+    "title": "Decision Recheck: when the product changes, recheck the decision",
+    "body_html": "buymeacoffee-post.html",
+    "body_markdown": "buy-me-a-coffee-post.md",
+    "visibility_intent": "public",
+    "publication_status": "prepared_not_published"
+  },
+  "linkedin": {
+    "caption": "linkedin-post.txt",
+    "scheduling_status": "prepared_not_scheduled",
+    "timezone": "Europe/Istanbul",
+    "image_order": [
+      "images/01-product-change.png",
+      "images/02-copy-and-fit.png",
+      "images/03-inspect-the-evidence.png"
+    ],
+    "image_descriptions": "image-descriptions.json"
+  },
+  "artwork_source": "launch-preview.html",
+  "artwork_dimensions": {"width": 1200, "height": 1500},
+  "author": "ufodia"
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "run_id": "7b80d211-a219-42f9-b35f-bae2bdb85795",
+  "run_id": "65c62040-bd4a-48ea-85af-5ae4aeb3ca2b",
   "case_id": "synthetic-saas",
   "title": "The CSV export promise",
   "product": "Fictional Fieldnote SaaS",
-  "created_at": "2026-11-15T15:33:46Z",
+  "created_at": "2026-11-15T17:08:17Z",
   "mode": "fixture",
   "status": "complete",
   "scope": {
@@ -19,40 +19,40 @@
       "id": "pricing",
       "kind": "pricing",
       "url": "inline:pricing",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "price": 9,
         "csv_export": true
       },
       "artifact_id": "source-pricing",
-      "observation_id": "2599dd3f-3285-4b23-9ba5-39c399dc7a89"
+      "observation_id": "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b"
     },
     {
       "id": "offer",
       "kind": "offer",
       "url": "inline:offer",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "csv_export": true,
         "text": "Starter includes CSV export."
       },
       "artifact_id": "source-offer",
-      "observation_id": "4f6b3234-57c7-46ca-ba63-cca690c4aad2"
+      "observation_id": "f0dd085f-da22-48ed-b7c1-fb5c564c43b5"
     },
     {
       "id": "help",
       "kind": "help",
       "url": "inline:help",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "status": "captured",
       "values": {
         "csv_export": true,
         "text": "Export from Settings on Starter."
       },
       "artifact_id": "source-help",
-      "observation_id": "daa9ed25-46a0-46f3-9bf1-13cfe0592d78"
+      "observation_id": "e45af9a6-b7ba-4886-8f3f-698a50ea48a2"
     }
   ],
   "artifacts": [
@@ -106,7 +106,7 @@
       "method": "reused_historical",
       "execution": "passed",
       "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional plan assertion: Selected Starter plan: $9 per month.",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-understand-plan"
       ],
@@ -116,7 +116,7 @@
           "observed": "Selected Starter plan: $9 per month."
         }
       ],
-      "reused_from": "90cc2ffa-4476-462a-8bdf-b86ceb910835"
+      "reused_from": "d6f4c836-4ab4-4ae8-8bdb-380cb475441b"
     },
     {
       "id": "attempt-export",
@@ -124,7 +124,7 @@
       "method": "reused_historical",
       "execution": "passed",
       "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional export assertion: name,value\nSynthetic item,1\n",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-attempt-export"
       ],
@@ -134,7 +134,7 @@
           "observed": "name,value\nSynthetic item,1\n"
         }
       ],
-      "reused_from": "90cc2ffa-4476-462a-8bdf-b86ceb910835"
+      "reused_from": "d6f4c836-4ab4-4ae8-8bdb-380cb475441b"
     },
     {
       "id": "find-help",
@@ -142,7 +142,7 @@
       "method": "reused_historical",
       "execution": "passed",
       "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional help assertion: Export from Settings on Starter.",
-      "checked_at": "2026-11-15T15:33:46Z",
+      "checked_at": "2026-11-15T17:08:17Z",
       "evidence_ids": [
         "task-capture-find-help"
       ],
@@ -152,7 +152,7 @@
           "observed": "Export from Settings on Starter."
         }
       ],
-      "reused_from": "90cc2ffa-4476-462a-8bdf-b86ceb910835"
+      "reused_from": "d6f4c836-4ab4-4ae8-8bdb-380cb475441b"
     }
   ],
   "findings": [
@@ -237,11 +237,12 @@
       "audience": "owner",
       "title": "Readiness for the supplied user requirements",
       "fit": "meets",
-      "summary": "The checked statements agree with the supplied document fields. Inspect task coverage separately; this is not proof of full product behavior.",
+      "summary": "The checked requirements and supplied statements agree within the declared scope. Inspect task coverage separately; this is not proof of full product behavior.",
       "evidence_ids": [
         "source-offer",
         "source-pricing",
-        "source-help"
+        "source-help",
+        "task-capture-attempt-export"
       ],
       "review": "proposed"
     },
@@ -306,40 +307,40 @@
     {
       "role": "requirements_researcher",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "understand-plan",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "attempt-export",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "task_actor",
       "task_id": "find-help",
       "status": "fixture_assertion",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "offer_support_analyst",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "evidence_reviewer",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     },
     {
       "role": "report_writer",
       "status": "deterministic",
-      "at": "2026-11-15T15:33:46Z"
+      "at": "2026-11-15T17:08:17Z"
     }
   ],
   "usage": {
@@ -357,20 +358,20 @@
     "provider": "freshctx",
     "version": "0.17.0",
     "state": "CURRENT",
-    "checked_at": "2026-11-15T15:33:46Z",
+    "checked_at": "2026-11-15T17:08:17Z",
     "meaning": "Selected declared source fields were revalidated. CURRENT is not truth or a fresh browser-task result.",
     "receipts": [
       {
         "source_id": "pricing",
         "purpose": "fixture_task_selection",
         "state": "CURRENT",
-        "subject_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+        "subject_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.693496+00:00",
+            "checked_at": "2026-11-15T17:08:17.819147+00:00",
             "evidence": {
               "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
               "server": "decision-recheck://source/pricing",
@@ -385,19 +386,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.693496+00:00"
+        "checked_at": "2026-11-15T17:08:17.819147+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "fixture_task_selection",
         "state": "CURRENT",
-        "subject_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+        "subject_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "token_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.694496+00:00",
+            "checked_at": "2026-11-15T17:08:17.819147+00:00",
             "evidence": {
               "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
               "server": "decision-recheck://source/offer",
@@ -412,19 +413,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.694496+00:00"
+        "checked_at": "2026-11-15T17:08:17.819147+00:00"
       },
       {
         "source_id": "help",
         "purpose": "fixture_task_selection",
         "state": "CURRENT",
-        "subject_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+        "subject_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.694496+00:00",
+            "checked_at": "2026-11-15T17:08:17.820147+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -439,19 +440,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.694496+00:00"
+        "checked_at": "2026-11-15T17:08:17.820147+00:00"
       },
       {
         "domain_id": "decision-buyer-budget",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "2e56cf0e-3c52-49f6-a39e-812c9f82004e",
+        "subject_id": "84b932a0-2a29-437a-b7c6-28b3943a89f3",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.698496+00:00",
+            "checked_at": "2026-11-15T17:08:17.823147+00:00",
             "evidence": {
               "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
               "server": "decision-recheck://source/pricing",
@@ -466,35 +467,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.698496+00:00"
+        "checked_at": "2026-11-15T17:08:17.823147+00:00"
       },
       {
         "domain_id": "decision-buyer-export",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "ae350664-8139-4c9d-adfb-771d1a886460",
+        "subject_id": "e2d04684-ce5c-4b0e-99bf-d1c1a586b47b",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "token_id": "07f158b1-5feb-476f-9348-723e2305a2e2",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.699497+00:00",
-            "evidence": {
-              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.699497+00:00",
+            "checked_at": "2026-11-15T17:08:17.824147+00:00",
             "evidence": {
               "fingerprint": "d3862ddb10016154db7f2e08c2d3497fe1f86795f7f9320fb5d2d91c75a0ef0a",
               "server": "decision-recheck://attempt/attempt-export",
@@ -506,22 +491,38 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.824147+00:00",
+            "evidence": {
+              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.699497+00:00"
+        "checked_at": "2026-11-15T17:08:17.824147+00:00"
       },
       {
         "domain_id": "decision-buyer-help-findability",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "c77194f7-7dff-4658-9a1a-7fed37733a79",
+        "subject_id": "e7ffdc95-8989-4360-922c-10e334093689",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.700496+00:00",
+            "checked_at": "2026-11-15T17:08:17.824147+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -536,35 +537,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.700496+00:00"
+        "checked_at": "2026-11-15T17:08:17.824147+00:00"
       },
       {
         "domain_id": "finding-claim-offer-export",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "94df7c1e-3b32-4c0c-abf7-d605898e6a0a",
+        "subject_id": "8414e594-57a0-48f8-8015-0221ba166a4b",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.700496+00:00",
-            "evidence": {
-              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.700496+00:00",
+            "checked_at": "2026-11-15T17:08:17.825148+00:00",
             "evidence": {
               "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
               "server": "decision-recheck://source/pricing",
@@ -576,38 +561,38 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.825148+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.700496+00:00"
+        "checked_at": "2026-11-15T17:08:17.825148+00:00"
       },
       {
         "domain_id": "finding-claim-help-export",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "1d466c9a-624c-4e5f-b4d6-265b4187cecf",
+        "subject_id": "cc384fbe-9f0d-45ed-b8e2-c4ece7f28446",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.701496+00:00",
-            "evidence": {
-              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.701496+00:00",
+            "checked_at": "2026-11-15T17:08:17.825148+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -619,70 +604,38 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.825148+00:00",
+            "evidence": {
+              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.701496+00:00"
+        "checked_at": "2026-11-15T17:08:17.825148+00:00"
       },
       {
         "domain_id": "decision-owner-alignment",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "82c5fe25-55ee-4e82-9e8a-e993d7298c4b",
+        "subject_id": "93a37a2a-7b99-4998-83bf-2dc3f7762a63",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "token_id": "07f158b1-5feb-476f-9348-723e2305a2e2",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.701496+00:00",
-            "evidence": {
-              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.701496+00:00",
-            "evidence": {
-              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
-              "server": "decision-recheck://attempt/find-help",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.701496+00:00",
-            "evidence": {
-              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.702496+00:00",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
             "evidence": {
               "fingerprint": "d3862ddb10016154db7f2e08c2d3497fe1f86795f7f9320fb5d2d91c75a0ef0a",
               "server": "decision-recheck://attempt/attempt-export",
@@ -696,9 +649,9 @@
             "retryable": false
           },
           {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.702496+00:00",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -712,9 +665,9 @@
             "retryable": false
           },
           {
-            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "token_id": "7d54058d-21b7-41dd-b301-92c2a5c1401c",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.702496+00:00",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
             "evidence": {
               "fingerprint": "5742d87cee631f96f5634f2d885ece5b64fc78d726897a6945b89b8533097b65",
               "server": "decision-recheck://attempt/understand-plan",
@@ -726,70 +679,70 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "a46402d2-0d9d-4e8f-8888-0d526712c701",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
+            "evidence": {
+              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.826148+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.702496+00:00"
+        "checked_at": "2026-11-15T17:08:17.826148+00:00"
       },
       {
         "domain_id": "decision-marketing-alignment",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "d74c991e-f46d-454e-a435-85f2e121253b",
+        "subject_id": "61b3f0f3-be11-4f20-8553-0f79db60ecd5",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "token_id": "07f158b1-5feb-476f-9348-723e2305a2e2",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.702496+00:00",
-            "evidence": {
-              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.702496+00:00",
-            "evidence": {
-              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
-              "server": "decision-recheck://attempt/find-help",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.703496+00:00",
-            "evidence": {
-              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
-              "server": "decision-recheck://source/pricing",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.703496+00:00",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
             "evidence": {
               "fingerprint": "d3862ddb10016154db7f2e08c2d3497fe1f86795f7f9320fb5d2d91c75a0ef0a",
               "server": "decision-recheck://attempt/attempt-export",
@@ -803,9 +756,9 @@
             "retryable": false
           },
           {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.703496+00:00",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -819,9 +772,9 @@
             "retryable": false
           },
           {
-            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "token_id": "7d54058d-21b7-41dd-b301-92c2a5c1401c",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.703496+00:00",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
             "evidence": {
               "fingerprint": "5742d87cee631f96f5634f2d885ece5b64fc78d726897a6945b89b8533097b65",
               "server": "decision-recheck://attempt/understand-plan",
@@ -833,22 +786,70 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "a46402d2-0d9d-4e8f-8888-0d526712c701",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
+            "evidence": {
+              "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
+              "server": "decision-recheck://attempt/find-help",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
+            "evidence": {
+              "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
+              "server": "decision-recheck://source/pricing",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.827148+00:00",
+            "evidence": {
+              "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.703496+00:00"
+        "checked_at": "2026-11-15T17:08:17.827148+00:00"
       },
       {
         "source_id": "pricing",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+        "subject_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5d68cf5d-348a-4c75-88fe-46fa0c745d57",
+            "token_id": "a97d8a12-a95b-4280-83cc-2a9740e30899",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.704496+00:00",
+            "checked_at": "2026-11-15T17:08:17.828147+00:00",
             "evidence": {
               "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
               "server": "decision-recheck://source/pricing",
@@ -863,19 +864,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.704496+00:00"
+        "checked_at": "2026-11-15T17:08:17.828147+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+        "subject_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "1233cd8f-f6bf-4522-ace4-0e4e914e89e2",
+            "token_id": "eab5b216-321f-4f52-9dbe-bc34e0998b07",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.704496+00:00",
+            "checked_at": "2026-11-15T17:08:17.829148+00:00",
             "evidence": {
               "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
               "server": "decision-recheck://source/offer",
@@ -890,19 +891,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.704496+00:00"
+        "checked_at": "2026-11-15T17:08:17.829148+00:00"
       },
       {
         "source_id": "help",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+        "subject_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "846d0b96-6e30-4ca6-b2f8-f5a341d00f6d",
+            "token_id": "56871aba-5c74-4c0e-ac52-e04374e69acd",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.705497+00:00",
+            "checked_at": "2026-11-15T17:08:17.829148+00:00",
             "evidence": {
               "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
               "server": "decision-recheck://source/help",
@@ -917,19 +918,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.705497+00:00"
+        "checked_at": "2026-11-15T17:08:17.829148+00:00"
       },
       {
         "source_id": "attempt:understand-plan",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+        "subject_id": "7d54058d-21b7-41dd-b301-92c2a5c1401c",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "f78d0a00-535a-4bfa-8da3-b694c5a114c0",
+            "token_id": "7d54058d-21b7-41dd-b301-92c2a5c1401c",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.705497+00:00",
+            "checked_at": "2026-11-15T17:08:17.829148+00:00",
             "evidence": {
               "fingerprint": "5742d87cee631f96f5634f2d885ece5b64fc78d726897a6945b89b8533097b65",
               "server": "decision-recheck://attempt/understand-plan",
@@ -944,19 +945,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.705497+00:00"
+        "checked_at": "2026-11-15T17:08:17.830147+00:00"
       },
       {
         "source_id": "attempt:attempt-export",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+        "subject_id": "07f158b1-5feb-476f-9348-723e2305a2e2",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "66009173-c251-4997-b23c-8fd5a9f14d11",
+            "token_id": "07f158b1-5feb-476f-9348-723e2305a2e2",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.706496+00:00",
+            "checked_at": "2026-11-15T17:08:17.830147+00:00",
             "evidence": {
               "fingerprint": "d3862ddb10016154db7f2e08c2d3497fe1f86795f7f9320fb5d2d91c75a0ef0a",
               "server": "decision-recheck://attempt/attempt-export",
@@ -971,19 +972,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.706496+00:00"
+        "checked_at": "2026-11-15T17:08:17.830147+00:00"
       },
       {
         "source_id": "attempt:find-help",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+        "subject_id": "a46402d2-0d9d-4e8f-8888-0d526712c701",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "5a589850-edbd-406b-b5e1-e00e618ba9b6",
+            "token_id": "a46402d2-0d9d-4e8f-8888-0d526712c701",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.706496+00:00",
+            "checked_at": "2026-11-15T17:08:17.830147+00:00",
             "evidence": {
               "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
               "server": "decision-recheck://attempt/find-help",
@@ -998,18 +999,18 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.706496+00:00"
+        "checked_at": "2026-11-15T17:08:17.830147+00:00"
       },
       {
         "purpose": "current_report_export",
         "state": "CURRENT",
-        "subject_id": "f3003f7e-5cad-4518-8e7d-199637ea23ed",
+        "subject_id": "c22a3c5c-f8ed-4c1a-a588-75da399908f8",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
+            "token_id": "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.706496+00:00",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
             "evidence": {
               "fingerprint": "a3413b16ed57fb40d8e0a9d0f037b7f3a0951c269ccb03e28e96282c90961904",
               "server": "decision-recheck://source/pricing",
@@ -1023,25 +1024,9 @@
             "retryable": false
           },
           {
-            "token_id": "daa9ed25-46a0-46f3-9bf1-13cfe0592d78",
+            "token_id": "f0dd085f-da22-48ed-b7c1-fb5c564c43b5",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.707496+00:00",
-            "evidence": {
-              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
-              "server": "decision-recheck://source/help",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "4f6b3234-57c7-46ca-ba63-cca690c4aad2",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.707496+00:00",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
             "evidence": {
               "fingerprint": "eb1a6e37b7e67aedcd09304ec902babdc3c53722822382ea5b08af705e385cc5",
               "server": "decision-recheck://source/offer",
@@ -1055,9 +1040,25 @@
             "retryable": false
           },
           {
-            "token_id": "65b34161-58cf-4755-b3f1-a3e72486e018",
+            "token_id": "e45af9a6-b7ba-4886-8f3f-698a50ea48a2",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.707496+00:00",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
+            "evidence": {
+              "fingerprint": "8ae1b1c60abfc7ced61f3335c784c6bf34cb4ae1e20dc28a9512cfe1c5385e5d",
+              "server": "decision-recheck://source/help",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "2087db4a-0d59-46c9-9112-a57a3ec46518",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
             "evidence": {
               "fingerprint": "2cc3875eda503c9e967d5f2dbe316448e4462cbf0747e8df66a166cbfc9cca1a",
               "server": "decision-recheck://attempt/find-help",
@@ -1071,9 +1072,9 @@
             "retryable": false
           },
           {
-            "token_id": "750d6de5-94cd-4efb-9568-9e9e1d8d1920",
+            "token_id": "b62e61bc-136a-4f8d-b80c-dad6a5e7942b",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.707496+00:00",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
             "evidence": {
               "fingerprint": "d3862ddb10016154db7f2e08c2d3497fe1f86795f7f9320fb5d2d91c75a0ef0a",
               "server": "decision-recheck://attempt/attempt-export",
@@ -1087,9 +1088,9 @@
             "retryable": false
           },
           {
-            "token_id": "88ab9dc9-3fa0-4128-b573-09e0ae0b38d6",
+            "token_id": "e7fd9f8f-0cfa-4611-9766-00735067ca63",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T15:33:46.707496+00:00",
+            "checked_at": "2026-11-15T17:08:17.831150+00:00",
             "evidence": {
               "fingerprint": "5742d87cee631f96f5634f2d885ece5b64fc78d726897a6945b89b8533097b65",
               "server": "decision-recheck://attempt/understand-plan",
@@ -1104,7 +1105,7 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T15:33:46.707496+00:00"
+        "checked_at": "2026-11-15T17:08:17.831150+00:00"
       }
     ],
     "objects": {
@@ -1137,8 +1138,8 @@
             "validator_key": "bd673d70193068e99350e834079b59610140695e17c6f820ac19de4a77c968f4",
             "freshness_strategy": "exact"
           },
-          "id": "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-          "observed_at": "2026-11-15T15:33:46.689988+00:00"
+          "id": "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+          "observed_at": "2026-11-15T17:08:17.815147+00:00"
         },
         "offer": {
           "adapter": "mcp",
@@ -1168,8 +1169,8 @@
             "validator_key": "d7f358fe17ab0e9372702e7688af9d30dc7d4543ad8986c34bc81c9f4717f227",
             "freshness_strategy": "exact"
           },
-          "id": "4f6b3234-57c7-46ca-ba63-cca690c4aad2",
-          "observed_at": "2026-11-15T15:33:46.691492+00:00"
+          "id": "f0dd085f-da22-48ed-b7c1-fb5c564c43b5",
+          "observed_at": "2026-11-15T17:08:17.817148+00:00"
         },
         "help": {
           "adapter": "mcp",
@@ -1199,8 +1200,8 @@
             "validator_key": "a4e5a1bf0e1b5421d3f81636d6849980649e3efeb653bf16931236c0661517e5",
             "freshness_strategy": "exact"
           },
-          "id": "daa9ed25-46a0-46f3-9bf1-13cfe0592d78",
-          "observed_at": "2026-11-15T15:33:46.692496+00:00"
+          "id": "e45af9a6-b7ba-4886-8f3f-698a50ea48a2",
+          "observed_at": "2026-11-15T17:08:17.818147+00:00"
         },
         "attempt:understand-plan": {
           "adapter": "mcp",
@@ -1237,8 +1238,8 @@
             "validator_key": "5e7fd31caf305498359241911b3d31497aae2e353d8fb7697b465c3dc836eb04",
             "freshness_strategy": "exact"
           },
-          "id": "88ab9dc9-3fa0-4128-b573-09e0ae0b38d6",
-          "observed_at": "2026-11-15T15:33:46.695496+00:00"
+          "id": "e7fd9f8f-0cfa-4611-9766-00735067ca63",
+          "observed_at": "2026-11-15T17:08:17.821148+00:00"
         },
         "attempt:attempt-export": {
           "adapter": "mcp",
@@ -1275,8 +1276,8 @@
             "validator_key": "aba45c6633d6b72e144f25953c143aac495a9ba053324876fdb49cb3eeb93c88",
             "freshness_strategy": "exact"
           },
-          "id": "750d6de5-94cd-4efb-9568-9e9e1d8d1920",
-          "observed_at": "2026-11-15T15:33:46.696497+00:00"
+          "id": "b62e61bc-136a-4f8d-b80c-dad6a5e7942b",
+          "observed_at": "2026-11-15T17:08:17.822147+00:00"
         },
         "attempt:find-help": {
           "adapter": "mcp",
@@ -1313,107 +1314,107 @@
             "validator_key": "90242f7176ebe9a7491f62c01275662a4355bf107198df182138c09698102969",
             "freshness_strategy": "exact"
           },
-          "id": "65b34161-58cf-4755-b3f1-a3e72486e018",
-          "observed_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "2087db4a-0d59-46c9-9112-a57a3ec46518",
+          "observed_at": "2026-11-15T17:08:17.823147+00:00"
         }
       },
       "reasoning": {
         "decision-buyer-budget": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89"
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b"
           ],
-          "digest": "a3219386bc7ca4b362b1b4c189f8f8d08d220317c8840e9f20f7c2dd5a2de7eb",
+          "digest": "568ad5e22869c64dbb43117b01684fb47383a59e45d1617201715b6028e55791",
           "metadata": {
             "domain_id": "decision-buyer-budget"
           },
-          "id": "56df2978-b7a3-4481-aec4-2646f38240d9",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "df853d5f-ca7a-4924-ab8d-90c127c43779",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "decision-buyer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-            "750d6de5-94cd-4efb-9568-9e9e1d8d1920"
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+            "b62e61bc-136a-4f8d-b80c-dad6a5e7942b"
           ],
-          "digest": "0d9192a6b86d7f32cb24f0297f4eaf2cb94c9f9586c6be7e7fd3cc2bbf00c0d9",
+          "digest": "c6acc07e73a056b3ff3fe63e190a9872ddd9674f65f514410337fc2ea497be99",
           "metadata": {
             "domain_id": "decision-buyer-export"
           },
-          "id": "b4706bee-f27b-425c-8b03-4577b0262b4d",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "8c21f037-7168-41e9-ba32-3787d8c23259",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "decision-buyer-help-findability": {
           "kind": "decision-recheck",
           "dependencies": [
-            "daa9ed25-46a0-46f3-9bf1-13cfe0592d78"
+            "e45af9a6-b7ba-4886-8f3f-698a50ea48a2"
           ],
-          "digest": "df21e34c2dc442b535e3e2cb4571c4768b98a6f4dbe78a6928d4ad4626797fb8",
+          "digest": "b1626460b334b2791c56b305ff17e7cbf8c76a17da951d96e7eae132de10153e",
           "metadata": {
             "domain_id": "decision-buyer-help-findability"
           },
-          "id": "a85d0458-b653-410a-8d68-10fa514ed332",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "aafea9b6-6ea8-4b65-9549-0f1e07e7feef",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "finding-claim-offer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-            "4f6b3234-57c7-46ca-ba63-cca690c4aad2"
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+            "f0dd085f-da22-48ed-b7c1-fb5c564c43b5"
           ],
-          "digest": "0fce1d25953b9dac61bbd71b461390dfef50081133366136e5fc169f5299ff40",
+          "digest": "f51a25406c92427647eb9c13933cb8cc509cb0dd8b96af12ab6c35bab10e9278",
           "metadata": {
             "domain_id": "finding-claim-offer-export"
           },
-          "id": "358966fc-9f35-4333-9400-79735240eb9a",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "18d84c66-c547-4a74-af95-ba8e6c773653",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "finding-claim-help-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-            "daa9ed25-46a0-46f3-9bf1-13cfe0592d78"
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+            "e45af9a6-b7ba-4886-8f3f-698a50ea48a2"
           ],
-          "digest": "559981aa82fa6eb00bf2e57bef73ae62a95cb18612e91832e3c178f58da01f7a",
+          "digest": "6b104a5f319f402f8b01a6ab4a6de1d6a79809d67e8f8c1cb741080977715c75",
           "metadata": {
             "domain_id": "finding-claim-help-export"
           },
-          "id": "28fc3ebf-9128-437b-99ef-0c057f920545",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "1ae55b95-0dc7-43da-8e27-041259fadee8",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "decision-owner-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-            "4f6b3234-57c7-46ca-ba63-cca690c4aad2",
-            "65b34161-58cf-4755-b3f1-a3e72486e018",
-            "750d6de5-94cd-4efb-9568-9e9e1d8d1920",
-            "88ab9dc9-3fa0-4128-b573-09e0ae0b38d6",
-            "daa9ed25-46a0-46f3-9bf1-13cfe0592d78"
+            "2087db4a-0d59-46c9-9112-a57a3ec46518",
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+            "b62e61bc-136a-4f8d-b80c-dad6a5e7942b",
+            "e45af9a6-b7ba-4886-8f3f-698a50ea48a2",
+            "e7fd9f8f-0cfa-4611-9766-00735067ca63",
+            "f0dd085f-da22-48ed-b7c1-fb5c564c43b5"
           ],
-          "digest": "f4eb288bc11a0660c3f47ede44901cdc59f871d1d2e097e25348001fff1fc504",
+          "digest": "dcd6406da6a8990d360068165cfedee972d7b17dc63010c76ba6036a19091889",
           "metadata": {
             "domain_id": "decision-owner-alignment"
           },
-          "id": "69cfa658-e627-4731-b4e1-f198514a2c4a",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "440437fb-46f9-47fe-9572-7a9595ce5d1e",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         },
         "decision-marketing-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "2599dd3f-3285-4b23-9ba5-39c399dc7a89",
-            "4f6b3234-57c7-46ca-ba63-cca690c4aad2",
-            "65b34161-58cf-4755-b3f1-a3e72486e018",
-            "750d6de5-94cd-4efb-9568-9e9e1d8d1920",
-            "88ab9dc9-3fa0-4128-b573-09e0ae0b38d6",
-            "daa9ed25-46a0-46f3-9bf1-13cfe0592d78"
+            "2087db4a-0d59-46c9-9112-a57a3ec46518",
+            "9ea196ac-ff3b-45a1-9bfd-c4aa17029a5b",
+            "b62e61bc-136a-4f8d-b80c-dad6a5e7942b",
+            "e45af9a6-b7ba-4886-8f3f-698a50ea48a2",
+            "e7fd9f8f-0cfa-4611-9766-00735067ca63",
+            "f0dd085f-da22-48ed-b7c1-fb5c564c43b5"
           ],
-          "digest": "309c021b2a9c3b238e72ee838d85fcddc0ca5cb68df96048cbedef13b4724935",
+          "digest": "0b192a7686f65dfad4fe14ef90aa44bb36a2833c769094e5e1bf633390d04918",
           "metadata": {
             "domain_id": "decision-marketing-alignment"
           },
-          "id": "b970c995-1497-4806-8a59-162bb645f5cb",
-          "created_at": "2026-11-15T15:33:46.698496+00:00"
+          "id": "f4d0b4d6-03bd-4cf4-9804-ba53b92bb720",
+          "created_at": "2026-11-15T17:08:17.823147+00:00"
         }
       }
     }

@@ -20,6 +20,15 @@ def validate_bundle(path:str|Path)->list[str]:
     for key in ("artifacts","sources","tasks","findings","decisions"):
         if not isinstance(bundle.get(key),list):
             errors.append(f"{key} must be a list.")
+    for key in ("scope","usage"):
+        if not isinstance(bundle.get(key,{}),dict):
+            errors.append(f"{key} must be an object.")
+    for key in ("changes","agent_proposals"):
+        records=bundle.get(key,[])
+        if not isinstance(records,list) or any(not isinstance(record,dict) for record in records):
+            errors.append(f"{key} must be a list of objects.")
+    if not isinstance(bundle.get("warnings",[]),list):
+        errors.append("warnings must be a list.")
     if errors:
         return errors
     artifact_ids=set()
@@ -44,7 +53,7 @@ def validate_bundle(path:str|Path)->list[str]:
                 errors.append(f"Artifact hash mismatch: {aid}")
             if len(raw)!=record.get("size_bytes"):
                 errors.append(f"Artifact size mismatch: {aid}")
-        except OSError:
+        except (OSError,ValueError):
             errors.append(f"Missing artifact: {aid}")
     all_ids=set()
     for category in ("sources","tasks","findings","decisions"):
@@ -55,7 +64,8 @@ def validate_bundle(path:str|Path)->list[str]:
             rid=record.get("id")
             if not isinstance(rid,str) or not ID.fullmatch(rid) or rid in all_ids:
                 errors.append(f"Invalid or duplicate record id in {category}.")
-            all_ids.add(rid)
+            if isinstance(rid,str):
+                all_ids.add(rid)
             references=record.get("evidence_ids",[])
             if not isinstance(references,list):
                 errors.append(f"Malformed evidence references: {rid}")
@@ -64,6 +74,15 @@ def validate_bundle(path:str|Path)->list[str]:
                 references=[*references,record["artifact_id"]]
             if not isinstance(references,list) or any(not isinstance(v,str) or v not in artifact_ids for v in references):
                 errors.append(f"Unknown evidence reference: {rid}")
+            if category=="findings" and (not isinstance(record.get("audiences",[]),list) or any(not isinstance(v,str) for v in record.get("audiences",[]))):
+                errors.append(f"Malformed finding audiences: {rid}")
+    for change in bundle.get("changes",[]):
+        if not isinstance(change.get("affected_ids",[]),list) or any(not isinstance(v,str) for v in change.get("affected_ids",[])):
+            errors.append("Malformed changed-dependency references.")
+    for proposal in bundle.get("agent_proposals",[]):
+        references=proposal.get("evidence_ids",[])
+        if not isinstance(references,list) or any(not isinstance(v,str) or v not in artifact_ids for v in references):
+            errors.append("Unknown agent proposal evidence reference.")
     for finding in bundle["findings"]:
         if not isinstance(finding,dict):
             continue

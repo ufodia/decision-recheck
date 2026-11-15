@@ -1,0 +1,1 @@
+Support Decision Recheck, ufodia's open-source SaaS audit pack for checking product promises, buyer requirements, and marketing/support statements against scoped evidence. Contributions help maintain reproducible fixtures, browser compatibility, and documentation. The core and model-free demo remain available under the MIT license. Support: https://buymeacoffee.com/ufodia
