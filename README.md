@@ -237,6 +237,8 @@ Current first-party maintainer and contributor: **[ufodia](https://github.com/uf
 
 If the pack saves you review work, [buy ufodia a coffee](https://buymeacoffee.com/ufodia). Support helps maintain reproducible SaaS fixtures, browser compatibility, and clear documentation. The core and model-free demo remain open source.
 
+[Support ufodia on GitHub Sponsors](https://github.com/sponsors/ufodia).
+
 ## License
 
 Original project code, documentation, fixtures, and artwork: **MIT, Copyright © 2026 ufodia**. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
