@@ -1,37 +1,41 @@
-Your product changed. Your buying advice, campaign copy and support answers may still describe yesterday.
+Your product changed. Is your advice still describing yesterday's offer?
 
-I built Decision Recheck to make those mismatches inspectable.
+A feature moves to a higher plan. The ad and support answer still promise the old one. A buyer's budget hasn't changed.
 
-The fictional example starts with a $9/month Starter plan that includes CSV export. Starter rises to $29; export moves to the $49 Pro plan. The buyer's budget stays at $20.
+I built Decision Recheck to make those decisions reviewable—and to recheck them when the evidence changes.
 
-Fixing the ad does not fix that buyer's budget.
+The local runner uses four optional LLM roles:
 
-The tool keeps three views of the same scoped evidence: product owner, buyer/user, and marketing/support. It produces local HTML/JSON bundles with linked artifacts and an explicit recheck against a saved baseline.
+01  Requirements researcher — selects planning priorities before task execution.
+02  Offer and support analyst — prioritizes recorded comparisons and follow-ups.
+03  Evidence reviewer — prioritizes decisions and evidence limits.
+04  Report writer — arranges application-owned decision explanations.
 
-The latest update tightens how AI can contribute to the report.
+The roles select allowed review items. The application renders the recorded decisions and required follow-ups from the current evidence.
 
-Four optional LLM roles in the local runner select and prioritize allowed review items. The application supplies the exact recorded decisions and required follow-ups.
+That boundary matters:
 
-• A recorded "fails" cannot be softened into "ready."
-• Behavior verification stays a required precondition for changing documented facts.
-• Missing or untested work remains visible.
-• Unknown, incomplete or stale selections are rejected.
+• A recorded “fails” stays “fails.”
+• Behavior must be verified before changing factual documentation.
+• Invalid or incomplete model selections leave visible partial work.
 
-I tested this four-role flow against HTTPX's actual public documentation with fresh OpenAI responses: a baseline and recheck, four new responses each. The checks covered documentation and browser text observations; they did not execute HTTPX's runtime behavior. The full project suite passed 335 tests.
+Browser checks run deterministically; model narration does not replace recorded task results. Human review still matters.
 
-FreshCtx supplies the dependency and freshness layer. Playwright powers scoped browser checks. These checks support reviewable decisions; they do not predict customer demand or purchase behavior.
+I tested the four-role flow against HTTPX's public Introduction and QuickStart documentation with fresh OpenAI gpt-4.1-mini responses: four for the baseline and four for the recheck. The recheck reran a read-only browser task with three text assertions. The full local suite passed 335 tests on November 15, 2026.
 
-The hosted demo is a fictional, key-free walkthrough. Live model review runs locally with your own provider configuration.
+That test examined documentation and browser text; it did not execute HTTPX's library behavior or test a support service. The accepted role selections met the review contract; they are not independent corroboration of the source.
 
-Try the demo:
+The hosted demo is a fictional, key-free walkthrough. Real website checks and optional live model review run locally with your provider configuration.
+
+Explore the demo:
 https://decision-recheck.vercel.app/
 
-Inspect the code, setup and live-test record:
+Inspect the code and live-test record:
 https://github.com/ufodia/decision-recheck
 
-If it saves you review work, a GitHub star helps others find it. Optional support helps maintain the project:
+If this helps your review process, a GitHub star helps others discover it. Optional support helps me maintain it:
 https://buymeacoffee.com/ufodia
 
-Where does advice go stale fastest in your product: pricing, permissions, or feature access?
+Where does product advice go stale fastest for you: pricing, permissions, or feature access?
 
 #OpenSource #AIEngineering #DeveloperTools #SaaS

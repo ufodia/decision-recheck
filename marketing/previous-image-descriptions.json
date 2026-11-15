@@ -1,0 +1,14 @@
+[
+  {
+    "file": "images/buymeacoffee-cover.png",
+    "alt": "Decision Recheck launch illustration. Your product changed. Your advice didn't. In the fictional demo, Starter rises from $9 to $29 per month and CSV export moves to the $49 Pro plan. One offer change creates separate questions for the product owner, buyer, and marketing/support teams."
+  },
+  {
+    "file": "images/previous-02-copy-and-fit.png",
+    "alt": "Decision Recheck fictional corrected-copy example. The advertisement and help answer now match the offer, but the buyer's $20 monthly budget remains unchanged. A proportional chart compares $29 Starter and $49 Pro with the $20 budget marker. Correcting the message does not repair an unmet buyer requirement."
+  },
+  {
+    "file": "images/previous-03-inspect-the-evidence.png",
+    "alt": "Decision Recheck workflow: define requirements, sources, and permitted tasks; capture findings with linked artifacts and visible unknowns; recheck new evidence against a saved baseline. One HTML/JSON bundle supports owner, buyer, and marketing/support views. The fictional demo needs no API key. Built by ufodia, MIT licensed. Demo: decision-recheck.vercel.app. Code: github.com/ufodia/decision-recheck. Optional support: buymeacoffee.com/ufodia."
+  }
+]

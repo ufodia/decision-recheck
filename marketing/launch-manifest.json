@@ -15,7 +15,7 @@
     "url": "https://buymeacoffee.com/ufodia/decision-recheck-product-changes-recheck-decision",
     "category": "Open-source tools",
     "email_followers": false,
-    "cover_image": "images/01-product-change.png"
+    "cover_image": "images/buymeacoffee-cover.png"
   },
   "linkedin": {
     "caption": "linkedin-post.txt",
@@ -25,10 +25,11 @@
     "queue_count_at_verification": 15,
     "verified_on": "2026-11-15",
     "caption_updated_on": "2026-11-15",
-    "update_status": "saved_and_read_back",
-    "updated_feature": "Four optional local model roles select canonical review items; exact fits and behavior-verification preconditions cannot be rewritten.",
+    "update_status": "replacement_scheduled_and_read_back",
+    "updated_feature": "Four optional local model roles, recorded-decision consistency, and the scoped real LLM baseline and recheck.",
     "audience": "Anyone",
-    "scheduled_post_id": "urn:li:ugcPost:7527781599841673216",
+    "scheduled_post_id": "urn:li:ugcPost:7527812099591462914",
+    "replaced_post_id": "urn:li:ugcPost:7527781599841673216",
     "publication_url": null,
     "timezone": "Europe/Istanbul",
     "image_order": [
@@ -36,7 +37,8 @@
       "images/02-copy-and-fit.png",
       "images/03-inspect-the-evidence.png"
     ],
-    "image_descriptions": "image-descriptions.json"
+    "image_descriptions": "image-descriptions.json",
+    "previous_image_descriptions": "previous-image-descriptions.json"
   },
   "artwork_source": "launch-preview.html",
   "artwork_dimensions": {"width": 1200, "height": 1500},
@@ -46,5 +48,5 @@
     "github_sponsor_button": ".github/FUNDING.yml",
     "scope": "GitHub Sponsor button and project-specific Buy Me a Coffee article"
   },
-  "verification": "Native LinkedIn queue showed this post first at the scheduled time, with three images and custom alt text. Buy Me a Coffee's existing article was updated through Save changes and the public permalink was read back with all six new sections, the original artwork, working project/source links, and the support CTA. Public visibility and the Open-source tools category were retained; no follower email was requested. Scheduled does not mean published; the queue may change after this observation."
+  "verification": "LinkedIn did not persist the attempted image edit on the original scheduled post. With the owner's approval, a replacement was scheduled for the same time, its three images and custom alt text were read back, and the original was deleted. The replacement was verified first in a queue of 15. Buy Me a Coffee's existing article and original artwork were read back on its public permalink. Scheduled does not mean published; the queue may change after this observation."
 }

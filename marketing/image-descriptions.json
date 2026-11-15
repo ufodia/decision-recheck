@@ -1,14 +1,14 @@
 [
   {
     "file": "images/01-product-change.png",
-    "alt": "Decision Recheck launch illustration. Your product changed. Your advice didn't. In the fictional demo, Starter rises from $9 to $29 per month and CSV export moves to the $49 Pro plan. One offer change creates separate questions for the product owner, buyer, and marketing/support teams."
+    "alt": "Decision Recheck: four optional LLM roles, one reviewable decision. Before tasks, the requirements researcher prioritizes source-review planning. After evaluation, the offer and support analyst prioritizes comparisons and follow-ups; the evidence reviewer prioritizes recorded decisions and scope; and the report writer arranges application-owned explanations. Browser tasks run deterministically without model narration. The application preserves recorded decisions."
   },
   {
     "file": "images/02-copy-and-fit.png",
-    "alt": "Decision Recheck fictional corrected-copy example. The advertisement and help answer now match the offer, but the buyer's $20 monthly budget remains unchanged. A proportional chart compares $29 Starter and $49 Pro with the $20 budget marker. Correcting the message does not repair an unmet buyer requirement."
+    "alt": "Decision Recheck's decision-consistency boundary: a recorded fails result remains fails in the rendered report. Models select allowed IDs from an application-owned catalog; the application rebuilds report text from evidence records. Verify behavior before changing factual documentation. Invalid or incomplete selections are rejected, with partial work visible. Consistency does not establish source truth."
   },
   {
     "file": "images/03-inspect-the-evidence.png",
-    "alt": "Decision Recheck workflow: define requirements, sources, and permitted tasks; capture findings with linked artifacts and visible unknowns; recheck new evidence against a saved baseline. One HTML/JSON bundle supports owner, buyer, and marketing/support views. The fictional demo needs no API key. Built by ufodia, MIT licensed. Demo: decision-recheck.vercel.app. Code: github.com/ufodia/decision-recheck. Optional support: buymeacoffee.com/ufodia."
+    "alt": "Real LLM validation, November 15, 2026: OpenAI gpt-4.1-mini returned eight fresh responses, four for a baseline and four for a recheck, using public HTTPX Introduction and QuickStart documentation. The full local suite passed 335 tests with zero skipped on Windows and Chrome. The browser task checked three text assertions; HTTPX runtime behavior, support service and human usability were not tested. The public demo is fictional and key-free; real site checks and optional live model calls run locally. Demo: decision-recheck.vercel.app. Source: github.com/ufodia/decision-recheck. Support: buymeacoffee.com/ufodia."
   }
 ]
