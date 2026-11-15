@@ -21,15 +21,15 @@ HTTP collection resolves and validates the destination at connection time and co
 
 | Role | Responsibility |
 | --- | --- |
-| Requirements researcher | Turn the supplied brief into explicit criteria and scoped source candidates. |
+| Requirements researcher | Prioritize planning and source-review items from the operator's scoped brief. |
 | Task actors | Deterministically execute declared steps in separate browser sessions and record exact observations; no model retelling is requested. |
-| Offer/support analyst | Compare claims, documents, and observed checkpoints. |
-| Evidence reviewer | Review selected source values, recorded events, scope, contradictions, and unsupported conclusions; artifact metadata alone is not visual inspection. |
-| Report writer | Explain structured decisions and coverage limits without changing recorded outcomes. |
+| Offer/support analyst | Prioritize canonical items for recorded comparisons, documents and observed checkpoints. |
+| Evidence reviewer | Prioritize recorded outcomes and follow-ups within scope; artifact metadata alone is not visual inspection. |
+| Report writer | Arrange canonical decision explanations and coverage limits without changing wording or outcomes. |
 
 The local coordinator owns time, action/call limits, allowed URLs, stage progress, and failure records. Role separation is an organization of work, not evidence of statistical independence.
 
-With `--live-model`, four review roles call the configured provider. Browser task execution stays deterministic. Free-form model prose remains unverified commentary, while requirement verdicts and task outcomes are computed from the recorded observations. Legacy model-generated task narration remains in original JSON bundles but is excluded from newly rendered reports with an explicit notice.
+With `--live-model`, four review roles call the configured provider. Browser task execution stays deterministic. Model output selects IDs from a canonical review catalog; the application validates required coverage, context digests and evidence bindings, then renders the exact recorded fits and safe follow-ups. No free-form model summary can override them. All legacy model prose remains in original JSON bundles and is excluded from newly rendered reports with an explicit notice. See [commentary consistency](commentary-consistency.md).
 
 ## Storage
 

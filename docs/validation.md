@@ -6,7 +6,7 @@ This record describes observed checks, not a guarantee of defect-free behavior o
 
 | Check | Observed result |
 | --- | --- |
-| Complete Python, real-browser, HTTP, model-protocol, CLI, and static-demo suite | **301 passed, 0 skipped**, 126.55 seconds |
+| Complete Python, real-browser, HTTP, model-protocol, CLI, and static-demo suite | **335 passed, 0 skipped**, 106.10 seconds |
 | Test entry point | `DRC_BROWSER_CHANNEL=chrome uv run python scripts/check.py -q` (set the variable using the host shell's syntax) |
 | Python / operating system | CPython 3.12.10 / Windows |
 | Actual browser channel | Explicit installed Chrome 157.0.8103.51; separate temporary contexts |
@@ -58,6 +58,8 @@ One role nevertheless produced incorrect natural-language task narration. The de
 The revised historical views of the unchanged real-provider bundle passed six layout checks: three audiences at 1440 and 390 pixels. Recorded observations, navigation, citations and artifact links remained valid; no JavaScript errors or page overflow occurred with details collapsed or expanded. The incorrect legacy task narration was excluded with an explicit JSON-retention notice. A separate network-disabled replay exercised the four retained provider responses without claiming new inference or changing original evidence.
 
 ## Verification limits
+
+The [subsequent consistency review](commentary-live-validation-2026-11-15.md) closes the two remaining free-prose ambiguities at the output boundary. Four model roles now return canonical item selections; reports rebuild exact recorded fits and verification preconditions. New live baseline/recheck runs returned eight distinct provider responses with the enforced contract. Adversarial tests cover legacy prose, field smuggling, omitted required items, forged citations and stale context. This establishes consistency with the recorded bundle, not independent truth or bundle authenticity.
 
 The subsequent [HTTPX four-role review](httpx-live-validation-2026-11-15.md) used a different real website and **12 new provider responses**, including a fresh four-role run after the recommendation-boundary fix. All live runs used the normal provider network transport; no stored responses were replayed. The final case retained correct formal outcomes and passed six report-layout checks. Its record also identifies remaining free-form wording limits, which do not override deterministic decisions.
 

@@ -38,7 +38,7 @@ uv run --no-env-file python scripts/run_live_review.py --env-file .env.live --br
 uv run decision-recheck validate --bundle runs/public-live-A
 ```
 
-Read `report-owner.html`, `report-buyer.html`, `report-marketing.html` and `bundle.json` in that output directory. A complete run should contain four model review proposals, one deterministic real-browser attempt, captured sources and linked artifacts. The task actor records actual events without asking a text model to retell them. A partial run remains usable for its recorded observations but is not a completed model review. The helper exits with code 3 for partial work and 2 for configuration/execution failure.
+Read `report-owner.html`, `report-buyer.html`, `report-marketing.html` and `bundle.json` in that output directory. A complete run should contain four canonical model selections, one deterministic real-browser attempt, captured sources and linked artifacts. The model ranks catalog items; the application renders the recorded fits and required follow-ups. The task actor records actual events without asking a text model to retell them. A partial run remains usable for its recorded observations but is not a completed model review. The helper exits with code 3 for partial work and 2 for configuration/execution failure.
 
 Only after checking the baseline, run one recheck:
 
@@ -71,7 +71,7 @@ These are the intended controls for the public page at the recorded review date.
 
 The failed control expresses an intentionally incompatible requirement, not a defect in the static website. A correct recommendation explains that boundary or points to the local runner; it must not invent a hosted audit backend. No advertising claims are supplied, so the marketing summary must retain that coverage limit.
 
-Check each model summary and recommendation against those observations. Evidence IDs must resolve, but a valid ID alone does not prove that a claim follows from the evidence. Missing support evidence must remain unknown, and the model must not present the embedded fictional SaaS as a real customer result. Model proposals cannot overwrite the deterministic requirement verdicts. Reports label generated prose as unverified model commentary; they do not certify its factual correctness. Legacy model-generated task narration is retained in the original JSON but excluded from newly rendered factual reports with an explicit notice.
+Check the selected review priorities against those observations. Evidence IDs must resolve; that alone does not establish the truth of a source statement. Missing support evidence must remain scoped and unknown. Under the [canonical review contract](commentary-consistency.md), all formal verdict items and verification preconditions are mandatory, and free-form model summaries or recommendations are rejected. The model can prioritize existing review items, not rewrite their facts. Legacy prose remains unchanged in JSON and is excluded from newly rendered reports with an explicit notice.
 
 ## Keep evidence and credentials separate
 

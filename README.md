@@ -154,7 +154,7 @@ See [usage and setup](docs/usage.md) for the case contract and operating limits.
 
 The original application layer contains SaaS case definitions, task recipes, finding/fit interpretation, report views, fixtures, and a skill entry point. **[FreshCtx](https://github.com/Hyperwise-LLC/freshctx)** supplies the declared-dependency and freshness mechanisms. **[Playwright](https://playwright.dev/python/)** supplies browser contexts and trace facilities.
 
-The coordinator enforces the configured actions and budgets. Model output proposes structured findings; it does not gain permission to execute arbitrary Python, shell commands, or page instructions. A skill following the [Agent Skills format](https://agentskills.io/specification) invokes the same runner.
+The coordinator enforces configured actions and budgets. Models select canonical review priorities; they cannot replace decision wording, execute arbitrary Python or shell commands, or turn page text into instructions. A skill following the [Agent Skills format](https://agentskills.io/specification) invokes the same runner.
 
 Read [architecture](docs/architecture.md), [evidence semantics](docs/evidence.md), and [third-party notices](THIRD_PARTY_NOTICES.md).
 
@@ -169,6 +169,8 @@ The static demo displays fictional local results. It has no server-side model ke
 To check an actual deployed website with optional model proposals, follow the [bounded live-site walkthrough](docs/live-site-review.md). It includes a read-only brief, explicit provider configuration, known positive/negative/unknown requirements, and a baseline/recheck review checklist.
 
 The [HTTPX validation record](docs/httpx-live-validation-2026-11-15.md) documents the four-role runner against a different real website using fresh OpenAI responses, including a reproduced recommendation problem, its prompt correction and remaining prose limitations.
+
+The current [decision-consistent review contract](docs/commentary-consistency.md) closes that report boundary: four model roles prioritize canonical review items, while exact verdicts and required follow-ups are rendered from recorded evidence. Unsupported free prose cannot become a report conclusion.
 
 The [live demo](https://decision-recheck.vercel.app/) is hosted on Vercel. See [deployment and recovery](docs/deployment.md) for the static hosting configuration and verification steps.
 

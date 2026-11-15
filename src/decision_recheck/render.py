@@ -3,6 +3,7 @@ from __future__ import annotations
 from html import escape
 from pathlib import PurePosixPath
 from urllib.parse import urlsplit,quote
+from .commentary import CONTRACT, resolve_selection
 
 def esc(value):
     return escape(str(value),quote=True)
@@ -46,15 +47,32 @@ def render_report(bundle:dict,view:str="owner")->str:
     warnings="".join("<li>"+esc(w)+"</li>" for w in bundle.get("warnings",[]))
     proposals=""
     legacy_task_narration=False
+    legacy_free_prose=False
+    rejected_selection=False
     for p in bundle.get("agent_proposals",[]):
+        if not isinstance(p,dict):
+            rejected_selection=True
+            continue
         if p.get("role")=="task_actor":
             legacy_task_narration=True
             continue
-        recommendations="".join("<li>"+esc(value)+"</li>" for value in p.get("recommendations",[]))
-        proposals+='<article><div class="tag">'+esc(p.get("role",""))+' · unverified proposal</div><p>'+esc(p.get("summary",""))+'</p>'+("<p><strong>Proposed next steps:</strong></p><ul>"+recommendations+"</ul>" if recommendations else "")+'<p>'+citations(p.get("evidence_ids",[]))+'</p></article>'
-    commentary_section=("<h2>Unverified model commentary</h2><p>These generated proposals are not confirmed facts. Check them against the decision cards, recorded task observations and linked sources before acting.</p>"+proposals if proposals else "")
+        if p.get("commentary_contract") != CONTRACT:
+            legacy_free_prose=True
+            continue
+        try:
+            items=resolve_selection(bundle,p)
+        except (ValueError,TypeError,KeyError):
+            rejected_selection=True
+            continue
+        selected="".join('<li><p>'+esc(item["text"])+'</p><p class="refs">'+citations(item.get("evidence_ids",[]))+'</p></li>' for item in items)
+        proposals+='<article class="ai-review"><div class="tag">'+esc(p.get("role",""))+' · selected priorities</div><ol>'+selected+'</ol></article>'
+    commentary_section=("<h2>AI-selected review priorities</h2><p>The model chooses priorities. Decision outcomes and required follow-ups below come from the recorded evidence and application rules; model wording cannot replace them. Selection order is a proposal for human review.</p>"+proposals if proposals else "")
     if legacy_task_narration:
         commentary_section+="<p><strong>Legacy model task narration retained in JSON; recorded task observations are execution evidence.</strong></p>"
+    if legacy_free_prose:
+        commentary_section+="<p><strong>Legacy free-form model commentary is retained in JSON and excluded from this report. Use the recorded decision cards and task observations.</strong></p>"
+    if rejected_selection:
+        commentary_section+="<p><strong>An invalid or stale model selection was excluded. Validate the bundle and run a new scoped review.</strong></p>"
     usage=bundle.get("usage",{})
     fixture_notice=("Fictional fixture with live model proposals enabled. Its sources and deterministic assertions are fictional, not customer research or a live vendor evaluation. Model proposals do not change that evidence boundary." if bundle.get("model_mode")=="live" or usage.get("model_calls",0) or bundle.get("agent_proposals") else "Fictional, model-free fixture. It is not customer research or a live vendor evaluation.")
     return """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>"""+esc(bundle.get("title","Decision Recheck"))+" — "+esc(labels[view])+"""</title><style>

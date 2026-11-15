@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Enforce ID-only model review selections with exact recorded fits, mandatory decision coverage and behavior-verification preconditions.
+- Rebuild commentary at validation and render boundaries; reject stale or tampered selections and exclude legacy free prose without rewriting original JSON.
 - Add a reproducible, read-only review of official HTTPX documentation using fresh four-role provider responses.
 - Record optional bounded provider response IDs, actual model snapshots, timestamps and per-role token totals.
 - Distinguish incompatible operator criteria from vendor contradictions; require behavioral verification before recommending changes to documented facts.

@@ -83,6 +83,12 @@ def validate_bundle(path:str|Path)->list[str]:
         references=proposal.get("evidence_ids",[])
         if not isinstance(references,list) or any(not isinstance(v,str) or v not in artifact_ids for v in references):
             errors.append("Unknown agent proposal evidence reference.")
+        if "commentary_contract" in proposal:
+            from .commentary import resolve_selection
+            try:
+                resolve_selection(bundle,proposal)
+            except (ValueError,TypeError,KeyError):
+                errors.append("Invalid or stale canonical commentary selection.")
     for finding in bundle["findings"]:
         if not isinstance(finding,dict):
             continue

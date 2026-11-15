@@ -46,6 +46,8 @@ These are recorded limits, not silently corrected quotations or a claim of perfe
 
 ## Reproduce and interpret
 
+The free-form limitations above describe retained historical v3/v4 runs. The current [decision-consistent contract](commentary-consistency.md) excludes that prose from newly rendered reports and constrains all four live roles to validated canonical review selections. This fixes the report output boundary without altering the historical provider responses.
+
 Use the [live-site walkthrough](live-site-review.md#review-a-different-real-website). Output paths must be new. Running those commands with a real provider creates new calls and may incur usage charges; it does not reuse these saved proposals.
 
 Task assertions establish selected text presence. The model receives selected source values and recorded events, not screenshot pixels or full raw pages. Requirement comparisons, observed task outcomes, source freshness, artifact integrity and fallible generated commentary remain distinct. Raw runs stay outside Git because local browser/security-software injection may introduce machine-specific URLs.

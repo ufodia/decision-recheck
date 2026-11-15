@@ -1,0 +1,751 @@
+{
+  "project": "Decision Recheck",
+  "date": "2026-11-15",
+  "contract": "canonical-review-v1",
+  "live_provider": "api.openai.com",
+  "configured_model": "gpt-4.1-mini",
+  "source_urls": [
+    "https://www.python-httpx.org/",
+    "https://www.python-httpx.org/quickstart/"
+  ],
+  "scope": "Public documentation and text assertions; not HTTPX runtime execution",
+  "live_response_replay": false,
+  "model_request_attempts": 12,
+  "reported_tokens_total": 33108,
+  "completed_v6_model_requests": 8,
+  "distinct_completed_v6_response_ids": 8,
+  "baseline_B_unchanged": true,
+  "partial_v5_note": "Two roles were rejected; no proposal was fabricated or silently repaired. The original responses were not rewritten.",
+  "runs": [
+    {
+      "run": "A",
+      "run_id": "d4f8e6e1-ffa6-4ccd-b69e-54d22b93094d",
+      "created_at": "2026-11-15T18:18:49Z",
+      "status": "partial",
+      "freshness": "CURRENT",
+      "bundle_sha256": "6baaf5f7576d4ae40ecf3af555285032e45fdacf287000d41cbfb181054b7a99",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 14,
+        "reserved_tokens": 45182,
+        "actual_tokens": 10581,
+        "elapsed_seconds": 13.219,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "accepted_selections": 2,
+      "warnings": [
+        "offer_support_analyst incomplete: ValueError (invalid_response_or_configuration); no proposal was fabricated.",
+        "evidence_reviewer incomplete: ValueError (invalid_response_or_configuration); no proposal was fabricated."
+      ],
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "selections": [
+        {
+          "role": "requirements_researcher",
+          "prompt_version": "scoped-evidence-v5",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766733,
+          "provider_total_tokens": 1184,
+          "review_item_ids": [
+            "planning",
+            "source-0",
+            "source-1"
+          ],
+          "catalog_sha256": "7b03f339517b6b4837b28289cc641ed9805291de6b3f681c64cdfdb3e69692c5",
+          "provider_response_id_sha256": "422bfa0e811fff6f9e512b8aa479588a6112c55027dcefc0eb359a4e6a9dd62d",
+          "required_items_present": true
+        },
+        {
+          "role": "report_writer",
+          "prompt_version": "scoped-evidence-v5",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766739,
+          "provider_total_tokens": 3133,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "8fe47c1d6cbef580bad91f5c9a4b9f8032605a8e453b493fec7f0c2aba6856e3",
+          "provider_response_id_sha256": "b2241e683105f23b4b12c70772b78ef79a090b618a1ac583fe6d4e311e569d98",
+          "required_items_present": true
+        }
+      ]
+    },
+    {
+      "run": "B",
+      "run_id": "e208a869-d7f7-4074-82a7-8f06fc2f0f7e",
+      "created_at": "2026-11-15T18:22:17Z",
+      "status": "complete",
+      "freshness": "CURRENT",
+      "bundle_sha256": "d3c81db06edde0f61e2d90ba392e113d7ba242b3ecae2d6c6f67ebe39c9bca22",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 14,
+        "reserved_tokens": 47964,
+        "actual_tokens": 11274,
+        "elapsed_seconds": 11.141,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "accepted_selections": 4,
+      "warnings": [],
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "selections": [
+        {
+          "role": "requirements_researcher",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766941,
+          "provider_total_tokens": 1283,
+          "review_item_ids": [
+            "planning",
+            "source-0",
+            "source-1"
+          ],
+          "catalog_sha256": "afb8147e6d91a9cb9d5f105501fe55fefae49d39a581912eb3d9982c67f20bc9",
+          "provider_response_id_sha256": "431f0f448a4699dc98c65fc5e5103e0c94b42cfc4a0d552eb27e72ca0bc72eeb",
+          "required_items_present": true
+        },
+        {
+          "role": "offer_support_analyst",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766943,
+          "provider_total_tokens": 3331,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "0fb662841ec23c53a02c5aeef68ec6920842859a083ffa0bb29c7ec7d12eac25",
+          "provider_response_id_sha256": "bbaba8e94507e7f61f52284f07a9aebd52a725796fdc9f38e4b012adab38cb01",
+          "required_items_present": true
+        },
+        {
+          "role": "evidence_reviewer",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766944,
+          "provider_total_tokens": 3331,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "a78055e2f9d26eba662fcfa972abe57d14f5341b223c0bd479f7aaf5d03b02db",
+          "provider_response_id_sha256": "e8b1c2b1782ee05af7804491a60fdc5a0ec8255ffb38e32dff92d80fc088d0c9",
+          "required_items_present": true
+        },
+        {
+          "role": "report_writer",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766945,
+          "provider_total_tokens": 3329,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "4068a7be4a6ebc86541b4079f5310046ddbb3c332be60eb8629bab3cbee7d517",
+          "provider_response_id_sha256": "0e8d6adf541d811519684109b5675f5fed0bce263bf17fb603de67aa3107f3f5",
+          "required_items_present": true
+        }
+      ]
+    },
+    {
+      "run": "C",
+      "run_id": "517a13a9-094a-451f-a450-f63673725ce1",
+      "created_at": "2026-11-15T18:23:05Z",
+      "status": "complete",
+      "freshness": "CURRENT",
+      "bundle_sha256": "bcf7fcc6f2300e2f8df819b0d541e7aa02a07f373e56fa50d7fa4ef37b34904e",
+      "usage": {
+        "model_calls": 4,
+        "browser_actions": 24,
+        "reserved_tokens": 47964,
+        "actual_tokens": 11253,
+        "elapsed_seconds": 16.578,
+        "monetary_cost": null,
+        "monetary_status": "unavailable",
+        "attempts_executed": 1,
+        "attempts_reused": 0
+      },
+      "accepted_selections": 4,
+      "warnings": [],
+      "buyer_fits": {
+        "sync-async-docs": "meets",
+        "http2-install-docs": "meets",
+        "five-second-timeout-docs": "meets",
+        "timeout-free-default": "fails",
+        "support-sla": "inconclusive"
+      },
+      "owner_fit": "fails",
+      "selections": [
+        {
+          "role": "requirements_researcher",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766991,
+          "provider_total_tokens": 1269,
+          "review_item_ids": [
+            "planning"
+          ],
+          "catalog_sha256": "4d2824db1312ae21686ac4a33f5332d9507c7d8f145319691ebe78d3421ad55a",
+          "provider_response_id_sha256": "2a92e2740a99d169d4ea799bacef540a21ed2ed4cc0cad74713dc3a3ab48894c",
+          "required_items_present": true
+        },
+        {
+          "role": "offer_support_analyst",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766994,
+          "provider_total_tokens": 3330,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "37d54b5b70e1f6477edea04527e28b8a96065834e4fa7afecb5211f55ffe237b",
+          "provider_response_id_sha256": "e2122b48a0ecedc6e8713a23229ab8b8493961c4d1b9a291190808ca17a8d9bb",
+          "required_items_present": true
+        },
+        {
+          "role": "evidence_reviewer",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766995,
+          "provider_total_tokens": 3328,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "abb4f99ee236b11bdfd76a72063af1b806df7cca7e56efc926b8e79b1cb6dc98",
+          "provider_response_id_sha256": "f52aa87319643836f3216aad62275ad79a86f2b9d1b9a4d0fc771a886cf3902a",
+          "required_items_present": true
+        },
+        {
+          "role": "report_writer",
+          "prompt_version": "scoped-evidence-v6",
+          "commentary_contract": "canonical-review-v1",
+          "provider_model": "gpt-4.1-mini-2025-04-14",
+          "provider_created": 1794766996,
+          "provider_total_tokens": 3326,
+          "review_item_ids": [
+            "evidence-rule",
+            "decision-0",
+            "decision-1",
+            "decision-2",
+            "decision-3",
+            "decision-4",
+            "decision-5",
+            "decision-6"
+          ],
+          "catalog_sha256": "6ddeb2a33cc5ceccb30b9aacf4d56b842cdb3c666ee3700044bc7b05e298426c",
+          "provider_response_id_sha256": "6a56a23948269be8c1eefeec301b6b9b8905a0361f125f6693b84f216340ce08",
+          "required_items_present": true
+        }
+      ]
+    }
+  ],
+  "final_automated_tests": {
+    "passed": 335,
+    "skipped": 0,
+    "seconds": 106.1
+  },
+  "independent_report_verification": {
+    "run": "httpx-consistent-20261115-C",
+    "run_id": "517a13a9-094a-451f-a450-f63673725ce1",
+    "status": "complete",
+    "freshness": "CURRENT",
+    "usage": {
+      "model_calls": 4,
+      "browser_actions": 24,
+      "reserved_tokens": 47964,
+      "actual_tokens": 11253,
+      "elapsed_seconds": 16.578,
+      "monetary_cost": null,
+      "monetary_status": "unavailable",
+      "attempts_executed": 1,
+      "attempts_reused": 0
+    },
+    "fits": {
+      "sync-async-docs": "meets",
+      "http2-install-docs": "meets",
+      "five-second-timeout-docs": "meets",
+      "timeout-free-default": "fails",
+      "support-sla": "inconclusive"
+    },
+    "selections": [
+      {
+        "role": "requirements_researcher",
+        "selected_ids": [
+          "planning"
+        ],
+        "required_ids": [
+          "planning"
+        ],
+        "canonical_items": [
+          {
+            "id": "planning",
+            "kind": "planning",
+            "required": true,
+            "text": "Planning-stage selection only; it does not certify task completion or requirement fulfillment.",
+            "evidence_ids": []
+          }
+        ]
+      },
+      {
+        "role": "offer_support_analyst",
+        "selected_ids": [
+          "evidence-rule",
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6"
+        ],
+        "required_ids": [
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6",
+          "evidence-rule"
+        ],
+        "canonical_items": [
+          {
+            "id": "evidence-rule",
+            "kind": "precondition",
+            "required": true,
+            "text": "Verify actual behavior before changing a documented fact. An unmet operator criterion alone does not justify rewriting documentation or establish a product defect.",
+            "evidence_ids": []
+          },
+          {
+            "id": "decision-0",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-sync-async-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction documents sync and async APIs': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-1",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-http2-install-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction identifies the optional HTTP/2 installation extra': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-2",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-five-second-timeout-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'QuickStart documents a five-second default for network inactivity': meets.",
+            "evidence_ids": [
+              "source-quickstart",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-3",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-timeout-free-default",
+            "fit": "fails",
+            "text": "Recorded buyer fit for 'QuickStart states that network inactivity has no default timeout': fails.",
+            "evidence_ids": [
+              "source-quickstart"
+            ]
+          },
+          {
+            "id": "decision-4",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-support-sla",
+            "fit": "inconclusive",
+            "text": "Recorded buyer fit for 'The selected documentation establishes a two-hour support response SLA': inconclusive.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-5",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-owner-alignment",
+            "fit": "fails",
+            "text": "Recorded owner fit for 'Readiness for the supplied user requirements': fails.",
+            "evidence_ids": [
+              "source-quickstart",
+              "source-introduction",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-6",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-marketing-alignment",
+            "fit": "inconclusive",
+            "text": "Recorded marketing fit for 'Supplied promise and document alignment': inconclusive.",
+            "evidence_ids": []
+          }
+        ]
+      },
+      {
+        "role": "evidence_reviewer",
+        "selected_ids": [
+          "evidence-rule",
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6"
+        ],
+        "required_ids": [
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6",
+          "evidence-rule"
+        ],
+        "canonical_items": [
+          {
+            "id": "evidence-rule",
+            "kind": "precondition",
+            "required": true,
+            "text": "Verify actual behavior before changing a documented fact. An unmet operator criterion alone does not justify rewriting documentation or establish a product defect.",
+            "evidence_ids": []
+          },
+          {
+            "id": "decision-0",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-sync-async-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction documents sync and async APIs': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-1",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-http2-install-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction identifies the optional HTTP/2 installation extra': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-2",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-five-second-timeout-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'QuickStart documents a five-second default for network inactivity': meets.",
+            "evidence_ids": [
+              "source-quickstart",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-3",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-timeout-free-default",
+            "fit": "fails",
+            "text": "Recorded buyer fit for 'QuickStart states that network inactivity has no default timeout': fails.",
+            "evidence_ids": [
+              "source-quickstart"
+            ]
+          },
+          {
+            "id": "decision-4",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-support-sla",
+            "fit": "inconclusive",
+            "text": "Recorded buyer fit for 'The selected documentation establishes a two-hour support response SLA': inconclusive.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-5",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-owner-alignment",
+            "fit": "fails",
+            "text": "Recorded owner fit for 'Readiness for the supplied user requirements': fails.",
+            "evidence_ids": [
+              "source-quickstart",
+              "source-introduction",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-6",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-marketing-alignment",
+            "fit": "inconclusive",
+            "text": "Recorded marketing fit for 'Supplied promise and document alignment': inconclusive.",
+            "evidence_ids": []
+          }
+        ]
+      },
+      {
+        "role": "report_writer",
+        "selected_ids": [
+          "evidence-rule",
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6"
+        ],
+        "required_ids": [
+          "decision-0",
+          "decision-1",
+          "decision-2",
+          "decision-3",
+          "decision-4",
+          "decision-5",
+          "decision-6",
+          "evidence-rule"
+        ],
+        "canonical_items": [
+          {
+            "id": "evidence-rule",
+            "kind": "precondition",
+            "required": true,
+            "text": "Verify actual behavior before changing a documented fact. An unmet operator criterion alone does not justify rewriting documentation or establish a product defect.",
+            "evidence_ids": []
+          },
+          {
+            "id": "decision-0",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-sync-async-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction documents sync and async APIs': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-1",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-http2-install-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'The introduction identifies the optional HTTP/2 installation extra': meets.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-2",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-five-second-timeout-docs",
+            "fit": "meets",
+            "text": "Recorded buyer fit for 'QuickStart documents a five-second default for network inactivity': meets.",
+            "evidence_ids": [
+              "source-quickstart",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-3",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-timeout-free-default",
+            "fit": "fails",
+            "text": "Recorded buyer fit for 'QuickStart states that network inactivity has no default timeout': fails.",
+            "evidence_ids": [
+              "source-quickstart"
+            ]
+          },
+          {
+            "id": "decision-4",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-buyer-support-sla",
+            "fit": "inconclusive",
+            "text": "Recorded buyer fit for 'The selected documentation establishes a two-hour support response SLA': inconclusive.",
+            "evidence_ids": [
+              "source-introduction"
+            ]
+          },
+          {
+            "id": "decision-5",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-owner-alignment",
+            "fit": "fails",
+            "text": "Recorded owner fit for 'Readiness for the supplied user requirements': fails.",
+            "evidence_ids": [
+              "source-quickstart",
+              "source-introduction",
+              "task-capture-read-timeout-documentation",
+              "task-events-read-timeout-documentation"
+            ]
+          },
+          {
+            "id": "decision-6",
+            "kind": "decision",
+            "required": true,
+            "decision_id": "decision-marketing-alignment",
+            "fit": "inconclusive",
+            "text": "Recorded marketing fit for 'Supplied promise and document alignment': inconclusive.",
+            "evidence_ids": []
+          }
+        ]
+      }
+    ],
+    "layouts": [
+      {
+        "audience": "owner",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      },
+      {
+        "audience": "owner",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      },
+      {
+        "audience": "buyer",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      },
+      {
+        "audience": "buyer",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      },
+      {
+        "audience": "marketing",
+        "width": 1440,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      },
+      {
+        "audience": "marketing",
+        "width": 390,
+        "javascript_errors": [],
+        "overflow_collapsed_or_expanded": false,
+        "canonical_role_cards": 4,
+        "links_and_anchors": "valid"
+      }
+    ],
+    "source_files_unchanged": true,
+    "new_provider_requests_by_qa": 0,
+    "network_policy": "Exact local bundle files only; all external network blocked",
+    "assessment": "Report commentary consists of application-owned wording bound to recorded decisions and evidence; no free model prose is displayed. This does not certify factual truth of input records."
+  },
+  "boundary": "Models select priorities only; report wording, formal fits, citations and behavior-verification preconditions are rebuilt from canonical records. This is not semantic truth verification or bundle authentication.",
+  "raw_credentials_or_html_published": false
+}

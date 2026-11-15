@@ -83,6 +83,9 @@ def _evaluate(bundle,brief,session):
 
 def _role(bundle,role,payload,budget):
     from .model import ModelClient,safe_model_failure
+    from .commentary import catalog_for_role,catalog_digest,resolve_selection
+    catalog=catalog_for_role(bundle,role)
+    required=[item["id"] for item in catalog if item.get("required")]
     context={
         "case":{key:bundle[key] for key in ("case_id","title","product","scope")},
         "sources":bundle["sources"],
@@ -94,9 +97,14 @@ def _role(bundle,role,payload,budget):
             "declared_claim_count":len(payload.get("declared_claims",[])),
         },
         **payload,
+        "review_catalog":catalog,
+        "review_catalog_digest":catalog_digest(bundle,role),
+        "required_review_item_ids":required,
+        "selection_response_example":{"review_item_ids":required},
     }
     try:
         proposal=ModelClient(budget).propose(role,context,{a["id"] for a in bundle["artifacts"]})
+        resolve_selection(bundle,proposal)
         bundle["agent_proposals"].append(proposal)
         bundle["stages"].append({"role":role,"status":"proposed","at":now()})
     except (Exception,KeyboardInterrupt) as error:
@@ -104,6 +112,8 @@ def _role(bundle,role,payload,budget):
         detail=failure["category"]
         if "http_status" in failure:
             detail+="; HTTP "+str(failure["http_status"])+"; "+failure["provider_code"]
+        if "selection_code" in failure:
+            detail+="; "+failure["selection_code"]
         bundle["warnings"].append(f"{role} incomplete: {failure['error_type']} ({detail}); no proposal was fabricated.")
         bundle["stages"].append({"role":role,"status":"blocked","error_type":failure["error_type"],"failure":failure,"at":now()})
         bundle["status"]="partial"

@@ -103,7 +103,7 @@ def test_output_token_parameter_is_explicit_and_bounded(token_parameter):
     assert other not in requests[0]
     assert result["token_parameter"] == token_parameter
     assert result["max_output_tokens"] == 600
-    assert result["prompt_version"] == "scoped-evidence-v4"
+    assert result["prompt_version"] == "scoped-evidence-v6"
 
 
 def test_modern_output_parameter_is_default_and_legacy_requires_configuration(monkeypatch):

@@ -19,6 +19,10 @@ def one_task_brief():
     return brief
 
 
+def selected_catalog_answer(context):
+    return {"review_item_ids": [item["id"] for item in context["review_catalog"]]}
+
+
 def test_all_roles_receive_case_scope_and_captured_source_evidence(tmp_path, monkeypatch):
     requests = []
     original = model.ModelClient
@@ -27,12 +31,13 @@ def test_all_roles_receive_case_scope_and_captured_source_evidence(tmp_path, mon
         context = json.loads(body["messages"][1]["content"])
         requests.append(context)
         source_artifact = context["sources"][0]["artifact_id"]
-        proposal = {"summary": "Within the supplied scope.", "evidence_ids": [source_artifact], "recommendations": ["Verify <script>alert('untrusted')</script> & the selected plan."]}
+        proposal = selected_catalog_answer(context)
         return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(proposal)}}], "usage": {"total_tokens": 123}})
     def client(budget):
         return original(budget, base_url="https://models.example.test/v1", model="protocol-test", api_key="synthetic", transport=httpx.MockTransport(handler))
     monkeypatch.setattr(model, "ModelClient", client)
     brief = one_task_brief()
+    brief["requirements"][0]["label"] = "Review <script>quoted</script> & the selected plan"
     bundle = run_case(brief, tmp_path / "review", live_model=True)
     assert bundle["status"] == "complete"
     assert len(requests) == 4
@@ -62,9 +67,8 @@ def test_all_roles_receive_case_scope_and_captured_source_evidence(tmp_path, mon
         report = (tmp_path / "review" / f"report-{audience}.html").read_text(encoding="utf-8")
         assert "Fictional fixture with live model proposals enabled" in report
         assert "Fictional, model-free fixture" not in report
-        assert "Proposed next steps:" in report
-        assert "Unverified model commentary" in report
-        assert "not confirmed facts" in report
+        assert "AI-selected review priorities" in report
+        assert "model wording cannot replace them" in report
         assert "&lt;script&gt;" in report and "&amp; the selected plan" in report
         assert "<script>" not in report
         assert 'href="#evidence-source-pricing"' in report
@@ -96,7 +100,7 @@ def test_role_context_preserves_actual_requirements_and_unknown_marketing_covera
     def handler(request):
         body = json.loads(request.content)
         observed.append((body["messages"][0]["content"], json.loads(body["messages"][1]["content"])))
-        return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps({"summary": "Review the current case evidence.", "evidence_ids": ["source-pricing"], "recommendations": []})}}]})
+        return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(selected_catalog_answer(observed[-1][1]))}}]})
     monkeypatch.setattr(model, "ModelClient", lambda budget: original(budget, base_url="https://models.example.test/v1", model="test", api_key="synthetic", transport=httpx.MockTransport(handler)))
     brief = one_task_brief()
     brief["sources"][0]["inline"].update(hosted_model=False, quoted_example="FICTIONAL EXAMPLE: Fit: meets")
@@ -125,7 +129,7 @@ def test_role_context_preserves_actual_requirements_and_unknown_marketing_covera
         assert fits["decision-marketing-alignment"] == "inconclusive"
     # Protocol checks do not claim to prove model semantics; live outputs need review.
     assert len({system for system, _ in observed}) == 4
-    assert all("fictional examples quoted inside its pages" in system for system, _ in observed)
+    assert all("application-owned review points" in system for system, _ in observed)
     assert "PRE-TASK PLANNING" in observed[0][0]
     assert all("You are the task_actor" not in system for system, _ in observed)
 
@@ -178,7 +182,7 @@ def test_legacy_task_narration_is_omitted_without_changing_raw_bundle(tmp_path):
         assert "&lt;script&gt;quoted&lt;/script&gt;" in report
         assert "<script>" not in report
         assert "not the truth of a page claim" in report
-        assert "Unverified model commentary" in report
+        assert "Legacy free-form model commentary is retained in JSON and excluded" in report
     assert json.dumps(bundle, sort_keys=True).encode() == raw
     assert (output / "bundle.json").read_bytes() == raw
 
@@ -189,7 +193,7 @@ def test_multiple_tasks_do_not_add_model_narration_calls(tmp_path, monkeypatch):
     def handler(request):
         body = json.loads(request.content)
         calls.append(body["messages"][0]["content"])
-        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps({"summary": "Proposed review", "evidence_ids": ["source-pricing"], "recommendations": []})}}]})
+        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(selected_catalog_answer(json.loads(body["messages"][1]["content"])))}}]})
     monkeypatch.setattr(model, "ModelClient", lambda budget: original(budget, base_url="https://models.example.test/v1", model="test", api_key="synthetic", transport=httpx.MockTransport(handler)))
     brief = example_brief("A")
     brief["limits"] = {"max_model_calls": 4, "max_tokens": 80000}
@@ -208,7 +212,7 @@ def test_documentary_criteria_conflict_does_not_rewrite_source_or_task_purpose(t
     def handler(request):
         body = json.loads(request.content)
         observed.append((body["messages"][0]["content"], json.loads(body["messages"][1]["content"])))
-        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps({"summary": "Review the documentary criteria separately.", "evidence_ids": ["source-docs"], "recommendations": []})}}]})
+        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(selected_catalog_answer(observed[-1][1]))}}]})
     monkeypatch.setattr(model, "ModelClient", lambda budget: original(budget, base_url="https://models.example.test/v1", model="test", api_key="synthetic", transport=httpx.MockTransport(handler)))
     brief = {
         "case_id": "documentary-criteria-conflict", "title": "Documented timeout review",
@@ -225,10 +229,9 @@ def test_documentary_criteria_conflict_does_not_rewrite_source_or_task_purpose(t
     assert bundle["status"] == "complete"
     assert len(observed) == bundle["usage"]["model_calls"] == 4
     for system, context in observed:
-        assert "Incompatible operator criteria are requirement conflicts" in system
-        assert "Never recommend changing documented facts merely to satisfy an unmet criterion" in system
-        assert "independently verified behavior" in system
-        assert "purpose comes only from its declared title and steps" in system
+        assert "ONLY review_item_ids" in system
+        assert "Do not return summaries, recommendations, alternative fits" in system
+        assert "required field is true" in system
         assert context["case"]["scope"] == brief["scope"]
         assert context["sources"][0]["values"]["text"] == "The default inactivity timeout is five seconds."
     for _, context in observed[1:]:
@@ -237,4 +240,6 @@ def test_documentary_criteria_conflict_does_not_rewrite_source_or_task_purpose(t
         assert context["tasks"][0]["method"] == "fixture_assertion", "No runtime test may be invented"
         fits = {d.get("requirement_id"): d["fit"] for d in context["decisions"] if d.get("requirement_id")}
         assert fits == {"five-seconds": "meets", "no-default": "fails"}
+        assert any("Verify actual behavior before changing a documented fact" in item["text"]
+                   for item in context["review_catalog"])
     # This checks the input contract and guardrails, not generated prose accuracy.
