@@ -8,6 +8,8 @@ You may explicitly select an already installed Chrome or Edge with `DRC_BROWSER_
 
 On a machine using an organization-managed certificate chain, preserve TLS verification and use the documented system CA support in the installed Node runtime if needed. Never disable certificate verification to download a browser.
 
+With the skill installed in a separate case workspace, point uv at the runner checkout without changing directories. Use `uv sync --locked --project "<runner-checkout>"` once, then `uv run --locked --project "<runner-checkout>" decision-recheck --help`. Paths supplied to the runner resolve from the case workspace. The model-free demo requires no browser or provider configuration.
+
 ## Commands
 
 | Command | Purpose |
@@ -80,6 +82,16 @@ Text assertions allow up to five seconds, bounded by the remaining run deadline,
 | Corrected copy but buyer fit still fails | The marketing statement and the buyer's requirements are separate decisions; fixing a promise does not change the price or entitlement. |
 | `validate` succeeds | The stored bundle's structure and artifact integrity passed; this is not a fresh observation of the live product. |
 | The website says “Imported metadata” | No artifact verification or live source check happened in the browser. Run the CLI validator against the complete bundle. |
+
+## Use the reports to decide
+
+Open the reports in the bundle directory after running `validate`. Start from a named plan and pay attention to the source and task references on each decision.
+
+- **Owner** — Decide which conflict warrants a product, task, or documentation follow-up. Reproduce the scoped mismatch and agree on the result that would close it. An unmet buyer criterion can be an expected plan limit.
+- **Buyer** — Resolve failed or unknown required criteria before treating the plan as a fit. For example, a fictional $29/month offer does not meet a $20/month cap even when its help text is correct. If the extracted price is plain text, obtain an authoritative numeric price with the same currency, billing period, and tax basis.
+- **Marketing/support** — Verify the recorded comparison before issuing a correction. A document match establishes agreement for the selected fields. If the support SLA field is missing, locate the governing term for that plan or leave the claim unresolved.
+
+On recheck, distinguish changed source fields, changed task outcomes, and brief edits. A task outcome can affect a linked buyer requirement and the owner view while the marketing document comparison still agrees. Record altered requirements and scope explicitly when comparing runs.
 
 Windows PowerShell browser selection:
 

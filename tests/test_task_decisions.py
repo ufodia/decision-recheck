@@ -37,3 +37,24 @@ def test_linked_task_can_substantiate_documented_requirement(tmp_path, local_sou
     assert bundle["tasks"][0]["execution"] == "passed", bundle["tasks"]
     assert buyer_fit(bundle) == "meets"
     assert bundle["mode"] == "live", "A real browser task must not be labeled as a wholly fictional fixture"
+
+
+def test_task_only_recheck_does_not_invalidate_marketing_document_alignment(tmp_path, local_sources, installed_browser):
+    brief = task_brief(local_sources)
+    brief["sources"].append({"id":"help","inline":{"included":True},"fields":{"included":"included"}})
+    brief["claims"] = [{
+        "id": "help-export", "source_id": "help", "field": "included",
+        "actual_source_id": "offer", "actual_field": "value",
+    }]
+    local_sources.html("/export", '<div id="result">CSV exported successfully</div>')
+    baseline = tmp_path / "baseline"
+    run_case(brief, baseline)
+
+    local_sources.html("/export", '<div id="result">Upgrade to Pro to export</div>')
+    bundle = run_case(brief, tmp_path / "recheck", baseline=baseline)
+    change = next(c for c in bundle["changes"] if c["source_id"] == "attempt:export-task")
+    assert change["kind"] == "changed"
+    assert set(change["affected_ids"]) == {"decision-buyer-criterion", "decision-owner-alignment"}
+    assert buyer_fit(bundle) == "fails"
+    marketing = next(d for d in bundle["decisions"] if d["id"] == "decision-marketing-alignment")
+    assert marketing["fit"] == "meets"

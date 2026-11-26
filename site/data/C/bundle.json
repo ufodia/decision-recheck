@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "run_id": "f9ffbaeb-94ed-4ffd-bdaa-563156599124",
+  "run_id": "a3d27aa0-1aad-44e9-9549-548320daa884",
   "case_id": "synthetic-saas",
   "title": "The CSV export promise",
   "product": "Fictional Fieldnote SaaS",
-  "created_at": "2026-11-15T18:37:19Z",
+  "created_at": "2026-11-26T19:44:18Z",
   "mode": "fixture",
   "model_mode": "disabled",
   "status": "complete",
@@ -20,40 +20,40 @@
       "id": "pricing",
       "kind": "pricing",
       "url": "inline:pricing",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "status": "captured",
       "values": {
         "price": 29,
         "csv_export": false
       },
       "artifact_id": "source-pricing",
-      "observation_id": "89812a98-f770-40d8-9f68-7998600897e8"
+      "observation_id": "9910e27f-4ffa-47b2-8056-170947a55150"
     },
     {
       "id": "offer",
       "kind": "offer",
       "url": "inline:offer",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "status": "captured",
       "values": {
         "csv_export": false,
         "text": "CSV export available on Pro."
       },
       "artifact_id": "source-offer",
-      "observation_id": "94db480f-f259-4b8b-9a78-e35d4514eb6e"
+      "observation_id": "51008e06-10b1-4b43-8c86-cd4272c52ff9"
     },
     {
       "id": "help",
       "kind": "help",
       "url": "inline:help",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "status": "captured",
       "values": {
         "csv_export": false,
         "text": "Export is available on the Pro plan."
       },
       "artifact_id": "source-help",
-      "observation_id": "4313b407-8abd-444e-9f16-2ff36928de13"
+      "observation_id": "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793"
     }
   ],
   "artifacts": [
@@ -107,7 +107,7 @@
       "method": "reused_historical",
       "execution": "passed",
       "summary": "Historical pure fixture attempt reused after equivalent dependency checks; not freshly executed. Deterministic fictional plan assertion: Selected Starter plan: $29 per month.",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "evidence_ids": [
         "task-capture-understand-plan"
       ],
@@ -117,7 +117,7 @@
           "observed": "Selected Starter plan: $29 per month."
         }
       ],
-      "reused_from": "80a5b9de-38e3-4c15-b0e3-1428007adc9d"
+      "reused_from": "a6e44259-c146-4328-9e21-cdfd019dfbff"
     },
     {
       "id": "attempt-export",
@@ -125,7 +125,7 @@
       "method": "fixture_assertion",
       "execution": "failed",
       "summary": "Deterministic fictional export assertion: CSV export requires the Pro plan.",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "evidence_ids": [
         "task-capture-attempt-export"
       ],
@@ -142,7 +142,7 @@
       "method": "fixture_assertion",
       "execution": "passed",
       "summary": "Deterministic fictional help assertion: Export is available on the Pro plan.",
-      "checked_at": "2026-11-15T18:37:19Z",
+      "checked_at": "2026-11-26T19:44:18Z",
       "evidence_ids": [
         "task-capture-find-help"
       ],
@@ -158,7 +158,7 @@
     {
       "id": "finding-budget",
       "title": "Requirement is not met: Stay within $20 per month",
-      "summary": "Observed scoped value: 29; required lte 20.",
+      "summary": "Captured 29 from pricing.price. Declared comparison: lte 20.",
       "severity": "high",
       "support": "conflicting",
       "evidence_ids": [
@@ -174,7 +174,7 @@
     {
       "id": "finding-export",
       "title": "Requirement is not met: CSV export is included in the selected plan",
-      "summary": "Observed scoped value: False; required eq True. Linked task outcome: failed. A blocked attempt establishes no absence.",
+      "summary": "Captured False from pricing.csv_export. Declared comparison: eq True. Linked task attempt-export: failed.",
       "severity": "high",
       "support": "conflicting",
       "evidence_ids": [
@@ -191,7 +191,7 @@
     {
       "id": "finding-claim-offer-export",
       "title": "Advertising agrees with plan entitlement",
-      "summary": "Supplied claim field: False. Scoped product/document field: False.",
+      "summary": "Supplied statement offer.csv_export: False. Scoped product reference pricing.csv_export: False.",
       "severity": "info",
       "support": "supported",
       "evidence_ids": [
@@ -203,12 +203,12 @@
         "owner",
         "marketing"
       ],
-      "suggestion": "Retain scope and evidence date; this comparison does not predict customer response."
+      "suggestion": "Keep the statement within the plan and terms supported by pricing.csv_export. Verify behavior before making a broader promise."
     },
     {
       "id": "finding-claim-help-export",
       "title": "Help answer agrees with plan entitlement",
-      "summary": "Supplied claim field: False. Scoped product/document field: False.",
+      "summary": "Supplied statement help.csv_export: False. Scoped product reference pricing.csv_export: False.",
       "severity": "info",
       "support": "supported",
       "evidence_ids": [
@@ -220,7 +220,7 @@
         "owner",
         "marketing"
       ],
-      "suggestion": "Retain scope and evidence date; this comparison does not predict customer response."
+      "suggestion": "Keep the statement within the plan and terms supported by pricing.csv_export. Verify behavior before making a broader promise."
     },
     {
       "id": "finding-task-attempt-export",
@@ -255,12 +255,13 @@
       "requirement_id": "budget",
       "title": "Stay within $20 per month",
       "fit": "fails",
-      "summary": "Observed scoped value: 29; required lte 20.",
+      "summary": "Captured 29 from pricing.price. Declared comparison: lte 20.",
       "evidence_ids": [
         "source-pricing"
       ],
       "review": "proposed",
-      "hard": true
+      "hard": true,
+      "next_step": "Treat this criterion as unmet for the checked plan. Review a different plan or confirm that the requirement can change."
     },
     {
       "id": "decision-buyer-export",
@@ -268,13 +269,14 @@
       "requirement_id": "export",
       "title": "CSV export is included in the selected plan",
       "fit": "fails",
-      "summary": "Observed scoped value: False; required eq True. Linked task outcome: failed. A blocked attempt establishes no absence.",
+      "summary": "Captured False from pricing.csv_export. Declared comparison: eq True. Linked task attempt-export: failed.",
       "evidence_ids": [
         "source-pricing",
         "task-capture-attempt-export"
       ],
       "review": "proposed",
-      "hard": true
+      "hard": true,
+      "next_step": "Inspect the recorded assertion for attempt-export and verify the route on this plan before relying on it."
     },
     {
       "id": "decision-buyer-help-findability",
@@ -282,7 +284,7 @@
       "requirement_id": "help-findability",
       "title": "Export guidance is present",
       "fit": "meets",
-      "summary": "Observed scoped value: 'Export is available on the Pro plan.'; required contains 'Export'.",
+      "summary": "Captured 'Export is available on the Pro plan.' from help.text. Declared comparison: contains 'Export'.",
       "evidence_ids": [
         "source-help"
       ],
@@ -294,7 +296,7 @@
       "audience": "owner",
       "title": "Readiness for the supplied user requirements",
       "fit": "fails",
-      "summary": "Review the linked inconsistencies and correction drafts.",
+      "summary": "Use the linked findings to distinguish unmet buyer criteria, task assertion failures, and conflicting statements. Reproduce the material discrepancy on the selected plan before changing the product or its documentation.",
       "evidence_ids": [
         "source-pricing",
         "task-capture-attempt-export",
@@ -308,7 +310,7 @@
       "audience": "marketing",
       "title": "Supplied promise and document alignment",
       "fit": "meets",
-      "summary": "The checked statements agree with the supplied document fields. Inspect task coverage separately; this is not proof of full product behavior.",
+      "summary": "The selected statement and product fields agree for this plan. Any task or buyer gaps are separate from this document comparison.",
       "evidence_ids": [
         "source-offer",
         "source-pricing",
@@ -362,8 +364,7 @@
       "kind": "changed",
       "state": "STALE_SOURCE",
       "affected_ids": [
-        "decision-owner-alignment",
-        "decision-marketing-alignment"
+        "decision-owner-alignment"
       ]
     }
   ],
@@ -376,43 +377,43 @@
     {
       "role": "requirements_researcher",
       "status": "deterministic",
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "task_actor",
       "task_id": "understand-plan",
       "status": "reused_historical",
       "model_used": false,
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "task_actor",
       "task_id": "attempt-export",
       "status": "fixture_assertion",
       "model_used": false,
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "task_actor",
       "task_id": "find-help",
       "status": "fixture_assertion",
       "model_used": false,
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "offer_support_analyst",
       "status": "deterministic",
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "evidence_reviewer",
       "status": "deterministic",
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     },
     {
       "role": "report_writer",
       "status": "deterministic",
-      "at": "2026-11-15T18:37:19Z"
+      "at": "2026-11-26T19:44:18Z"
     }
   ],
   "usage": {
@@ -420,7 +421,7 @@
     "browser_actions": 0,
     "reserved_tokens": 0,
     "actual_tokens": 0,
-    "elapsed_seconds": 0.031,
+    "elapsed_seconds": 0.016,
     "monetary_cost": null,
     "monetary_status": "unavailable",
     "attempts_executed": 2,
@@ -430,20 +431,20 @@
     "provider": "freshctx",
     "version": "0.17.0",
     "state": "CURRENT",
-    "checked_at": "2026-11-15T18:37:19Z",
+    "checked_at": "2026-11-26T19:44:18Z",
     "meaning": "Selected declared source fields were revalidated. CURRENT is not truth or a fresh browser-task result.",
     "receipts": [
       {
         "source_id": "pricing",
         "purpose": "fixture_task_selection",
         "state": "CURRENT",
-        "subject_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+        "subject_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.735629+00:00",
+            "checked_at": "2026-11-26T19:44:18.700874+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -458,21 +459,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.737134+00:00"
+        "checked_at": "2026-11-26T19:44:18.700874+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "fixture_task_selection",
         "state": "STALE_SOURCE",
-        "subject_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+        "subject_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
         "causes": [
-          "43022ce7-97f0-4879-b2a9-c5b30f4d90f5"
+          "f2b98ffe-8654-4c53-93b6-6e0b41650429"
         ],
         "adapter_results": [
           {
-            "token_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+            "token_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.737134+00:00",
+            "checked_at": "2026-11-26T19:44:18.700874+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -487,21 +488,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.737134+00:00"
+        "checked_at": "2026-11-26T19:44:18.700874+00:00"
       },
       {
         "source_id": "help",
         "purpose": "fixture_task_selection",
         "state": "STALE_SOURCE",
-        "subject_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+        "subject_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
         "causes": [
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace"
         ],
         "adapter_results": [
           {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.738140+00:00",
+            "checked_at": "2026-11-26T19:44:18.701874+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -516,19 +517,19 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.738140+00:00"
+        "checked_at": "2026-11-26T19:44:18.701874+00:00"
       },
       {
         "domain_id": "decision-buyer-budget",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "d7e85fcf-7d97-4171-bc53-e149cb3ae9eb",
+        "subject_id": "420ebe1e-cc17-4f84-8f46-c6d23778ab77",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.741146+00:00",
+            "checked_at": "2026-11-26T19:44:18.705876+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -543,19 +544,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.742146+00:00"
+        "checked_at": "2026-11-26T19:44:18.705876+00:00"
       },
       {
         "domain_id": "decision-buyer-export",
         "purpose": "baseline_recheck",
         "state": "CURRENT",
-        "subject_id": "a256c6b9-a33b-4f97-be0b-db78a72c9a6d",
+        "subject_id": "cb2b0a79-a393-49ac-a31e-bbd7d3087016",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "105d52e8-80d8-43d7-bbe0-2ad7f52e07a0",
+            "token_id": "21c4ce22-bbfa-415e-b3c1-4e8ddd8b532b",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.742146+00:00",
+            "checked_at": "2026-11-26T19:44:18.705876+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -569,9 +570,9 @@
             "retryable": false
           },
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.742146+00:00",
+            "checked_at": "2026-11-26T19:44:18.706874+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -586,21 +587,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.742146+00:00"
+        "checked_at": "2026-11-26T19:44:18.706874+00:00"
       },
       {
         "domain_id": "decision-buyer-help-findability",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "ad570ba3-e45c-4b93-be89-45d1d42f9d87",
+        "subject_id": "6a30f4f4-5f73-4dfb-ba3f-79ff5905b037",
         "causes": [
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace"
         ],
         "adapter_results": [
           {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.743140+00:00",
+            "checked_at": "2026-11-26T19:44:18.706874+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -615,37 +616,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.743140+00:00"
+        "checked_at": "2026-11-26T19:44:18.706874+00:00"
       },
       {
         "domain_id": "finding-claim-offer-export",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "1e122e21-3045-42b0-b2a0-641ebe62e023",
+        "subject_id": "e3e372ef-2461-4f71-8080-5daac2960bd5",
         "causes": [
-          "43022ce7-97f0-4879-b2a9-c5b30f4d90f5"
+          "f2b98ffe-8654-4c53-93b6-6e0b41650429"
         ],
         "adapter_results": [
           {
-            "token_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.743140+00:00",
-            "evidence": {
-              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.743140+00:00",
+            "checked_at": "2026-11-26T19:44:18.707875+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -657,24 +642,40 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
+            "outcome": "changed",
+            "checked_at": "2026-11-26T19:44:18.707875+00:00",
+            "evidence": {
+              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.743140+00:00"
+        "checked_at": "2026-11-26T19:44:18.707875+00:00"
       },
       {
         "domain_id": "finding-claim-help-export",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "72fc4845-4e0d-4905-b729-49589f88c9dc",
+        "subject_id": "ef8ed9b2-69d4-42ff-ad3d-db12e58f4aa4",
         "causes": [
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace"
         ],
         "adapter_results": [
           {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.744151+00:00",
+            "checked_at": "2026-11-26T19:44:18.707875+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -688,9 +689,9 @@
             "retryable": false
           },
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.744151+00:00",
+            "checked_at": "2026-11-26T19:44:18.707875+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -705,23 +706,23 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.744151+00:00"
+        "checked_at": "2026-11-26T19:44:18.707875+00:00"
       },
       {
         "domain_id": "decision-owner-alignment",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "1afdcafb-c663-4981-adb7-2fb000602997",
+        "subject_id": "9b883e3d-82fd-430d-96e2-8e4ff9c2886a",
         "causes": [
-          "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
-          "bcf25b52-dddb-4083-be2c-0043a902e74b"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
+          "6a03c41c-0827-4fb3-ade2-00a880505902",
+          "f2b98ffe-8654-4c53-93b6-6e0b41650429"
         ],
         "adapter_results": [
           {
-            "token_id": "105d52e8-80d8-43d7-bbe0-2ad7f52e07a0",
+            "token_id": "21c4ce22-bbfa-415e-b3c1-4e8ddd8b532b",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.744151+00:00",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -735,41 +736,9 @@
             "retryable": false
           },
           {
-            "token_id": "2f4b7ec3-3a41-44fa-a9ba-16c10bb8e7d3",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.745140+00:00",
-            "evidence": {
-              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
-              "server": "decision-recheck://attempt/understand-plan",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.745140+00:00",
-            "evidence": {
-              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.745140+00:00",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -783,9 +752,9 @@
             "retryable": false
           },
           {
-            "token_id": "bcf25b52-dddb-4083-be2c-0043a902e74b",
+            "token_id": "6a03c41c-0827-4fb3-ade2-00a880505902",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.745140+00:00",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -799,9 +768,25 @@
             "retryable": false
           },
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "9f9f6c3f-1be4-4de0-88c7-25b137c40523",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.745140+00:00",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -813,74 +798,41 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
+            "outcome": "changed",
+            "checked_at": "2026-11-26T19:44:18.708874+00:00",
+            "evidence": {
+              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.745140+00:00"
+        "checked_at": "2026-11-26T19:44:18.708874+00:00"
       },
       {
         "domain_id": "decision-marketing-alignment",
         "purpose": "baseline_recheck",
         "state": "STALE_REASONING",
-        "subject_id": "ff89c666-7619-4785-aba1-07ae0d0d64bb",
+        "subject_id": "d3110f83-007b-4273-813e-ae8db46af8cf",
         "causes": [
-          "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
-          "bcf25b52-dddb-4083-be2c-0043a902e74b"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
+          "f2b98ffe-8654-4c53-93b6-6e0b41650429"
         ],
         "adapter_results": [
           {
-            "token_id": "105d52e8-80d8-43d7-bbe0-2ad7f52e07a0",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
-            "evidence": {
-              "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
-              "server": "decision-recheck://attempt/attempt-export",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "2f4b7ec3-3a41-44fa-a9ba-16c10bb8e7d3",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
-            "evidence": {
-              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
-              "server": "decision-recheck://attempt/understand-plan",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
-            "evidence": {
-              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
-              "server": "decision-recheck://source/offer",
-              "name": "read_scoped_source",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
+            "checked_at": "2026-11-26T19:44:18.709874+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -894,25 +846,9 @@
             "retryable": false
           },
           {
-            "token_id": "bcf25b52-dddb-4083-be2c-0043a902e74b",
-            "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
-            "evidence": {
-              "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
-              "server": "decision-recheck://attempt/find-help",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.746140+00:00",
+            "checked_at": "2026-11-26T19:44:18.709874+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -924,22 +860,38 @@
             },
             "error_code": null,
             "retryable": false
+          },
+          {
+            "token_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
+            "outcome": "changed",
+            "checked_at": "2026-11-26T19:44:18.709874+00:00",
+            "evidence": {
+              "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
+              "server": "decision-recheck://source/offer",
+              "name": "read_scoped_source",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.746140+00:00"
+        "checked_at": "2026-11-26T19:44:18.709874+00:00"
       },
       {
         "source_id": "pricing",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+        "subject_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "f4cd24dc-0e16-43b9-a3c6-7951b9982977",
+            "token_id": "d73316b0-cab1-47f5-bdcd-32fc96324f81",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.747147+00:00",
+            "checked_at": "2026-11-26T19:44:18.710874+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -954,21 +906,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.747147+00:00"
+        "checked_at": "2026-11-26T19:44:18.710874+00:00"
       },
       {
         "source_id": "offer",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+        "subject_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
         "causes": [
-          "43022ce7-97f0-4879-b2a9-c5b30f4d90f5"
+          "f2b98ffe-8654-4c53-93b6-6e0b41650429"
         ],
         "adapter_results": [
           {
-            "token_id": "43022ce7-97f0-4879-b2a9-c5b30f4d90f5",
+            "token_id": "f2b98ffe-8654-4c53-93b6-6e0b41650429",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.747147+00:00",
+            "checked_at": "2026-11-26T19:44:18.710874+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -983,21 +935,21 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.747147+00:00"
+        "checked_at": "2026-11-26T19:44:18.710874+00:00"
       },
       {
         "source_id": "help",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+        "subject_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
         "causes": [
-          "622391a7-fa92-4a7a-ab0e-4591bd5f2d35"
+          "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace"
         ],
         "adapter_results": [
           {
-            "token_id": "622391a7-fa92-4a7a-ab0e-4591bd5f2d35",
+            "token_id": "3d7889d2-f40b-40bd-80ac-4fd7edfd8ace",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.747147+00:00",
+            "checked_at": "2026-11-26T19:44:18.711875+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -1012,19 +964,19 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.747147+00:00"
+        "checked_at": "2026-11-26T19:44:18.711875+00:00"
       },
       {
         "source_id": "attempt:understand-plan",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "2f4b7ec3-3a41-44fa-a9ba-16c10bb8e7d3",
+        "subject_id": "9f9f6c3f-1be4-4de0-88c7-25b137c40523",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "2f4b7ec3-3a41-44fa-a9ba-16c10bb8e7d3",
+            "token_id": "9f9f6c3f-1be4-4de0-88c7-25b137c40523",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.748145+00:00",
+            "checked_at": "2026-11-26T19:44:18.711875+00:00",
             "evidence": {
               "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
               "server": "decision-recheck://attempt/understand-plan",
@@ -1039,19 +991,19 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.748145+00:00"
+        "checked_at": "2026-11-26T19:44:18.711875+00:00"
       },
       {
         "source_id": "attempt:attempt-export",
         "purpose": "baseline_source_recheck",
         "state": "CURRENT",
-        "subject_id": "105d52e8-80d8-43d7-bbe0-2ad7f52e07a0",
+        "subject_id": "21c4ce22-bbfa-415e-b3c1-4e8ddd8b532b",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "105d52e8-80d8-43d7-bbe0-2ad7f52e07a0",
+            "token_id": "21c4ce22-bbfa-415e-b3c1-4e8ddd8b532b",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.748145+00:00",
+            "checked_at": "2026-11-26T19:44:18.712875+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -1066,21 +1018,21 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.748145+00:00"
+        "checked_at": "2026-11-26T19:44:18.712875+00:00"
       },
       {
         "source_id": "attempt:find-help",
         "purpose": "baseline_source_recheck",
         "state": "STALE_SOURCE",
-        "subject_id": "bcf25b52-dddb-4083-be2c-0043a902e74b",
+        "subject_id": "6a03c41c-0827-4fb3-ade2-00a880505902",
         "causes": [
-          "bcf25b52-dddb-4083-be2c-0043a902e74b"
+          "6a03c41c-0827-4fb3-ade2-00a880505902"
         ],
         "adapter_results": [
           {
-            "token_id": "bcf25b52-dddb-4083-be2c-0043a902e74b",
+            "token_id": "6a03c41c-0827-4fb3-ade2-00a880505902",
             "outcome": "changed",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
+            "checked_at": "2026-11-26T19:44:18.712875+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -1095,18 +1047,18 @@
           }
         ],
         "policy_decision": "block",
-        "checked_at": "2026-11-15T18:37:19.749140+00:00"
+        "checked_at": "2026-11-26T19:44:18.712875+00:00"
       },
       {
         "purpose": "current_report_export",
         "state": "CURRENT",
-        "subject_id": "c41f5d35-2743-4111-9167-24c5b7eeeb44",
+        "subject_id": "fc36e69f-a235-48e7-8b38-eb0c480d37be",
         "causes": [],
         "adapter_results": [
           {
-            "token_id": "4313b407-8abd-444e-9f16-2ff36928de13",
+            "token_id": "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
             "evidence": {
               "fingerprint": "7a4a1999ab04beeef7166a715f330ce686e9aa6aae3f1066cd2b8c9a861d5e51",
               "server": "decision-recheck://source/help",
@@ -1120,9 +1072,9 @@
             "retryable": false
           },
           {
-            "token_id": "89812a98-f770-40d8-9f68-7998600897e8",
+            "token_id": "9910e27f-4ffa-47b2-8056-170947a55150",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
             "evidence": {
               "fingerprint": "67236bc6afc28da809f48c783f678656448e09db9b1950afbd61ef93f2276b02",
               "server": "decision-recheck://source/pricing",
@@ -1136,9 +1088,9 @@
             "retryable": false
           },
           {
-            "token_id": "21b70c46-817b-447f-aa02-83aa1f1020eb",
+            "token_id": "cb16d4ad-68ed-4fbd-a436-1764ae510c38",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
             "evidence": {
               "fingerprint": "0377c73b2a3dc8e6b5cc890da08c2ea5356857e5b72a49e5e5991e346df4f34d",
               "server": "decision-recheck://attempt/attempt-export",
@@ -1152,25 +1104,9 @@
             "retryable": false
           },
           {
-            "token_id": "4bf07e50-63a0-4dd5-b7c6-9128481fe853",
+            "token_id": "51008e06-10b1-4b43-8c86-cd4272c52ff9",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
-            "evidence": {
-              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
-              "server": "decision-recheck://attempt/understand-plan",
-              "name": "read_recorded_attempt",
-              "duration_ms": 0.0,
-              "freshness_strategy": "exact",
-              "validation_execution": "sequential",
-              "validation_attempts": 1
-            },
-            "error_code": null,
-            "retryable": false
-          },
-          {
-            "token_id": "94db480f-f259-4b8b-9a78-e35d4514eb6e",
-            "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.749140+00:00",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
             "evidence": {
               "fingerprint": "cfc0054bce6285903bac54a7c14ef822dfbf6bc3235c06ffa72ce8d05195221f",
               "server": "decision-recheck://source/offer",
@@ -1184,9 +1120,25 @@
             "retryable": false
           },
           {
-            "token_id": "e192ab19-3bba-4c5c-a302-4381358d5d60",
+            "token_id": "3674a221-a81e-4013-bb3e-eaaebfaa5f3d",
             "outcome": "equivalent",
-            "checked_at": "2026-11-15T18:37:19.750148+00:00",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
+            "evidence": {
+              "fingerprint": "82f4769414089b888fd5597775ec4b648901ef55ea72af84950a77b9af4f5c10",
+              "server": "decision-recheck://attempt/understand-plan",
+              "name": "read_recorded_attempt",
+              "duration_ms": 0.0,
+              "freshness_strategy": "exact",
+              "validation_execution": "sequential",
+              "validation_attempts": 1
+            },
+            "error_code": null,
+            "retryable": false
+          },
+          {
+            "token_id": "f961ca12-6bf1-48f2-9305-3756a8958507",
+            "outcome": "equivalent",
+            "checked_at": "2026-11-26T19:44:18.713875+00:00",
             "evidence": {
               "fingerprint": "4dcb7b1cd058cb1d67c0d22cbc011056ae726e59f267201d9fc326abe6326891",
               "server": "decision-recheck://attempt/find-help",
@@ -1201,7 +1153,7 @@
           }
         ],
         "policy_decision": "allow",
-        "checked_at": "2026-11-15T18:37:19.750148+00:00"
+        "checked_at": "2026-11-26T19:44:18.713875+00:00"
       }
     ],
     "objects": {
@@ -1234,8 +1186,8 @@
             "validator_key": "bd673d70193068e99350e834079b59610140695e17c6f820ac19de4a77c968f4",
             "freshness_strategy": "exact"
           },
-          "id": "89812a98-f770-40d8-9f68-7998600897e8",
-          "observed_at": "2026-11-15T18:37:19.732629+00:00"
+          "id": "9910e27f-4ffa-47b2-8056-170947a55150",
+          "observed_at": "2026-11-26T19:44:18.696875+00:00"
         },
         "offer": {
           "adapter": "mcp",
@@ -1265,8 +1217,8 @@
             "validator_key": "d7f358fe17ab0e9372702e7688af9d30dc7d4543ad8986c34bc81c9f4717f227",
             "freshness_strategy": "exact"
           },
-          "id": "94db480f-f259-4b8b-9a78-e35d4514eb6e",
-          "observed_at": "2026-11-15T18:37:19.734639+00:00"
+          "id": "51008e06-10b1-4b43-8c86-cd4272c52ff9",
+          "observed_at": "2026-11-26T19:44:18.697874+00:00"
         },
         "help": {
           "adapter": "mcp",
@@ -1296,8 +1248,8 @@
             "validator_key": "a4e5a1bf0e1b5421d3f81636d6849980649e3efeb653bf16931236c0661517e5",
             "freshness_strategy": "exact"
           },
-          "id": "4313b407-8abd-444e-9f16-2ff36928de13",
-          "observed_at": "2026-11-15T18:37:19.735629+00:00"
+          "id": "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793",
+          "observed_at": "2026-11-26T19:44:18.699874+00:00"
         },
         "attempt:understand-plan": {
           "adapter": "mcp",
@@ -1334,8 +1286,8 @@
             "validator_key": "5e7fd31caf305498359241911b3d31497aae2e353d8fb7697b465c3dc836eb04",
             "freshness_strategy": "exact"
           },
-          "id": "4bf07e50-63a0-4dd5-b7c6-9128481fe853",
-          "observed_at": "2026-11-15T18:37:19.739140+00:00"
+          "id": "3674a221-a81e-4013-bb3e-eaaebfaa5f3d",
+          "observed_at": "2026-11-26T19:44:18.703875+00:00"
         },
         "attempt:attempt-export": {
           "adapter": "mcp",
@@ -1372,8 +1324,8 @@
             "validator_key": "aba45c6633d6b72e144f25953c143aac495a9ba053324876fdb49cb3eeb93c88",
             "freshness_strategy": "exact"
           },
-          "id": "21b70c46-817b-447f-aa02-83aa1f1020eb",
-          "observed_at": "2026-11-15T18:37:19.740140+00:00"
+          "id": "cb16d4ad-68ed-4fbd-a436-1764ae510c38",
+          "observed_at": "2026-11-26T19:44:18.703875+00:00"
         },
         "attempt:find-help": {
           "adapter": "mcp",
@@ -1410,107 +1362,104 @@
             "validator_key": "90242f7176ebe9a7491f62c01275662a4355bf107198df182138c09698102969",
             "freshness_strategy": "exact"
           },
-          "id": "e192ab19-3bba-4c5c-a302-4381358d5d60",
-          "observed_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "f961ca12-6bf1-48f2-9305-3756a8958507",
+          "observed_at": "2026-11-26T19:44:18.704874+00:00"
         }
       },
       "reasoning": {
         "decision-buyer-budget": {
           "kind": "decision-recheck",
           "dependencies": [
-            "89812a98-f770-40d8-9f68-7998600897e8"
+            "9910e27f-4ffa-47b2-8056-170947a55150"
           ],
-          "digest": "898b0d51e4111deb3dcd418f9c140ff7181357f78364348ad6a1493a3c28b286",
+          "digest": "9671ed79076ca614f01c588ed48b40840fa57a3bfa326b423ad247b1883b69e1",
           "metadata": {
             "domain_id": "decision-buyer-budget"
           },
-          "id": "5ed58f73-bdb2-4330-a443-1cad84a45e93",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "7c8fbb78-a64c-4191-bfb2-303bfbc5a604",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "decision-buyer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "21b70c46-817b-447f-aa02-83aa1f1020eb",
-            "89812a98-f770-40d8-9f68-7998600897e8"
+            "9910e27f-4ffa-47b2-8056-170947a55150",
+            "cb16d4ad-68ed-4fbd-a436-1764ae510c38"
           ],
-          "digest": "12aa91d68b636317b5607974127a3c64e9b57becb2bd7d57a3e0617d8e6c8296",
+          "digest": "99547ef0c760de5c5e3c5c16c08ab213c5468efc846a9e0b472cf450c0c61576",
           "metadata": {
             "domain_id": "decision-buyer-export"
           },
-          "id": "a7bba74d-3e6c-43c5-ba30-ed5a37f1667f",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "69f9c7d0-8440-4ba2-89d4-88ea95d817b6",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "decision-buyer-help-findability": {
           "kind": "decision-recheck",
           "dependencies": [
-            "4313b407-8abd-444e-9f16-2ff36928de13"
+            "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793"
           ],
-          "digest": "94ae0d865298cc19d1e1c49ac1cf175803d5ef66d1827b1bddc32fb05a40f6e9",
+          "digest": "5866c068fdbf596545521ff1d0ba38a6d1029712fce928db8f6f3985e80399b7",
           "metadata": {
             "domain_id": "decision-buyer-help-findability"
           },
-          "id": "04c23f64-4983-48e8-b605-8c9b9e9c6039",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "05cf2bc9-968c-4bc9-b33f-73d1dd103adb",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "finding-claim-offer-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "89812a98-f770-40d8-9f68-7998600897e8",
-            "94db480f-f259-4b8b-9a78-e35d4514eb6e"
+            "51008e06-10b1-4b43-8c86-cd4272c52ff9",
+            "9910e27f-4ffa-47b2-8056-170947a55150"
           ],
-          "digest": "defcd8832a96e9ac3316ff820e4bd3081ece527341d399edf133794a9cb107e3",
+          "digest": "ab0518b36952e390ee7ff119c0b93f47fe6f15f9fa95183061291e7124573f1d",
           "metadata": {
             "domain_id": "finding-claim-offer-export"
           },
-          "id": "9019ecf1-f8f4-4d57-a481-5d0c068c9b85",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "7f347773-a1eb-4dcf-b588-9fca2d7e870d",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "finding-claim-help-export": {
           "kind": "decision-recheck",
           "dependencies": [
-            "4313b407-8abd-444e-9f16-2ff36928de13",
-            "89812a98-f770-40d8-9f68-7998600897e8"
+            "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793",
+            "9910e27f-4ffa-47b2-8056-170947a55150"
           ],
-          "digest": "c7e3950fcc3aa311a6a00ecaad7cf35ee84530fbfff9b6fc0d109bb57f964873",
+          "digest": "1151499ea799de89ff5427ccb38680eb4fe31dddb9e2a993a8729bf4918f1ed2",
           "metadata": {
             "domain_id": "finding-claim-help-export"
           },
-          "id": "7dbeef12-2292-4b5e-a6e8-76e8694fd63d",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "600f0acf-69ea-4659-9300-79885e40ef6e",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "decision-owner-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "21b70c46-817b-447f-aa02-83aa1f1020eb",
-            "4313b407-8abd-444e-9f16-2ff36928de13",
-            "4bf07e50-63a0-4dd5-b7c6-9128481fe853",
-            "89812a98-f770-40d8-9f68-7998600897e8",
-            "94db480f-f259-4b8b-9a78-e35d4514eb6e",
-            "e192ab19-3bba-4c5c-a302-4381358d5d60"
+            "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793",
+            "3674a221-a81e-4013-bb3e-eaaebfaa5f3d",
+            "51008e06-10b1-4b43-8c86-cd4272c52ff9",
+            "9910e27f-4ffa-47b2-8056-170947a55150",
+            "cb16d4ad-68ed-4fbd-a436-1764ae510c38",
+            "f961ca12-6bf1-48f2-9305-3756a8958507"
           ],
-          "digest": "07ef16ae8b8ec0a4ff51870e0a693327af6cbcf4e4286dd8f0c847fc3d439d60",
+          "digest": "499988076496996909b2f4681caf45e660f163fdad1708736df7b9f0adefa464",
           "metadata": {
             "domain_id": "decision-owner-alignment"
           },
-          "id": "87c2e405-b1aa-4ef6-8858-349d3c5335d1",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "8ecd55d8-3832-4359-b315-e69881f22a5e",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         },
         "decision-marketing-alignment": {
           "kind": "decision-recheck",
           "dependencies": [
-            "21b70c46-817b-447f-aa02-83aa1f1020eb",
-            "4313b407-8abd-444e-9f16-2ff36928de13",
-            "4bf07e50-63a0-4dd5-b7c6-9128481fe853",
-            "89812a98-f770-40d8-9f68-7998600897e8",
-            "94db480f-f259-4b8b-9a78-e35d4514eb6e",
-            "e192ab19-3bba-4c5c-a302-4381358d5d60"
+            "0a6d7e7a-466d-4ed2-9dcf-2c7b2c51f793",
+            "51008e06-10b1-4b43-8c86-cd4272c52ff9",
+            "9910e27f-4ffa-47b2-8056-170947a55150"
           ],
-          "digest": "cbfb4ba6cb64a47f6e4d5b5258a7e5ef7c4c78d4273c5abfe3d07d9d9bdbdb70",
+          "digest": "990f3067aa03890a888b0a9e87bd520f20d47d2827fa15bbb96b5e6931f80d2e",
           "metadata": {
             "domain_id": "decision-marketing-alignment"
           },
-          "id": "feadcb68-3fad-42f8-91db-5d6e25cdfafc",
-          "created_at": "2026-11-15T18:37:19.741146+00:00"
+          "id": "738be1cc-6532-4f6b-8e49-bf214ed4b624",
+          "created_at": "2026-11-26T19:44:18.705876+00:00"
         }
       }
     }

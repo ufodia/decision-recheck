@@ -76,6 +76,20 @@ function badge(text, warning = false) {
   return element('span', `mini-status${warning ? ' warning' : ''}`, text);
 }
 
+function requirementLabel(decision) {
+  if (decision.hard === true) return 'Required';
+  if (decision.hard === false) return 'Optional';
+  return '';
+}
+
+function appendDecisionNextStep(container, decision) {
+  const nextStep = safeText(decision.next_step);
+  if (!nextStep) return;
+  const paragraph = element('p', 'report-summary');
+  paragraph.append(element('strong', '', 'Next step'), document.createTextNode(` ${nextStep}`));
+  container.append(paragraph);
+}
+
 function publishedArtifactUrl(path) {
   if (state.imported || !['A', 'B', 'C', 'footer'].includes(state.snapshot)) return null;
   if (typeof path !== 'string' || !/^[a-zA-Z0-9._/-]+$/.test(path) || path.startsWith('/') || path.split('/').some(part => part === '.' || part === '..' || !part)) return null;
@@ -185,8 +199,11 @@ function renderReport(bundle, lookup) {
   }
   statuses.append(badge(`Source check: ${tokenText(bundle.freshness.state)}`, bundle.freshness.state !== 'CURRENT'));
   statuses.append(badge('Conclusions: proposed'));
+  const requirement = decisions[0] && requirementLabel(decisions[0]);
+  if (requirement) statuses.append(badge(requirement));
   container.append(statuses);
   if (decisions[0]) {
+    appendDecisionNextStep(container, decisions[0]);
     const primaryEvidence = element('div', 'finding-evidence primary-evidence');
     appendEvidenceLinks(primaryEvidence, decisions[0].evidence_ids, lookup);
     container.append(primaryEvidence);
@@ -211,8 +228,9 @@ function renderReport(bundle, lookup) {
   for (const decision of decisions.slice(1)) {
     const article = element('article', 'finding');
     const top = element('div', 'finding-topline');
-    top.append(element('h4', '', safeText(decision.title)), element('span', 'finding-label', `Decision · ${tokenText(decision.fit)}`));
+    top.append(element('h4', '', safeText(decision.title)), element('span', 'finding-label', `${requirementLabel(decision) || 'Decision'} · ${tokenText(decision.fit)}`));
     article.append(top, element('p', '', safeText(decision.summary)));
+    appendDecisionNextStep(article, decision);
     const links = element('div', 'finding-evidence');
     appendEvidenceLinks(links, decision.evidence_ids, lookup);
     article.append(links);

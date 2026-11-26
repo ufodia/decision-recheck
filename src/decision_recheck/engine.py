@@ -14,6 +14,34 @@ from .validate import validate_bundle
 def _field(source,field):
     return source.get("values",{}).get(field) if source and source.get("status")=="captured" else None
 
+
+def _buyer_result(req, scope, actual, task):
+    field = f"{req['source_id']}.{req['field']}"
+    operator = req.get("operator", "eq")
+    expected = req["expected"]
+    verdict = compare(actual, operator, expected)
+    fit = "meets" if verdict is True else "fails" if verdict is False else "inconclusive"
+    observed = f"Captured {actual!r} from {field}." if actual is not None else f"No value was established for {field}."
+    detail = f"{observed} Declared comparison: {operator} {expected!r}."
+    task_execution = task["execution"] if task else "not_tested"
+    if req.get("task_id"):
+        detail += f" Linked task {req['task_id']}: {task_execution}."
+        if task_execution in ("blocked", "not_tested", "interrupted"):
+            return "inconclusive", detail, f"Resolve the recorded task blocker and rerun {req['task_id']} for the selected plan before deciding."
+        if task_execution == "failed":
+            return "fails", detail, f"Inspect the recorded assertion for {req['task_id']} and verify the route on this plan before relying on it."
+    if actual is None:
+        return fit, detail, f"Obtain the selected value for {field} from an authoritative source for this plan."
+    if verdict is None:
+        return fit, detail, f"Select a compatible value for {field} and rerun the comparison."
+    is_price = "price" in req["field"].lower() or "budget" in req.get("label", "").lower()
+    if is_price and operator in ("lte", "gte") and any(not scope.get(key) for key in ("currency", "billing_period")):
+        return "conditional", detail, f"Confirm the currency and billing period for {field} and the buyer's limit on the same basis."
+    if fit == "fails":
+        return fit, detail, "Treat this criterion as unmet for the checked plan. Review a different plan or confirm that the requirement can change."
+    return fit, detail, None
+
+
 def _evaluate(bundle,brief,session):
     sources={s["id"]:s for s in bundle["sources"]}
     decisions=[]
@@ -22,27 +50,16 @@ def _evaluate(bundle,brief,session):
     for req in brief["requirements"]:
         source=sources.get(req["source_id"])
         actual=_field(source,req["field"])
-        verdict=compare(actual,req.get("operator","eq"),req["expected"])
-        fit="meets" if verdict is True else "fails" if verdict is False else "inconclusive"
         evidence=[source["artifact_id"]] if source and source.get("artifact_id") else []
         related_task=tasks.get(req.get("task_id"))
-        if req.get("task_id"):
-            if not related_task or related_task["execution"] in ("blocked","not_tested","interrupted"):
-                fit="inconclusive"
-            elif related_task["execution"]=="failed":
-                fit="fails"
-            if related_task:
-                evidence=list(dict.fromkeys(evidence+related_task.get("evidence_ids",[])))
+        if related_task:
+            evidence=list(dict.fromkeys(evidence+related_task.get("evidence_ids",[])))
+        fit,detail,next_step=_buyer_result(req,brief["scope"],actual,related_task)
         rid="decision-buyer-"+req["id"]
-        detail=f"Observed scoped value: {actual!r}; required {req.get('operator','eq')} {req['expected']!r}." if actual is not None else "The required scoped field was not established; request an answer or a new test."
-        if req.get("task_id"):
-            detail+=" Linked task outcome: "+(related_task["execution"] if related_task else "not_tested")+". A blocked attempt establishes no absence."
-        if req.get("operator") in ("lte","gte") and any(not brief["scope"].get(k) for k in ("currency","billing_period")):
-            # Only currency/billing-sensitive price requirements require these units.
-            if "price" in req["field"].lower() or "budget" in req.get("label","").lower():
-                fit="conditional"
-                detail+=" Currency or billing period is missing; budget fit remains conditional."
-        decisions.append({"id":rid,"audience":"buyer","requirement_id":req["id"],"title":req.get("label",req["id"]),"fit":fit,"summary":detail,"evidence_ids":evidence,"review":"proposed","hard":req.get("hard",True)})
+        decision={"id":rid,"audience":"buyer","requirement_id":req["id"],"title":req.get("label",req["id"]),"fit":fit,"summary":detail,"evidence_ids":evidence,"review":"proposed","hard":req.get("hard",True)}
+        if next_step:
+            decision["next_step"]=next_step
+        decisions.append(decision)
         session.reason(rid,[req["source_id"]]+(["attempt:"+req["task_id"]] if req.get("task_id") else []))
         if fit=="fails":
             findings.append({"id":"finding-"+req["id"],"title":"Requirement is not met: "+req.get("label",req["id"]),"summary":detail,"severity":"high" if req.get("hard",True) else "medium","support":"conflicting","evidence_ids":evidence,"review":"proposed","audiences":["owner","buyer"],"suggestion":"Review the plan/requirement mismatch. Keep the buyer constraint explicit; a copy change alone cannot resolve it."})
@@ -56,7 +73,20 @@ def _evaluate(bundle,brief,session):
         evidence=[s["artifact_id"] for s in (advertised,actual) if s and s.get("artifact_id")]
         evidence=list(dict.fromkeys(evidence))
         cid="finding-claim-"+claim["id"]
-        findings.append({"id":cid,"title":claim.get("label",claim["id"]),"summary":f"Supplied claim field: {expected!r}. Scoped product/document field: {observed!r}." if available else "At least one side of this comparison is missing. No contradiction or success was established.","severity":"high" if matched is False else "info","support":"conflicting" if matched is False else "supported" if matched is True else "insufficient","evidence_ids":evidence,"review":"proposed","audiences":["owner","marketing"],"suggestion":"Reproduce the scoped behavior, then qualify the supplied statement to match supported facts." if matched is False else "Retain scope and evidence date; this comparison does not predict customer response."})
+        claim_field=f"{claim['source_id']}.{claim['field']}"
+        product_field=f"{claim['actual_source_id']}.{claim['actual_field']}"
+        if available:
+            summary=f"Supplied statement {claim_field}: {expected!r}. Scoped product reference {product_field}: {observed!r}."
+            suggestion=(
+                f"Verify the scoped behavior against {product_field}. If confirmed, correct {claim_field} for the selected plan and compare it again."
+                if matched is False else
+                f"Keep the statement within the plan and terms supported by {product_field}. Verify behavior before making a broader promise."
+            )
+        else:
+            missing=" and ".join(field for field,value in ((claim_field,expected),(product_field,observed)) if value is None)
+            summary=f"The comparison is unresolved. No value was established for {missing}."
+            suggestion=f"Obtain {missing} for the selected plan before publishing or correcting this statement."
+        findings.append({"id":cid,"title":claim.get("label",claim["id"]),"summary":summary,"severity":"high" if matched is False else "info","support":"conflicting" if matched is False else "supported" if matched is True else "insufficient","evidence_ids":evidence,"review":"proposed","audiences":["owner","marketing"],"suggestion":suggestion})
         session.reason(cid,[claim["source_id"],claim["actual_source_id"]])
     for task in bundle["tasks"]:
         if task["execution"] in ("failed","blocked","not_tested","interrupted"):
@@ -71,13 +101,27 @@ def _evaluate(bundle,brief,session):
         evidence=list(dict.fromkeys(e for record in [*relevant,*requirements] for e in record["evidence_ids"]))
         rid="decision-"+audience+"-alignment"
         fit="fails" if conflict else "inconclusive" if insufficient or not (relevant or requirements) else "conditional" if conditional else "meets"
-        summary="Review the linked inconsistencies and correction drafts." if fit=="fails" else "Evidence is incomplete in the declared scope." if fit=="inconclusive" else "Requirement fit depends on the stated unresolved conditions; review them before deciding." if fit=="conditional" else "The checked requirements and supplied statements agree within the declared scope. Inspect task coverage separately; this is not proof of full product behavior." if audience=="owner" else "The checked statements agree with the supplied document fields. Inspect task coverage separately; this is not proof of full product behavior."
+        if audience=="owner":
+            summary={
+                "fails": "Use the linked findings to distinguish unmet buyer criteria, task assertion failures, and conflicting statements. Reproduce the material discrepancy on the selected plan before changing the product or its documentation.",
+                "inconclusive": "Gather the missing source or task observations before deciding which owner action is warranted.",
+                "conditional": "Resolve the recorded requirement conditions before deciding whether the plan meets the supplied needs.",
+                "meets": "The supplied requirements and statements agree within the declared scope. Review the task evidence for the behavior actually exercised.",
+            }[fit]
+        elif not relevant:
+            summary="No supplied statements were included in the document comparison."
+        else:
+            summary={
+                "fails": "Some supplied statements conflict with their scoped product references. Verify behavior and the selected plan before correcting the indicated statements.",
+                "inconclusive": "No conclusive comparison covers all supplied statements. Resolve the missing source fields before relying on the claims.",
+                "meets": "The selected statement and product fields agree for this plan. Any task or buyer gaps are separate from this document comparison.",
+            }[fit]
         decisions.append({"id":rid,"audience":audience,"title":title,"fit":fit,"summary":summary,"evidence_ids":evidence,"review":"proposed"})
         deps=list(dict.fromkeys(s for c in brief["claims"] for s in (c["source_id"],c["actual_source_id"])))
         if audience=="owner":
-            deps=list(dict.fromkeys(deps+[r["source_id"] for r in brief["requirements"]]))
-        deps=list(dict.fromkeys(deps+["attempt:"+t["id"] for t in bundle["tasks"]]))
-        session.reason(rid,deps)
+            deps=list(dict.fromkeys(deps+[r["source_id"] for r in brief["requirements"]]+["attempt:"+t["id"] for t in bundle["tasks"]]))
+        if deps:
+            session.reason(rid,deps)
     bundle["findings"]=findings
     bundle["decisions"]=decisions
 

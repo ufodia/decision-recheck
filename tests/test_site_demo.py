@@ -48,8 +48,16 @@ def test_demo_snapshot_and_audience_views_use_actual_report_data(demo_page):
     page.locator('[data-role="buyer"]').click()
     expect(page.locator("#report-content")).to_contain_text("fails")
     expect(page.locator("#report-content")).to_contain_text("29")
+    expect(page.locator(".report-statuses")).to_contain_text("Required")
+    expect(page.locator(".finding-label").filter(has_text="Optional")).to_be_visible()
+    expect(page.locator("#report-content")).to_contain_text("Treat this criterion as unmet for the checked plan.")
+    page.set_viewport_size({"width": 375, "height": 812})
+    assert page.evaluate("document.documentElement.scrollWidth") == 375
     page.locator('[data-snapshot="C"]').click()
     expect(page.locator("#report-content")).to_contain_text("fails")
+    page.locator('[data-role="marketing"]').click()
+    expect(page.locator("#report-content")).to_contain_text("Fit: meets")
+    page.locator('[data-role="buyer"]').click()
     page.locator('[data-snapshot="footer"]').click()
     expect(page.locator("#report-content")).to_contain_text("meets")
 
@@ -97,6 +105,7 @@ def test_local_metadata_import_renders_untrusted_text_without_execution(demo_pag
     payload = '<img src=x onerror="window.__injected=true">'
     bundle["title"] = payload
     bundle["decisions"][0]["title"] = payload
+    bundle["decisions"][0]["next_step"] = payload
     for source in bundle["sources"]:
         source["url"] = "https://should-not-fetch.invalid/private-source"
     requests = []
@@ -104,6 +113,8 @@ def test_local_metadata_import_renders_untrusted_text_without_execution(demo_pag
     page.locator("#bundle-file").set_input_files({"name": "synthetic-untrusted.json", "mimeType": "application/json", "buffer": json.dumps(bundle).encode()})
     expect(page.locator("#demo-feedback")).to_contain_text("metadata preview")
     expect(page.locator("#case-title")).to_have_text(payload)
+    page.locator('[data-role="buyer"]').click()
+    expect(page.locator("#report-content")).to_contain_text(payload)
     assert page.locator('img[src="x"]').count() == 0
     assert page.evaluate("window.__injected === true") is False
     assert page.locator(".artifact-download").count() == 0
